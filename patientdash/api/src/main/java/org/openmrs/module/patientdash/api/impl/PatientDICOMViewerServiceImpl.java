@@ -18,27 +18,36 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.patientdash.api.PatientDICOMViewerService;
 import org.openmrs.module.patientdash.api.db.PatientDICOMViewerDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * It is a default implementation of {@link PatientDICOMViewerService}.
  */
 public class PatientDICOMViewerServiceImpl extends BaseOpenmrsService implements PatientDICOMViewerService {
-	
+
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+
+	@Autowired
 	private PatientDICOMViewerDAO dao;
-	
+
 	/**
-     * @param dao the dao to set
-     */
-    public void setDao(PatientDICOMViewerDAO dao) {
-	    this.dao = dao;
-    }
-    
-    /**
-     * @return the dao
-     */
-    public PatientDICOMViewerDAO getDao() {
-	    return dao;
-    }
+	 * @param dao
+	 *            the dao to set
+	 */
+	public void setDao(PatientDICOMViewerDAO dao) {
+		this.dao = dao;
+	}
+
+	/**
+	 * @return the dao
+	 */
+	public PatientDICOMViewerDAO getDao() {
+		return dao;
+	}
+
+	@Override
+	public void initializeTables() {
+		dao.initializeTables();
+	}
+
 }

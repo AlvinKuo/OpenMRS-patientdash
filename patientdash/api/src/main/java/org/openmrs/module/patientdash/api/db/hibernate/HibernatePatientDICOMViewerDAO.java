@@ -15,15 +15,22 @@ package org.openmrs.module.patientdash.api.db.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.openmrs.module.patientdash.PatientDICOMViewer;
 import org.openmrs.module.patientdash.api.db.PatientDICOMViewerDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * It is a default implementation of  {@link PatientDICOMViewerDAO}.
  */
+
+@Repository
 public class HibernatePatientDICOMViewerDAO implements PatientDICOMViewerDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	/**
@@ -39,4 +46,36 @@ public class HibernatePatientDICOMViewerDAO implements PatientDICOMViewerDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+    
+	public void initializeTables() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+    	PatientDICOMViewer ecgid = new PatientDICOMViewer();
+    	ecgid.setId(5);    	
+    	PatientDICOMViewer ecgpid = new PatientDICOMViewer();
+    	ecgpid.setPatiendId("A987654321");    	
+    	PatientDICOMViewer ecgpname = new PatientDICOMViewer();
+    	ecgpname.setPatientName("CheWeiKuo");   	
+    	PatientDICOMViewer ecgnid = new PatientDICOMViewer();
+    	ecgnid.setNurseId("4321");    	
+    	PatientDICOMViewer ecgnname = new PatientDICOMViewer();
+    	ecgnname.setNurseName("Alan");    	
+    	PatientDICOMViewer ecgfilename = new PatientDICOMViewer();
+    	ecgfilename.setFilename("A987654321201304101012.dcm");    	
+    	PatientDICOMViewer ecgmtime = new PatientDICOMViewer();
+    	ecgmtime.setMeasureTime("2013-04-10 22:13");    	
+    	PatientDICOMViewer ecgutime = new PatientDICOMViewer();
+    	ecgutime.setUploadTime("2013-04-10 22:14");
+    	
+    	session.save(ecgpid);
+    	session.save(ecgpname);
+    	session.save(ecgnid);
+    	session.save(ecgnname);
+    	session.save(ecgfilename);
+    	session.save(ecgmtime);
+    	session.save(ecgutime);
+	}
+    
+    
 }

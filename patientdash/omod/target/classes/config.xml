@@ -19,6 +19,25 @@
 	<!-- Module Activator -->
 	<activator>org.openmrs.module.patientdash.PatientDICOMViewerActivator</activator>
 	
+	<!-- Adds links to PatientDashboards + Required Privileges + globalProperty-->
+	<extension>
+		<point>org.openmrs.patientDashboardTab</point>
+		<class>org.openmrs.module.patientdash.extension.html.PatientDashBoard</class>
+	</extension>	
+	
+	<privilege>
+		<name>Patient Dashboard - Manage Patient Dashboard Test </name>
+		<desvription>Allows user to show in patient dashboard </desvription>
+	</privilege>
+	
+	<globalProperty>
+		<property>patientdash.showOnDashboard </property>
+		<defaultValue></defaultValue>
+		<description>
+            Whether to show the patient ecg on the dashboard
+        </description>	
+	</globalProperty>
+	<!-- Adds links to PatientDashboards + Required Privileges + globalProperty-->	
 	
 	<!-- Adds link to admin page -->
 	<extension>

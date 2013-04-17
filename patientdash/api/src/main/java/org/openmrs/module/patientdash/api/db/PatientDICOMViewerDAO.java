@@ -11,16 +11,11 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
+
 package org.openmrs.module.patientdash.api.db;
 
-import org.openmrs.module.patientdash.api.PatientDICOMViewerService;
-
-/**
- *  Database methods for {@link PatientDICOMViewerService}.
- */
 public interface PatientDICOMViewerDAO {
 	
-	/*
-	 * Add DAO methods here
-	 */
+	public void initializeTables();
+
 }

@@ -32,5 +32,7 @@ public class  PatientDICOMViewerManageController {
 	@RequestMapping(value = "/module/patientdash/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
+		
+		
 	}
 }
