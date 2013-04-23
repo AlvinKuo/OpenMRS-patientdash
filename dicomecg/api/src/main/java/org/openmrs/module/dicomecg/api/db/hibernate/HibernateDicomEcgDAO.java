@@ -13,9 +13,13 @@
  */
 package org.openmrs.module.dicomecg.api.db.hibernate;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
 /**
@@ -39,4 +43,27 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+    /*
+     * (non-Javadoc)
+     * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#getAllDicomEcg()
+     */
+	@SuppressWarnings("unchecked")
+	public List<DicomEcg> getAllDicomEcg() {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcg.class);
+		return criteria.list();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#saveDicomEcg(org.openmrs.module.dicomecg.DicomEcg)
+	 */
+	@Override
+	public DicomEcg saveDicomEcg(DicomEcg dicomEcg) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(dicomEcg);
+		return dicomEcg;
+	}
+    
 }

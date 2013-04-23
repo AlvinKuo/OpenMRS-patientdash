@@ -13,12 +13,27 @@
  */
 package org.openmrs.module.dicomecg.api.db;
 
+import java.util.List;
+
+import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 /**
  *  Database methods for {@link DicomEcgService}.
  */
 public interface DicomEcgDAO {
+
+	/*
+	 * Get all data form ecg table
+	 * @return  all DicomEcg
+	 */
+	public List<DicomEcg> getAllDicomEcg();
+	
+	/*
+	 * Save one DicomEcg object to database
+	 *  @return saved DicomEcg object
+	 */
+	public DicomEcg saveDicomEcg(DicomEcg dicomEcg);
 	
 	/*
 	 * Add DAO methods here

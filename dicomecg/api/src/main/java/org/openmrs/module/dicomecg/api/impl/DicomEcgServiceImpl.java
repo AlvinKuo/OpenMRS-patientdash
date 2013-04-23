@@ -13,11 +13,15 @@
  */
 package org.openmrs.module.dicomecg.api.impl;
 
+import java.util.List;
+
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * It is a default implementation of {@link DicomEcgService}.
@@ -26,19 +30,40 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private DicomEcgDAO dao;
+	private DicomEcgDAO dicomEcgDAO;
 	
 	/**
      * @param dao the dao to set
      */
-    public void setDao(DicomEcgDAO dao) {
-	    this.dao = dao;
+    public void setDao(DicomEcgDAO dicomEcgDAO) {
+	    this.dicomEcgDAO = dicomEcgDAO;
     }
     
     /**
      * @return the dao
      */
     public DicomEcgDAO getDao() {
-	    return dao;
+	    return dicomEcgDAO;
     }
+
+    /*
+     * (non-Javadoc)
+     * @see org.openmrs.module.dicomecg.api.DicomEcgService#getAllDicomEcg()
+     */
+	@Override
+	@Transactional(readOnly = true)
+	public List<DicomEcg> getAllDicomEcg() {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.getAllDicomEcg();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.openmrs.module.dicomecg.api.DicomEcgService#saveDicomEcg(org.openmrs.module.dicomecg.DicomEcg)
+	 */
+	@Override
+	public DicomEcg saveDicomEcg(DicomEcg dicomEcg) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.saveDicomEcg(dicomEcg);
+	}
 }

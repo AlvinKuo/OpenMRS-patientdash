@@ -13,7 +13,10 @@
  */
 package org.openmrs.module.dicomecg.api;
 
+import java.util.List;
+
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.dicomecg.DicomEcg;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -28,9 +31,19 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface DicomEcgService extends OpenmrsService {
-     
+
 	/*
-	 * Add service methods here
-	 * 
+	 * Get all data form ecg table
+	 * @return  all DicomEcg
 	 */
+	@Transactional(readOnly = true)
+	public List<DicomEcg> getAllDicomEcg();
+	
+	/*
+	 * Save one DicomEcg object to database
+	 *  @return saved DicomEcg object
+	 */
+
+	public DicomEcg saveDicomEcg(DicomEcg dicomEcg);
+	
 }
