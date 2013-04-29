@@ -18,7 +18,7 @@
 -->
 
 <!-- Add PatientDICOMViewer.java link to the ecg table under patient-api file  -->
-	<class name="PatientDICOMViewer"
+	<class name="DicomEcg"
 		table="ecg">
 		<id name="id" type="int" column="id">
 			<generator class="native"></generator>

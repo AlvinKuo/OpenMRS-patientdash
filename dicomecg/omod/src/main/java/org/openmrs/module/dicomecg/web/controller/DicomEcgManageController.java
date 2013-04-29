@@ -52,19 +52,32 @@ public class  DicomEcgManageController {
 	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	public void processForm(ModelMap map,@RequestParam(required = false, value = "id") String ID1,
-			@RequestParam(required = false, value = "patiendId") String patiendId){
+			@RequestParam(required = false, value = "patiendId") String patiendId,
+			@RequestParam(required = false, value = "patientName") String patientName,
+			@RequestParam(required = false, value = "nurseId") String nurseId,
+			@RequestParam(required = false, value = "nurseName") String nurseName,
+			@RequestParam(required = false, value = "filename") String filename,
+			@RequestParam(required = false, value = "measureTime") String measureTime,
+			@RequestParam(required = false, value = "uploadTime") String uploadTime){
 		
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		if(!StringUtils.hasText(ID1)){
 			log.info("Processing post request ..." + ID1 + ", " + patiendId);
 			DicomEcg dicomEcg = new DicomEcg();
 			dicomEcg.setPatiendId(patiendId);
+			dicomEcg.setPatientName(patientName);
+			dicomEcg.setNurseId(nurseId);
+			dicomEcg.setNurseName(nurseName);
+			dicomEcg.setFilename(filename);
+			dicomEcg.setMeasureTime(measureTime);
+			dicomEcg.setUploadTime(uploadTime);
 			DicomEcg decg = ecgservice.saveDicomEcg(dicomEcg);
 			log.info(decg.getId());
 			
 		}
-
 		
+		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
+		map.addAttribute("dicomecg",dicomecg);		
 	}
 	
 }
