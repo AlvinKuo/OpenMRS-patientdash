@@ -65,5 +65,16 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(dicomEcg);
 		return dicomEcg;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#getDicomEcg(java.lang.Integer)
+	 */
+
+	@Override
+	public DicomEcg getDicomEcg(Integer id) {
+		// TODO Auto-generated method stub
+		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class , id);
+	}
     
 }

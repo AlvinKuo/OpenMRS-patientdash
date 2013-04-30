@@ -66,4 +66,15 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		// TODO Auto-generated method stub
 		return dicomEcgDAO.saveDicomEcg(dicomEcg);
 	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.openmrs.module.dicomecg.api.DicomEcgService#getDicomEcg(java.lang.Integer)
+	 */
+	@Override
+	public DicomEcg getDicomEcg(Integer id) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.getDicomEcg(id);
+	}
 }

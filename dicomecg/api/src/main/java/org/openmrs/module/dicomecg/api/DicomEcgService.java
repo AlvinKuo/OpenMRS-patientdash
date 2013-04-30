@@ -45,5 +45,10 @@ public interface DicomEcgService extends OpenmrsService {
 	 */
 
 	public DicomEcg saveDicomEcg(DicomEcg dicomEcg);
+
+	/*
+	 *  Get one DicomEcg record based on the id
+	 */
+	public DicomEcg getDicomEcg(Integer id);
 	
 }

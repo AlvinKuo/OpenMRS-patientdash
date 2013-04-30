@@ -61,8 +61,10 @@ public class  DicomEcgManageController {
 			@RequestParam(required = false, value = "uploadTime") String uploadTime){
 		
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
+		
 		if(!StringUtils.hasText(ID1)){
-			log.info("Processing post request ..." + ID1 + ", " + patiendId);
+			log.info("Processing post request ..." + ID1 + ", " + patiendId + ", " + patientName + ", " + nurseId + ", " + nurseName + ", " + filename 
+					+ ", " +measureTime+ ", " + uploadTime);
 			DicomEcg dicomEcg = new DicomEcg();
 			dicomEcg.setPatiendId(patiendId);
 			dicomEcg.setPatientName(patientName);
@@ -72,7 +74,25 @@ public class  DicomEcgManageController {
 			dicomEcg.setMeasureTime(measureTime);
 			dicomEcg.setUploadTime(uploadTime);
 			DicomEcg decg = ecgservice.saveDicomEcg(dicomEcg);
-			log.info(decg.getId());
+			log.info(decg.getId());			
+		}
+		else
+		{
+			DicomEcg dicomecgEdit = new DicomEcg();
+			
+			dicomecgEdit = ecgservice.getDicomEcg(Integer.parseInt(ID1));
+			if(!StringUtils.hasText(ID1))
+			{
+				dicomecgEdit.setPatiendId(patiendId);
+				dicomecgEdit.setPatientName(patientName);
+				dicomecgEdit.setNurseId(nurseId);
+				dicomecgEdit.setNurseName(nurseName);
+				dicomecgEdit.setFilename(filename);
+				dicomecgEdit.setMeasureTime(measureTime);
+				dicomecgEdit.setUploadTime(uploadTime);
+				
+				ecgservice.saveDicomEcg(dicomecgEdit);
+			}
 			
 		}
 		

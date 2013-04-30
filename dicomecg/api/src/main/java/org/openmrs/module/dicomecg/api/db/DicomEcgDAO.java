@@ -34,6 +34,12 @@ public interface DicomEcgDAO {
 	 *  @return saved DicomEcg object
 	 */
 	public DicomEcg saveDicomEcg(DicomEcg dicomEcg);
+
+	
+	/*
+	 *  Get one DicomEcg record based on the id
+	 */
+	public DicomEcg getDicomEcg(Integer id);
 	
 	/*
 	 * Add DAO methods here
