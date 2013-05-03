@@ -140,7 +140,7 @@ extern "C" {
 #endif
 
 #if defined ( ZIGBEEPRO )
-  #define STACK_PROFILE_ID      NETWORK_SPECIFIC
+  #define STACK_PROFILE_ID      ZIGBEEPRO_PROFILE
 #else
   #define STACK_PROFILE_ID      HOME_CONTROLS
 #endif
@@ -224,8 +224,8 @@ extern "C" {
 
 // Maximum number in tables
 #if !defined( NWK_MAX_DEVICE_LIST )
-  #define NWK_MAX_DEVICE_LIST     10  // Maximum number of devices in the
-                                    // Assoc/Device list.
+  #define NWK_MAX_DEVICE_LIST     10  // Maximum number of devices in the
+                                    // Assoc/Device list.
 #endif
 
 // Don't change this value to set the number of devices.  Change
@@ -347,8 +347,8 @@ extern "C" {
 
 #if !defined ( DEF_NWK_RADIUS )
   // the default network radius set twice the value of <nwkMaxDepth>
-  // #define DEF_NWK_RADIUS           ( 2 * BEACON_MAX_DEPTH )
-  #define DEF_NWK_RADIUS        40    //設定網路最大深度
+  //#define DEF_NWK_RADIUS           ( 2 * BEACON_MAX_DEPTH )
+  #define DEF_NWK_RADIUS  40  //設定最大深度  
 #endif
 
 #if !defined ( MAX_PASSIVE_ACK_CNT )
