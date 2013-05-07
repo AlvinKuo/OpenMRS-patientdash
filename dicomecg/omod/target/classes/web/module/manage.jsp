@@ -7,7 +7,12 @@
 
 <div class="box">
 
-	<form method="POST" name="DicomEcgTable"> 
+	<form method="POST" name="DicomEcgTable">
+	
+<%-- 	<form id="uploadDicom" method="POST" 
+	action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload" 
+	enctype="multipart/form-data">	 --%>
+	
 	<table>
 		
 		<tr>
@@ -44,6 +49,13 @@
 		</tr>	
 	</table>
 	</form>	
+	
+	<form id="uploadDicom" method="POST" 
+	action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload" 
+	enctype="multipart/form-data">
+		<input type = "submit" value = "Upload" > 	
+	</form>
+	
 
 	<table id="dicomEcg" border="1">
 		<tr bgcolor="#00FFFF" bordercolor="#000000">
