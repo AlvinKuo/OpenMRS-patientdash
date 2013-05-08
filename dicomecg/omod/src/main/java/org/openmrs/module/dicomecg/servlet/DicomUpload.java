@@ -7,11 +7,18 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
@@ -21,16 +28,49 @@ public class DicomUpload extends HttpServlet {
 	
 	private static final int height = 2050;
 	private static final int width = 2410;
+	
+	private String patiendId;
+	private String patientName;
+	private String nurseId;
+	private String nurseName;
+	private String filename;
+	private String measureTime;
+	private String uploadTime;
 		
 	/*
 	 * doGet and doPost used processRequest 
 	 * 
 	 */
+	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-    	response.setContentType("image/jpeg");
-		createImage(response.getOutputStream());		
+    	//response.setContentType("image/jpeg");
+		//createImage(response.getOutputStream());	
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		Date date = new Date();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		uploadTime = df.format(date);
+		out.print(uploadTime);
+		
+		
+		patiendId = request.getParameter("patiendId");
+		patientName = request.getParameter("patientName");
+		nurseId = request.getParameter("nurseId");
+		nurseName = request.getParameter("nurseName");
+		filename = request.getParameter("filename");
+		measureTime = request.getParameter("measureTime");
+		out.println(patiendId);
+		out.print(patiendId);
+		out.print(patientName);
+		out.print(nurseId);
+		out.print(nurseName);
+		out.print(filename);
+		out.print(measureTime);
+		
 				
 	}
 	
@@ -60,7 +100,7 @@ public class DicomUpload extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }	
-
+/*
 	public void drawGrid(Graphics2D g) {
 
 		g.setColor(Color.RED);
@@ -91,6 +131,6 @@ public class DicomUpload extends HttpServlet {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-	}
+	}*/
 
 }

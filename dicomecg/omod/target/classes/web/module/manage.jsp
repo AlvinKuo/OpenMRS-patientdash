@@ -7,41 +7,42 @@
 
 <div class="box">
 
-	<form method="POST" name="DicomEcgTable">
+	<!-- <form method="POST" name="DicomEcgTable"> -->
 	
-<%-- 	<form id="uploadDicom" method="POST" 
+ 	<form id="uploadDicom" method="POST" 
 	action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload" 
-	enctype="multipart/form-data">	 --%>
+	enctype="multipart/form-data">	 
 	
 	<table>
 		
 		<tr>
 			<td><spring:message code="dicomecg.ecg.patiendId"/></td>
-			<td><input type="text" name="patiendId" value="${patiendId}" /></td>			
+			<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
+			<td><input type="text" name="patiendId" id="patiendId" /></td>
 		</tr> 	
 		<tr>
 			<td><spring:message code="dicomecg.ecg.patientName"/></td>
-			<td><input type="text" name="patientName" value="${patientName}" /></td>			
+			<td><input type="text" name="patientName" id="patientName" /></td>						
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseId"/></td>
-			<td><input type="text" name="nurseId" value="${nurseId}" /></td>			
+			<td><input type="text" name="nurseId" id="nurseId" /></td>			
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseName"/></td>
-			<td><input type="text" name="nurseName" value="${nurseName}" /></td>			
+			<td><input type="text" name="nurseName" id="nurseName" /></td>
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.filename"/></td>
-			<td><input type="text" name="filename" value="${filename}" /></td>			
+			<td><input type="text" name="filename" id="filename" /></td>
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.measureTime"/></td>
-			<td><input type="text" name="measureTime" value="${measureTime}" /></td>			
+			<td><input type="text" name="measureTime" id="measureTime" /></td>			
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.uploadTime"/></td>
-			<td><input type="text" name="uploadTime" value="${uploadTime}" /></td>			
+			<td><input type="text" name="uploadTime" id="uploadTime" /></td>			
 		</tr> 	
 		<tr>
 			<td></td>
@@ -50,11 +51,11 @@
 	</table>
 	</form>	
 	
-	<form id="uploadDicom" method="POST" 
+<%-- 	<form id="uploadDicom" method="POST" 
 	action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload" 
 	enctype="multipart/form-data">
 		<input type = "submit" value = "Upload" > 	
-	</form>
+	</form> --%>
 	
 
 	<table id="dicomEcg" border="1">
