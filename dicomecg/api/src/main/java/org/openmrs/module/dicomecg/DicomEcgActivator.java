@@ -14,9 +14,14 @@
 package org.openmrs.module.dicomecg;
 
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.ModuleActivator;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -51,6 +56,17 @@ public class DicomEcgActivator implements ModuleActivator {
 	 */
 	public void started() {
 		log.info("DicomEcg Module started");
+		File dicomFolder = new File(OpenmrsUtil.getApplicationDataDirectory(), "/patient_dicom");
+        if (!dicomFolder.exists()) {
+            try {
+                FileUtils.forceMkdir(dicomFolder);
+                log.info("Created Folder to Store patient_dicom");
+            } catch (IOException ex) {
+                log.error(ex);
+            }
+        } else {
+            log.info("Folder for patient_dicom Already Exists");
+        }
 	}
 	
 	/**
