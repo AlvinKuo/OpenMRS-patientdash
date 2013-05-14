@@ -77,4 +77,12 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		// TODO Auto-generated method stub
 		return dicomEcgDAO.getDicomEcg(id);
 	}
+
+	@Override
+	public List<DicomEcg> getfilename(String filename) {
+		// TODO Auto-generated method stub		
+		return dicomEcgDAO.getfilename(filename);
+	}
+
+
 }

@@ -18,9 +18,12 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
+
 
 /**
  * It is a default implementation of  {@link DicomEcgDAO}.
@@ -29,6 +32,7 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;
+	
 	
 	/**
      * @param sessionFactory the sessionFactory to set
@@ -75,6 +79,18 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	public DicomEcg getDicomEcg(Integer id) {
 		// TODO Auto-generated method stub
 		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class , id);
+	}
+
+	@Override
+	public List<DicomEcg> getfilename(String filename) {
+		// TODO Auto-generated method stub
+		
+		//---sql query
+		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery(" select fi.filename from ecg fi where fi.filename like ' " + filename  + " ' "  );
+
+		List<DicomEcg> dicomFilename = sqlQuery.list();
+		
+		return dicomFilename;
 	}
     
 }
