@@ -51,11 +51,4 @@ public interface DicomEcgService extends OpenmrsService {
 	 */
 	public DicomEcg getDicomEcg(Integer id);
 	
-	
-	/*
-	 * Get the filename from ecg table
-	 */
-	public List<DicomEcg> getfilename(String filename);
-	
-	
 }
