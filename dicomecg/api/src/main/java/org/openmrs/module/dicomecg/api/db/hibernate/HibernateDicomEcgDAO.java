@@ -19,8 +19,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
+
 
 /**
  * It is a default implementation of  {@link DicomEcgDAO}.
@@ -29,6 +31,7 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;
+	
 	
 	/**
      * @param sessionFactory the sessionFactory to set
@@ -76,5 +79,19 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		// TODO Auto-generated method stub
 		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class , id);
 	}
-    
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DicomEcg> getfilename(String filename) {
+		// TODO Auto-generated method stub
+		
+		//---sql query---
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcg.class);		
+		criteria.add(Restrictions.eq("filename",filename));
+						
+		return criteria.list();
+	}
+
+
 }

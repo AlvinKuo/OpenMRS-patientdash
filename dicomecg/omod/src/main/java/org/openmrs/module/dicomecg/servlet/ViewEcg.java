@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,11 +44,10 @@ public class ViewEcg extends HttpServlet{
 	
 	private String patiendId;
 	private String patientName;
-	private String nurseId;
 	private String nurseName;
 	private String filename;
 	private String measureTime;
-	private String uploadTime;
+	
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -64,29 +63,37 @@ public class ViewEcg extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	response.setContentType("text/html");
-    	PrintWriter out = response.getWriter();
-    	
+/*    	response.setContentType("text/html");
+    	PrintWriter out = response.getWriter();   
+    	out.print(NurseName);					*/ 	
     	
     	filename = request.getParameter("filename");   	
     	
-    	DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
-    	List<DicomEcg> ecgfilename = ecgservice.getfilename(filename);
     	
-    	for(DicomEcg ecg : ecgfilename)
-    	{   		
-    		out.print(ecg.getNurseId());
-    	}
+    	try{
+    		
+    		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
+        	List<DicomEcg> Filename= ecgservice.getfilename(filename);
+        	Iterator<DicomEcg> res= Filename.iterator();
+        	if(res.hasNext() )
+        	{
+        		nurseName=Filename.get(0).getNurseName(); 
+        		patiendId=Filename.get(0).getPatiendId();
+        		patientName=Filename.get(0).getPatientName();
+        		measureTime=Filename.get(0).getMeasureTime();
+        	}
+        	else{
+        		
+        	}
+    		
+    	}catch(Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
-
-				
-    	//out.print(filename);
-		//out.print(filename);
-		//out.print(measureTime);
-		
-    	//response.setContentType("image/jpeg");
-    	//setFileName(filename);    	
-		//createImage(response.getOutputStream());	
+    	response.setContentType("image/jpeg");
+    	setFileName(filename);    	
+		createImage(response.getOutputStream());
 	
     }
     

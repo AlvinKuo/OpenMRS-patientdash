@@ -30,16 +30,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
 
 
 public class DicomUpload extends HttpServlet {
 	
-	private static final int height = 2050;
-	private static final int width = 2410;
+
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	boolean flag  = false;
@@ -59,8 +54,7 @@ public class DicomUpload extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-    	//response.setContentType("image/jpeg");
-		//createImage(response.getOutputStream());	
+
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -98,7 +92,6 @@ public class DicomUpload extends HttpServlet {
 			uploadTime = df.format(date);
 			out.print(uploadTime);
 			
-
 			out.print(patiendId);
 			out.print(patientName);
 			out.print(nurseId);
@@ -143,37 +136,6 @@ public class DicomUpload extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }	
-/*
-	public void drawGrid(Graphics2D g) {
 
-		g.setColor(Color.RED);
-		g.setStroke(new BasicStroke(1.0f));
-		for (int i = 0; i < 61; i++) {
-			g.drawLine(i * 40, 0, i * 40, height - 10);
-		}
-		for (int i = 0; i < 52; i++) {
-			g.drawLine(0, i * 40, width - 10, i * 40);
-		}
-	}
-
-	private void createImage(OutputStream out) {
-		BufferedImage bi = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_RGB);
-		Graphics2D g = bi.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setBackground(Color.WHITE);
-		g.clearRect(0, 0, width, height);
-		drawGrid(g);
-
-		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-		JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bi);
-		param.setQuality(1.0f, false);
-		try {
-			encoder.encode(bi);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}*/
 
 }
