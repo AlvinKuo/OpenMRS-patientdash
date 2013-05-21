@@ -1,4 +1,6 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
+
+
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <%@ include file="template/localHeader.jsp"%>
@@ -71,7 +73,7 @@
 		</tr>
 		
 		<c:forEach var="ecg" items="${dicomecg}" varStatus="ind">
-			<form method="POST" name="${DicomEcg.id}" >
+			<form method="POST" name="${ecg.id}" >
 				<tr>
 					<td>${ind.index + 1 }</td>
 					<td>${ecg.patiendId }</td>
@@ -80,14 +82,22 @@
 					<td>${ecg.nurseName }</td>
 					<td>${ecg.filename }</td>
 					<td>${ecg.measureTime }</td>
-					<td>${ecg.uploadTime }</td>							
+					<td>${ecg.uploadTime }</td>
+					<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>
+<%-- 					
+					<td>
+						<input type="hidden" name="houseid" id="${household.id}" value="${household.id}" />
+						<input type="submit" value="Edit" />
+						<!-- <a href="#">Edit</a> -->
+					</td>
+					<img alt="" id="patientimg" height="300" width="300" src="${pageContext.request.contextPath}/moduleServlet/patientimage/ImageServlet?image=${model.patient_image}" />
+--%>					
+											
 				</tr>						
 			</form>		
-		</c:forEach>
-		
-			
+		</c:forEach>			
 	</table>
 	
 </div>
 
-<%@ include file="/WEB-INF/template/footer.jsp"%>
+<%@ include file="/WEB-INF/template/footer.jsp"%> 

@@ -22,12 +22,12 @@
 	<!-- Adds links to PatientDashboards + Required Privileges + globalProperty-->
 	<extension>
 		<point>org.openmrs.patientDashboardTab</point>
-		<class>org.openmrs.module.patientdash.extension.html.PatientDashBoard</class>
+		<class>org.openmrs.module.dicomecg.extension.html.PatientEcgBoard</class>
 	</extension>
 	
 	<privilege>
-		<name>Patient Dashboard - Manage Patient Dashboard Test </name>
-		<desvription>Allows user to show in patient dashboard </desvription>
+		<name>Patient ECG - Manage Patient Dashboard ECG</name>
+		<desvription>Allows user to show in Patient ECG on the dashboard </desvription>
 	</privilege>
 	
 	<globalProperty>
@@ -57,6 +57,11 @@
     <servlet>
         <servlet-name>DicomUpload</servlet-name>
         <servlet-class>org.openmrs.module.dicomecg.servlet.DicomUpload</servlet-class>
+    </servlet>	
+    
+    <servlet>
+        <servlet-name>ViewEcg</servlet-name>
+        <servlet-class>org.openmrs.module.dicomecg.servlet.ViewEcg</servlet-class>
     </servlet>	
 
 	<!-- Internationalization -->

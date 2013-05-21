@@ -21,7 +21,7 @@ public class PatientEcgBoard extends PatientDashboardTabExt{
 
     @Override
     public String getPortletUrl() {
-        return "patientEcgForm";
+        return "dicomEcg";
     }
 
 }

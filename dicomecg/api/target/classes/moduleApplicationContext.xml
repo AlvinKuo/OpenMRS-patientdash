@@ -19,17 +19,22 @@
 
 	<!-- Add here beans related to the API context -->
 	
+	<!--
 	
 	
-	<bean id="dicomecgUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">	
-		<property name="order"><value>39</value></property>	
-			<property name="mappings">
-				<props>
-					<prop key="**/dicomecg.portlet">dicomEcgPortletController</prop>
-				</props>
-			</property>						
-	</bean>
+	    <bean id="householdUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="order"><value>1</value></property>
+    	<property name="mappings">
+            <props>
+                <prop key="**/patientHousehold.portlet">patientHouseholdPortletController</prop>
+			</props>
+		</property>
+		</bean>
 	
+	    <bean id="patientHouseholdPortletController" class="org.openmrs.module.household.web.controller.PatientHouseholdPortletController">
+		</bean>
+	
+	  -->
 	
 	<!-- Services accessible via Context.getService() -->
 	<bean parent="serviceContext">
@@ -63,8 +68,4 @@
 		</property>
 	</bean>
 	
-	
-	<bean id="dicomEcgPortletController" class="org.openmrs.module.dicomecg.web.controller.DicomEcgPortletController">
-	
-	</bean>	
 </beans>

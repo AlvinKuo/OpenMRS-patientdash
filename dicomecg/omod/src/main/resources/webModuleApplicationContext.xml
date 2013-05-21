@@ -26,6 +26,18 @@
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	
+	<bean id="dicomEcgPortletController" class="org.openmrs.module.dicomecg.web.controller.DicomEcgPortletController"></bean>
+	
+	<bean id="dicomecgUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">	
+		<property name="order"><value>2</value></property>	
+			<property name="mappings">
+				<props>
+					<prop key="**/dicomecg.portlet">dicomEcgPortletController</prop>
+				</props>
+			</property>						
+	</bean>	
+		
+	
 	<context:component-scan base-package="org.openmrs.module.dicomecg.web.controller" />
  
 		
