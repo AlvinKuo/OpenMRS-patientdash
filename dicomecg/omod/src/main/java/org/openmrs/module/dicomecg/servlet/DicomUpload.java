@@ -34,15 +34,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class DicomUpload extends HttpServlet {
 	
-
-	
 	protected final Log log = LogFactory.getLog(getClass());
-	boolean flag  = false;
+	boolean flag  = true;
 	private String patiendId;
 	private String patientName;
 	private String nurseId;
 	private String nurseName;
-	private String filename;
+	private String filename; 
 	private String measureTime;
 	private String uploadTime;
 		
@@ -54,21 +52,24 @@ public class DicomUpload extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-
-		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
-		patiendId = request.getParameter("patiendId");
-		patientName = request.getParameter("patientName");
-		nurseId = request.getParameter("nurseId");
-		nurseName = request.getParameter("nurseName");
+		Date date = new Date();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+/*		
+		patiendId = request.getParameter("patient_id");
+		patientName = request.getParameter("patient_name");
+		nurseId = request.getParameter("nurse_id");
+		nurseName = request.getParameter("nurse_name");
 		filename = request.getParameter("filename");
-		measureTime = request.getParameter("measureTime");
+		measureTime = request.getParameter("measure_time");
+		
+		uploadTime = df.format(date);		
+		
 		
 		DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
 		
-		try {
+	try {
 			
 			DicomEcg UploadEcgData = new DicomEcg();
 			UploadEcgData.setPatiendId(patiendId);
@@ -83,29 +84,16 @@ public class DicomUpload extends HttpServlet {
 			flag = true;
 			
 		}catch(Exception e)
-		{}
+		{}*/
 		
 		if(flag == true)
-		{
-			Date date = new Date();
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			uploadTime = df.format(date);
-			out.print(uploadTime);
-			
-			out.print(patiendId);
-			out.print(patientName);
-			out.print(nurseId);
-			out.print(nurseName);
-			out.print(filename);
-			out.print(measureTime);
-			flag=false;
+		{			
+			out.print("Y");
+			flag=true;
 		}
 		else
 		{
-			Date date = new Date();
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			uploadTime = df.format(date);
-			out.print(uploadTime);
+			out.print("N");
 		}
 		
 	}	

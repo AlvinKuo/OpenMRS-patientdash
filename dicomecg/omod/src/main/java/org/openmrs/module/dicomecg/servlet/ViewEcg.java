@@ -44,6 +44,7 @@ public class ViewEcg extends HttpServlet{
 	
 	private String patiendId;
 	private String patientName;
+	private String nurseId;
 	private String nurseName;
 	private String filename;
 	private String measureTime;
@@ -75,7 +76,7 @@ public class ViewEcg extends HttpServlet{
     		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
         	List<DicomEcg> Filename= ecgservice.getfilename(filename);
         	Iterator<DicomEcg> res= Filename.iterator();
-        	if(res.hasNext() )
+        	if(res.hasNext())
         	{
         		nurseName=Filename.get(0).getNurseName(); 
         		patiendId=Filename.get(0).getPatiendId();

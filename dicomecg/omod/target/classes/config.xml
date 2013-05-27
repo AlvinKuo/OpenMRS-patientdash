@@ -22,13 +22,13 @@
 	<!-- Adds links to PatientDashboards + Required Privileges + globalProperty-->
 	<extension>
 		<point>org.openmrs.patientDashboardTab</point>
-		<class>org.openmrs.module.dicomecg.extension.html.PatientEcgBoard</class>
+		<class>org.openmrs.module.dicomecg.extension.html.DicomEcgPDboard</class>
 	</extension>
 	
 	<privilege>
-		<name>Patient ECG - Manage Patient Dashboard ECG</name>
-		<desvription>Allows user to show in Patient ECG on the dashboard </desvription>
-	</privilege>
+		<name>Patient Dashboard - Manage Patient ECG</name>
+		<description>Allows user to show in patient ecg list on patient dashboard </description>
+	</privilege>	
 	
 	<globalProperty>
 		<property>dicomecg.showOnDashboard </property>

@@ -57,5 +57,7 @@ public interface DicomEcgService extends OpenmrsService {
 	 */
 	public List<DicomEcg> getfilename(String filename);
 
+	public List<Object[]> filename(String filename);
+	
 	
 }

@@ -56,6 +56,7 @@ public class DicomEcgActivator implements ModuleActivator {
 	 */
 	public void started() {
 		log.info("DicomEcg Module started");
+		
 		File dicomFolder = new File(OpenmrsUtil.getApplicationDataDirectory(), "/patient_dicom");
         if (!dicomFolder.exists()) {
             try {
@@ -67,6 +68,7 @@ public class DicomEcgActivator implements ModuleActivator {
         } else {
             log.info("Folder for patient_dicom Already Exists");
         }
+        
 	}
 	
 	/**

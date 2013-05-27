@@ -42,7 +42,9 @@ public interface DicomEcgDAO {
 	public DicomEcg getDicomEcg(Integer id);
 
 	public List<DicomEcg> getfilename(String filename);
-
+	
+	public List<Object[]> filename(String filename);
+	
 	/*
 	 * Add DAO methods here
 	 */
