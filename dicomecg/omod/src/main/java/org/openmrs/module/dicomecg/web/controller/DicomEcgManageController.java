@@ -34,22 +34,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class  DicomEcgManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-	/*
-	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.GET)
+	
+/*	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}*/
 	
-/*	@RequestMapping(value = "/module/dicomecg/manage", method=RequestMethod.GET)	
+	@RequestMapping(value = "/module/dicomecg/manage", method=RequestMethod.GET)	
 	public void preparePage(ModelMap map){
 		
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);
 		
-	}*/
+	}
 		
-	/*
+	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	public void processForm(ModelMap map,@RequestParam(required = false, value = "id") String ID1,
 			@RequestParam(required = false, value = "patiendId") String patiendId,
@@ -99,6 +99,6 @@ public class  DicomEcgManageController {
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);		
 	}
-	*/
+	
 	
 }
