@@ -189,6 +189,7 @@ public class ViewEcg extends HttpServlet{
 		}
 		
 		}
+	
 	//--畫出格線圖
 	public void drawGrid(Graphics2D g) {
 		g.setColor(Color.RED);
@@ -201,7 +202,7 @@ public class ViewEcg extends HttpServlet{
 		}		
 	}
 	
-	//--畫波形圖
+	//--畫波形圖 law data 
 	public void draw(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.setStroke(new BasicStroke(1.0f));

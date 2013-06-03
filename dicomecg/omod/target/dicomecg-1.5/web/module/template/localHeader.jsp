@@ -11,6 +11,14 @@
 				code="dicomecg.manage" /></a>
 	</li>
 	
+	<li 
+		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
+		<a
+		href="${pageContext.request.contextPath}/module/dicomecg/doctorpage.form"><spring:message
+				code="dicomecg.doctor" /></a>	
+		
+	</li>
+	
 	<!-- Add further links here -->
 </ul>
 <h2>

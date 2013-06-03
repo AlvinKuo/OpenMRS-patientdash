@@ -17,7 +17,7 @@
 	</tr>
 
 
-	<c:forEach var="ecglist" items="${model.test}" varStatus="ind">
+	<c:forEach var="ecglist" items="${model.portecg}" varStatus="ind">
 	<tr>
 		<td class="tdClass"><c:out value="${ind.index}"/></td>
 		<td class="tdClass"><c:out value="${ecglist.patientName}"/></td>
@@ -25,9 +25,17 @@
 		<td class="tdClass"><c:out value="${ecglist.measureTime}"/></td>
 		<td class="tdClass"><c:out value="${ecglist.uploadTime}"/></td>
 		<td class="tdClass"><c:out value="${ecglist.uploadTime}"/></td>
-		<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>
+		<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecglist.filename }">Patient ECG</a></td>
 	<tr>	
 	</c:forEach>
+	
+	
+	<!-- test mapping to right patient  -->
+	<td class="tdClass"><c:out value="${model.personx}"/></td>
+	
+	
+	
+	
 
 </table>
 </div>

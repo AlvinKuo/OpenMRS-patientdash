@@ -17,19 +17,19 @@
 		<tr>
 			<td><spring:message code="dicomecg.ecg.patiendId"/></td>
 			<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
-			<td><input type="text" name="patiendId" id="patiendId" /></td>
+			<td><input type="text" name="patient_id" id="patiendId" /></td>
 		</tr> 	
 		<tr>
 			<td><spring:message code="dicomecg.ecg.patientName"/></td>
-			<td><input type="text" name="patientName" id="patientName" /></td>						
+			<td><input type="text" name="patient_name" id="patientName" /></td>						
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseId"/></td>
-			<td><input type="text" name="nurseId" id="nurseId" /></td>			
+			<td><input type="text" name="nurse_id" id="nurseId" /></td>			
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseName"/></td>
-			<td><input type="text" name="nurseName" id="nurseName" /></td>
+			<td><input type="text" name="nurse_name" id="nurseName" /></td>
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.filename"/></td>
@@ -37,12 +37,8 @@
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.measureTime"/></td>
-			<td><input type="text" name="measureTime" id="measureTime" /></td>			
+			<td><input type="text" name="measure_time" id="measureTime" /></td>			
 		</tr> 			
-		<tr>
-			<td><spring:message code="dicomecg.ecg.uploadTime"/></td>
-			<td><input type="text" name="uploadTime" id="uploadTime" /></td>			
-		</tr> 	
 		<tr>
 			<td></td>
 			<td><input type="submit" value="Add New" /></td>
@@ -81,15 +77,7 @@
 					<td>${ecg.filename }</td>
 					<td>${ecg.measureTime }</td>
 					<td>${ecg.uploadTime }</td>
-					<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>
-<%-- 					
-					<td>
-						<input type="hidden" name="houseid" id="${household.id}" value="${household.id}" />
-						<input type="submit" value="Edit" />
-						<!-- <a href="#">Edit</a> -->
-					</td>
-					<img alt="" id="patientimg" height="300" width="300" src="${pageContext.request.contextPath}/moduleServlet/patientimage/ImageServlet?image=${model.patient_image}" />
---%>					
+					<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>					
 											
 				</tr>						
 			</form>		

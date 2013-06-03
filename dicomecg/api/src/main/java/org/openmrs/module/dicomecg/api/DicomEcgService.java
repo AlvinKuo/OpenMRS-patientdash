@@ -15,6 +15,7 @@ package org.openmrs.module.dicomecg.api;
 
 import java.util.List;
 
+import org.openmrs.PatientIdentifier;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,8 +57,8 @@ public interface DicomEcgService extends OpenmrsService {
 	 * Get the filename from ecg table
 	 */
 	public List<DicomEcg> getfilename(String filename);
-
-	public List<Object[]> filename(String filename);
 	
+	/*public PatientIdentifier getPatientID(String identifier);*/
+
 	
 }

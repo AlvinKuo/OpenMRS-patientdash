@@ -34,6 +34,7 @@ public class DicomUpload extends HttpServlet {
 	private String measureTime;
 	private String uploadTime;
 		
+	
 	/*
 	 * doGet and doPost used processRequest 
 	 * 
@@ -41,6 +42,8 @@ public class DicomUpload extends HttpServlet {
 	 * this page will add the information such as patiendId、patientName、nurseId、nurseName、filename and measureTime
 	 * into MySQL database
 	 */
+
+
 	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -62,6 +65,12 @@ public class DicomUpload extends HttpServlet {
 		uploadTime = df.format(date);
 		
 		DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
+		
+
+		//PatientIdentifier px = Context.getPatientService().getPatientIdentifier(5);	
+		//Integer p = px.getPatient().getPatientId();
+		
+
 		
 	try {
 			
@@ -85,12 +94,14 @@ public class DicomUpload extends HttpServlet {
 		
 		if(flag == true)
 		{			
-			out.print("Y");			
+			out.print("Y");	
+			out.print(patiendId);
+			/*out.print(px);*/
 			flag=false;
 		}
 		else
 		{
-			//mail.sendMail("cyculab501@gmail.com","wwakeup1234tw@gmail.com","javamail test","testing");			
+						
 			out.print("N");
 		}
 		
@@ -121,7 +132,7 @@ public class DicomUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }	
+    }	 
 
 
 }

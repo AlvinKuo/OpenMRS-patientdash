@@ -18,11 +18,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.Transformers;
-import org.hibernate.type.StringType;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
@@ -96,24 +95,13 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		return criteria.list();
 	}
 
-	@Override
-	public List<Object[]> filename(String filename) {
-
-		// TODO Auto-generated method stub
-		//SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from ecg where filename like 'A12345678920110818110811.dcm'"  );
-		SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery("from ecg a where a.filename like 'A12345678920110818110811.dcm' "  );
-		sqlQuery
-		.addScalar("patient_id",  StringType.INSTANCE)
-		.addScalar("patient_name",  StringType.INSTANCE)
-		.addScalar("nurse_id",  StringType.INSTANCE)
-		.addScalar("nurse_name",  StringType.INSTANCE)
-		.addScalar("filename",  StringType.INSTANCE)
-		.addScalar("measure_time",  StringType.INSTANCE)
-		.addScalar("upload_time",  StringType.INSTANCE)
-		.setResultTransformer(Transformers.aliasToBean(DicomEcg.class));
-		List<Object[]> Filename = sqlQuery.list();
+	
+	public PatientIdentifier getPatientID(String Identifier) throws DAOException
+	{		
+		PatientIdentifier p = (PatientIdentifier) sessionFactory.getCurrentSession().get(PatientIdentifier.class, Identifier);
 		
-		return Filename;
+		return p;				
 	}
+
     
 }

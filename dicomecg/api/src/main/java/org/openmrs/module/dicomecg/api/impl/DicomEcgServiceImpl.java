@@ -15,6 +15,8 @@ package org.openmrs.module.dicomecg.api.impl;
 
 import java.util.List;
 
+import org.openmrs.PatientIdentifier;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -83,14 +85,12 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		// TODO Auto-generated method stub		
 		return dicomEcgDAO.getfilename(filename);
 	}
-
-	@Override
-	public List<Object[]> filename(String filename) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
+	
+/*	public PatientIdentifier getPatientID(String Identifier) throws DAOException
+	{
+		return dicomEcgDAO.getPatientID(Identifier);
+		
+	}*/
 
 
 }

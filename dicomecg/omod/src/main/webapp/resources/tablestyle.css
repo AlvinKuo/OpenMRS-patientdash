@@ -1,0 +1,65 @@
+<style>
+html,body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: 96%;
+	width: 100%;
+}
+
+.bigContainer {
+	min-height: 584px;
+	width: 100%;
+	position: relative;
+}
+
+.pinformation {
+	border: 1px solid #6D9BC5;
+	width: 25%;
+	height: 75%;
+	float: left;
+	background-color: #99CCCC;
+	overflow: auto;
+	scrollbar-base-color: transparent;
+	scrollbar-arrow-color: transparent;
+}
+
+.ecgview {
+	border: 1px solid #6D9BC5;
+	width: 70%;
+	height: 75%;
+	float: left;
+}
+
+.whiteBackground {
+	color: #000000;
+	font-size: 12px;
+	font-style: normal;
+	font-family: verdana;
+	background-color: #CCFFFF;
+	border: 0;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+input.btn {
+	font-size: 11px;
+	font-style: normal;
+	font-family: verdana;
+	width: 25%;
+}
+
+.comment {
+	color: #000000;
+	font-size: 11px;
+	font-style: normal;
+	font-family: verdana;
+	width: 90%
+}
+
+.foot {
+	float: left;
+	clear: both;
+}
+
+</style>
