@@ -46,6 +46,7 @@ public class AdminList extends AdministrationSectionExt {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/module/dicomecg/manage.form", "dicomecg.manage");
 		map.put("/module/dicomecg/doctorpage.form", "dicomecg.doctor");
+		map.put("/module/dicomecg/idgenerator.form", "dicomecg.idgen");
 		return map;
 	}
 	

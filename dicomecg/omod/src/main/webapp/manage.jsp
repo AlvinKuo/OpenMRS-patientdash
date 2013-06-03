@@ -3,6 +3,11 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
+<h2>
+	<spring:message code="dicomecg.title" />
+</h2>
+
+
 <p>Hello ${user.systemId}!</p>
 
 <div class="box">

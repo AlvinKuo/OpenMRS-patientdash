@@ -15,12 +15,15 @@
 		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
 		<a
 		href="${pageContext.request.contextPath}/module/dicomecg/doctorpage.form"><spring:message
-				code="dicomecg.doctor" /></a>	
-		
+				code="dicomecg.doctor" /></a>
+	</li>
+
+	<li 
+		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
+		<a
+		href="${pageContext.request.contextPath}/module/dicomecg/idgenerator.form"><spring:message
+				code="dicomecg.idgen" /></a>
 	</li>
 	
 	<!-- Add further links here -->
 </ul>
-<h2>
-	<spring:message code="dicomecg.title" />
-</h2>
