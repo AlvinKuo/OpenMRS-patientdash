@@ -8,33 +8,108 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-	<changeSet id="201303191136" author="kuochewei" dbms="mysql">
-	<createTable tableName="ecg">
-        <column name="id" type="int" autoIncrement="true">
-            <constraints primaryKey="true" nullable="true" />
-        </column>
-        <column name="patient_id" type="varchar(255)">
-        	<constraints nullable="true"/>
-        </column>
-        <column name="patient_name" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>        
-        <column name="nurse_id" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>        
-        <column name="nurse_name" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>        
-        <column name="filename" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>          
-        <column name="measure_time" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>
-        <column name="upload_time" type="varchar(255)">
-        	<constraints nullable="true" />
-        </column>                    
-    </createTable>        
+        
+    <changeSet id="201306040845" author="kuochewei" dbms="mysql">
+        <createTable tableName="ecg">
+        	<column name="ecg_id" type="int" autoIncrement="true">
+            	<constraints primaryKey="true" nullable="true" />
+        	</column>
+        	<column name="patient_id" type="int">
+        		<constraints nullable="true"/>
+        	</column>
+        	<column name="identifier" type="varchar(255)">
+        		<constraints nullable="true"/>
+        	</column>
+        	<column name="patient_name" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="nurse_id" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="nurse_name" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="filename" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="measure_time" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="upload_time" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>
+        	<column name="attribute_id" type="int">
+        		<constraints nullable="true"/>
+        	</column>
+        	<column name="uuid" type="varchar(255)">
+        		<constraints nullable="true" unique="true" />
+        	</column>
+        	<column name="confirm_id" type="int">
+        		<constraints nullable="true"/>
+        	</column>
+    	</createTable>
+    	
+    	<createTable tableName="ecg_attribute">
+    		<column name="ecg_attribute_id" type="int" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="true" />
+    		</column>
+    		<column name="patient_id" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="age" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="gender" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="height" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="weight" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="birthdate" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="ecg_confirm">
+    		<column name="ecg_confirm_id" type="int" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="true" />
+    		</column>
+    		<column name="patient_id" type="int">
+    			<constraints nullable="true" />
+    		</column>
+			<column name="identifier" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="confirm" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="confirm_time" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="confirm_name" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="comment" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="filename" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="concept_id" type="int">
+    			<constraints nullable="true" />
+    		</column>    	
+    	</createTable>
+    	     	
+    	<addForeignKeyConstraint constraintName="ecg_attribute_id_fk"
+    	baseTableName="ecg" baseColumnNames="attribute_id"
+    	referencedTableName="ecg_attribute" referencedColumnNames="ecg_attribute_id"/>    	
+    	<addForeignKeyConstraint constraintName="ecg_confirm_id_fk"
+    	baseTableName="ecg" baseColumnNames="confirm_id"
+    	referencedTableName="ecg_confirm" referencedColumnNames="ecg_confirm_id"/>
+    	
     </changeSet>
     
 </databaseChangeLog>

@@ -48,7 +48,10 @@
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 				
-		DicomEcg.hbm.xml
+		<!-- DicomEcg.hbm.xml		
+		DicomEcgAttribute.hbm.xml		
+		DicomEcgConfirm.hbm.xml -->
+		${omodHbmConfig}
 				
 	</mappingFiles>
 	

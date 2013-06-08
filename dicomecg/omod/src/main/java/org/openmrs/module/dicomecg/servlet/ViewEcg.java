@@ -42,7 +42,7 @@ public class ViewEcg extends HttpServlet{
 	private static final int width = 2410;
 	
 	
-	private String patiendId;
+	private Integer patiendId;
 	private String patientName;
 	private String nurseId;
 	private String nurseName;

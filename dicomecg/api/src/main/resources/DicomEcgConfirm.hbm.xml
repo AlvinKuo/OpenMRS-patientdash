@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.dicomecg">
+
+<!-- 
+Add DicomEcg.java link to the ecg table under patient-api file
+Java class name mapping to MysSQL table column name 
+ -->
+	<class name="DicomEcgConfirm" table="ecg_confirm">	
+		<id name="ecg_confirm_id" type="int" column="ecg_confirm_id">
+			<generator class="native"></generator>
+		</id>		
+		<property name="patiendId" type="int" column="patient_id"
+			not-null="true" length="255">
+		</property>
+		<property name="identifier" type="java.lang.String" column="identifier"
+			not-null="true" length="255">
+		</property>	
+		<property name="confirm" type="java.lang.String" column="confirm"
+			not-null="true" length="255">
+		</property>
+		<property name="confirm_time" type="java.lang.String" column="confirm_time"
+			not-null="true" length="255">
+		</property>
+		<property name="confirm_name" type="java.lang.String" column="confirm_name"
+			not-null="true" length="255">
+		</property>
+		<property name="comment" type="java.lang.String" column="comment"
+			not-null="true" length="255">
+		</property>
+		<property name="filename" type="java.lang.String" column="filename"
+			not-null="true" length="255">
+		</property>	
+		<property name="concept_id" type="int" column="concept_id"
+			not-null="true" length="255">
+		</property>	
+	</class>
+	
+ </hibernate-mapping>

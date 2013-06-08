@@ -5,52 +5,45 @@
 
 <hibernate-mapping package="org.openmrs.module.dicomecg">
 
-<!--
-	<class name="DicomEcg"
-		table="dicomecg_DicomEcg">
-		<id name="id" type="int" column="id" unsaved-value="0">
-			<generator class="native" />
-		</id>
-		<discriminator column="id" insert="false" />
-		<property name="uuid" type="java.lang.String" column="uuid"
-			length="38" unique="true" />
-	</class>
--->
-
-<!-- Add PatientDICOMViewer.java link to the ecg table under patient-api file  -->
-	<class name="DicomEcg"
-		table="ecg">
-		<id name="id" type="int" column="id">
+<!-- 
+Add DicomEcg.java link to the ecg table under patient-api file
+Java class name mapping to MysSQL table column name 
+ -->
+	<class name="DicomEcg" 	table="ecg">
+	
+		<id name="ecg_id" type="int" column="ecg_id">
 			<generator class="native"></generator>
-		</id>
-
-		<property name="patiendId" type="java.lang.String" column="patient_id"
+		</id>	
+		<property name="patiendId" type="int" column="patient_id"
 			not-null="true" length="255">
-		</property>
-
+		</property>						
+		<property name="identifier" type="java.lang.String" column="identifier"
+			not-null="true" length="255">
+		</property>		
 		<property name="patientName" type="java.lang.String" column="patient_name"
 			not-null="true" length="255">
 		</property>
-
 		<property name="nurseId" type="java.lang.String" column="nurse_id"
 			not-null="true" length="255">
 		</property>
-
 		<property name="nurseName" type="java.lang.String" column="nurse_name"
 			not-null="true" length="255">
 		</property>
-
 		<property name="filename" type="java.lang.String" column="filename"
 			not-null="true" length="255">
 		</property>
-
 		<property name="measureTime" type="java.lang.String" column="measure_time"
 			not-null="true" length="255">
 		</property>
-
 		<property name="uploadTime" type="java.lang.String" column="upload_time"
 			not-null="true" length="255">
 		</property>
+		<property name="uuid" type="java.lang.String" column="uuid"
+			not-null="true" length="255">
+		</property>		
+		<many-to-one name="attributeId" class="ecg_attribute" column="attribute_id"></many-to-one>
+		<many-to-one name="confirmId"	class="ecg_confirm"	column="confirm_id"></many-to-one>
+		
 	</class>
 
 

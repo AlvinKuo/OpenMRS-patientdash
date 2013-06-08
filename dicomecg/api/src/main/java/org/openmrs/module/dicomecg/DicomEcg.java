@@ -24,29 +24,51 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
-	private String patiendId;
-	private String patientName;
-	private String nurseId;
-	private String nurseName;
-	private String filename;
-	private String measureTime;
-	private String uploadTime;
+	private Integer ecg_id;
+	private Integer patiendId;
+	private String 	identifier;
+	private String 	patientName;
+	private String 	nurseId;
+	private String 	nurseName;
+	private String	filename;
+	private String	measureTime;
+	private String 	uploadTime;
+	private String 	uuid;
+	private DicomEcgAttribute dicomEcgAttribute;
+	//private DicomEcgConfirm dicomEcgConfirm;
 	
-
+	public DicomEcg(){
+		
+	}
+	public void setEcgId(Integer ecg_id) {
+		this.ecg_id = ecg_id;
+	}
+	
+	public Integer getEcgId() {
+		return ecg_id;
+	}
+	
 	public void setId(Integer id) {
-		this.id = id;
+		setEcgId(id);
 	}
 
 	public Integer getId() {
-		return id;
+		return getEcgId();
+	}
+	
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
-	public void setPatiendId(String patiendId) {
+	public String getIdentifier() {
+		return identifier;
+	}	
+
+	public void setPatiendId(Integer patiendId) {
 		this.patiendId = patiendId;
 	}
 
-	public String getPatiendId() {
+	public Integer getPatiendId() {
 		return patiendId;
 	}
 
@@ -98,5 +120,28 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 		return uploadTime;
 	}
 
+	public void setUuId(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getUuId() {
+		return uuid;
+	}	
+
+	public void setDicomEcgAttribute(DicomEcgAttribute dicomEcgAttribute) {
+		this.dicomEcgAttribute = dicomEcgAttribute;
+	}
+
+	public DicomEcgAttribute getDicomEcgAttribute() {
+		return dicomEcgAttribute;
+	}
 	
+
+/*	public void setDicomEcgConfirm(DicomEcgConfirm dicomEcgConfirm) {
+		this.dicomEcgConfirm = dicomEcgConfirm;
+	}
+
+	public DicomEcgConfirm getDicomEcgConfirm() {
+		return dicomEcgConfirm;
+	}*/
 }

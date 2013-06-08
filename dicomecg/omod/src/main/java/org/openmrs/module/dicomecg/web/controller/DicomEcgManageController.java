@@ -52,7 +52,7 @@ public class  DicomEcgManageController {
 	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	public void processForm(ModelMap map,@RequestParam(required = false, value = "id") String ID1,
-			@RequestParam(required = false, value = "patiendId") String patiendId,
+			@RequestParam(required = false, value = "patiendId") Integer patiendId,
 			@RequestParam(required = false, value = "patientName") String patientName,
 			@RequestParam(required = false, value = "nurseId") String nurseId,
 			@RequestParam(required = false, value = "nurseName") String nurseName,

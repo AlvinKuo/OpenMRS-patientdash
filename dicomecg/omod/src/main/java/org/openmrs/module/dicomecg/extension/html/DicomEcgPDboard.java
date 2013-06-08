@@ -28,7 +28,5 @@ public class DicomEcgPDboard extends PatientDashboardTabExt{
 		// TODO Auto-generated method stub
 		return "ecgPortlet";
 	}
-	
-	
 
 }
