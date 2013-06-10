@@ -71,3 +71,16 @@ nb-configuration.xml
 /webapp/src/main/webapp/WEB-INF/dwr-modules.xml
 /webapp/src/main/webapp/WEB-INF/module_messages*
 #############
+/.settings
+/.project
+/target
+
+/api/.settings
+/api/.project
+/api/.classpath
+/api/target
+
+/omod/.settings
+/omod/.project
+/omod/.classpath
+/omod/target

@@ -25,6 +25,7 @@ import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
+
 /**
  * It is a default implementation of  {@link DicomEcgDAO}.
  */
@@ -95,14 +96,11 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	}
 
 	
-	@SuppressWarnings("unchecked")
-	public List<PatientIdentifier> getPatientID(String Identifier) throws DAOException
+	public PatientIdentifier getPatientID(String Identifier) throws DAOException
 	{		
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PatientIdentifier.class);
-		criteria.add(Restrictions.eq("identifier", Identifier));
-				
-		//PatientIdentifier p = (PatientIdentifier) sessionFactory.getCurrentSession().get(PatientIdentifier.class, Identifier);		
-		return criteria.list();				
+		PatientIdentifier p = (PatientIdentifier) sessionFactory.getCurrentSession().get(PatientIdentifier.class, Identifier);
+		
+		return p;				
 	}
 
     

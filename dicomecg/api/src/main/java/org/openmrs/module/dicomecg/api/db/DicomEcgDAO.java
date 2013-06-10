@@ -15,7 +15,6 @@ package org.openmrs.module.dicomecg.api.db;
 
 import java.util.List;
 
-
 import org.openmrs.PatientIdentifier;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
@@ -45,5 +44,10 @@ public interface DicomEcgDAO {
 
 	public List<DicomEcg> getfilename(String filename);
 
-	public List<PatientIdentifier> getPatientID(String identifier);
+	/*public PatientIdentifier getPatientID(String identifier);*/
+	
+
+	/*
+	 * Add DAO methods here
+	 */
 }

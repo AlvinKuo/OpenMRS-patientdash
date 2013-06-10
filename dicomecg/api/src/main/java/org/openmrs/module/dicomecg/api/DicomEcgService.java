@@ -15,7 +15,6 @@ package org.openmrs.module.dicomecg.api;
 
 import java.util.List;
 
-
 import org.openmrs.PatientIdentifier;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.dicomecg.DicomEcg;
@@ -59,5 +58,7 @@ public interface DicomEcgService extends OpenmrsService {
 	 */
 	public List<DicomEcg> getfilename(String filename);
 	
-	public List<PatientIdentifier> getPatientID(String identifier);	
+	/*public PatientIdentifier getPatientID(String identifier);*/
+
+	
 }

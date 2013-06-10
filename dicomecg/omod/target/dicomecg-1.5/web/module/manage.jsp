@@ -20,7 +20,7 @@
 	<table>
 		
 		<tr>
-			<td><spring:message code="dicomecg.ecg.identifier"/></td>
+			<td><spring:message code="dicomecg.ecg.patiendId"/></td>
 			<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
 			<td><input type="text" name="patient_id" id="patiendId" /></td>
 		</tr> 	
@@ -61,7 +61,7 @@
 	<table id="dicomEcg" border="1">
 		<tr bgcolor="#00FFFF" bordercolor="#000000">
 			<th align="center">ID</th>
-			<th align="center">Patient Identifier</th>
+			<th align="center">Patient ID</th>
 			<th align="center">Patient Name</th>		
 			<th align="center">Nurse ID</th>
 			<th align="center">Nurse Name</th>
