@@ -38,15 +38,6 @@
         	<column name="upload_time" type="varchar(255)">
         		<constraints nullable="true" />
         	</column>
-        	<column name="attribute_id" type="int">
-        		<constraints nullable="true"/>
-        	</column>
-        	<column name="uuid" type="varchar(255)">
-        		<constraints nullable="true" unique="true" />
-        	</column>
-        	<column name="confirm_id" type="int">
-        		<constraints nullable="true"/>
-        	</column>
     	</createTable>
     	
     	<createTable tableName="ecg_attribute">
@@ -56,7 +47,7 @@
     		<column name="patient_id" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
-    		<column name="age" type="varchar(255)">
+    		<column name="birthdate" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
     		<column name="gender" type="varchar(255)">
@@ -66,9 +57,6 @@
     			<constraints nullable="true" />
     		</column>
     		<column name="weight" type="varchar(255)">
-    			<constraints nullable="true" />
-    		</column>
-    		<column name="birthdate" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
     	</createTable>
@@ -97,19 +85,8 @@
     		</column>
     		<column name="filename" type="varchar(255)">
     			<constraints nullable="true" />
-    		</column>
-    		<column name="concept_id" type="int">
-    			<constraints nullable="true" />
-    		</column>    	
-    	</createTable>
-    	     	
-    	<addForeignKeyConstraint constraintName="ecg_attribute_id_fk"
-    	baseTableName="ecg" baseColumnNames="attribute_id"
-    	referencedTableName="ecg_attribute" referencedColumnNames="ecg_attribute_id"/>    	
-    	<addForeignKeyConstraint constraintName="ecg_confirm_id_fk"
-    	baseTableName="ecg" baseColumnNames="confirm_id"
-    	referencedTableName="ecg_confirm" referencedColumnNames="ecg_confirm_id"/>
-    	
+    		</column>	
+    	</createTable>    	
     </changeSet>
     
 </databaseChangeLog>

@@ -17,11 +17,7 @@ Java class name mapping to MysSQL table column name
 		<property name="patiendId" type="int" column="patient_id"
 			not-null="true" length="255">
 		</property>
-
-		<property name="age" type="java.lang.String" column="age"
-			not-null="true" length="255">
-		</property>
-
+		
 		<property name="gender" type="java.lang.String" column="gender"
 			not-null="true" length="255">
 		</property>					
@@ -36,8 +32,7 @@ Java class name mapping to MysSQL table column name
 		
 		<property name="birthdate" type="java.lang.String" column="birthdate"
 			not-null="true" length="255">
-		</property>
-		
+		</property>		
 	</class>
  
  </hibernate-mapping>

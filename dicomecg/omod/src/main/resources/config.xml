@@ -47,13 +47,14 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
-		<!-- DicomEcg.hbm.xml		
-		DicomEcgAttribute.hbm.xml		
-		DicomEcgConfirm.hbm.xml -->
-		${omodHbmConfig}
-				
+		DicomEcg.hbm.xml	
 	</mappingFiles>
+	<mappingFiles>
+		DicomEcgAttribute.hbm.xml	
+	</mappingFiles>
+	<mappingFiles>
+		DicomEcgConfirm.hbm.xml
+	</mappingFiles>		
 	
 	<!-- Servlets -->
     <!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> --> 

@@ -18,7 +18,7 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	private String 	confirm_name;
 	private String 	comment;
 	private String 	filename;
-	private Integer	concept_id;
+
 	
 	
 	public DicomEcgConfirm(){
@@ -100,13 +100,6 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 		return filename;
 	}
 	
-	public void setConceptId(Integer concept_id) {
-		this.concept_id = concept_id;
-	}
-
-	public Integer getConceptId() {
-		return concept_id;
-	}	
 	
 
 }
