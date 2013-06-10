@@ -86,10 +86,17 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		return dicomEcgDAO.getfilename(filename);
 	}
 	
-	public List<PatientIdentifier> getPatientID(String Identifier) throws DAOException
-	{
-		return dicomEcgDAO.getPatientID(Identifier);
+	public List<PatientIdentifier> getPatientID(String Identifier) throws DAOException{
 		
+		return dicomEcgDAO.getPatientID(Identifier);		
+	}
+	
+
+
+	@Override
+	public List<DicomEcg> mapPatientEcgData(Integer id) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.mapPatientEcgData(id);
 	}
 
 

@@ -28,14 +28,6 @@
 		<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecglist.filename }">Patient ECG</a></td>
 	<tr>	
 	</c:forEach>
-	
-	
-	<!-- test mapping to right patient  -->
-	<td class="tdClass"><c:out value="${model.personx}"/></td>
-	
-	
-	
-	
 
 </table>
 </div>

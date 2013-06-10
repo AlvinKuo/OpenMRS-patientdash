@@ -19,25 +19,19 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class DicomEcgPortletController extends PortletController   {
 	
-	private SessionFactory sessionFactory;
-	//private String Identifier = "A123456789";
-	
-	
 	@Override
 	protected void populateModel(HttpServletRequest request, Map<String , Object> model) {
 		
-		/*Person pid = Context.getPersonService().getPerson(Integer.parseInt(request.getParameter("patientId")));*/
-		
-		Integer id = Integer.parseInt(request.getParameter("patientId"));   //--get patient id 4 for kuo
-		Patient px = Context.getPatientService().getPatient(id);   //--get patient 4
-		PatientIdentifier pid = px.getPatientIdentifier();
-		
-		model.put( "personx" , pid );
-		
-		if(pid != null)
-		{			
-			DicomEcgService portlet = Context.getService(DicomEcgService.class);
-			List<DicomEcg> portletEcg = portlet.getAllDicomEcg();
+		Integer id = Integer.parseInt(request.getParameter("patientId"));   //--get patient id integer 4 
+		//Patient px = Context.getPatientService().getPatient(id);   //--get Patient#4
+		//PatientIdentifier identifier = px.getPatientIdentifier();
+		//model.put( "personx" , id );
+		//model.put( "persony" , px );
+		//Person pid = Context.getPersonService().getPerson(Integer.parseInt(request.getParameter("patientId")));
+		if(id != null)
+		{
+			DicomEcgService portlet = Context.getService(DicomEcgService.class);			
+			List<DicomEcg> portletEcg = portlet.mapPatientEcgData(id);
 			model.put( "portecg" , portletEcg );
 		}
 		

@@ -79,32 +79,35 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	@Override
 	public DicomEcg getDicomEcg(Integer id) {
 		// TODO Auto-generated method stub
-		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class , id);
+		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class,id);
 	}
 
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DicomEcg> getfilename(String filename) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 		//---sql query---
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcg.class);		
-		criteria.add(Restrictions.eq("filename",filename));
-						
+		criteria.add(Restrictions.eq("filename",filename));						
 		return criteria.list();
 	}
-
 	
 	@SuppressWarnings("unchecked")
 	public List<PatientIdentifier> getPatientID(String Identifier) throws DAOException
 	{		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PatientIdentifier.class);
-		criteria.add(Restrictions.eq("identifier", Identifier));
-				
-		//PatientIdentifier p = (PatientIdentifier) sessionFactory.getCurrentSession().get(PatientIdentifier.class, Identifier);		
+		criteria.add(Restrictions.eq("identifier", Identifier));				
 		return criteria.list();				
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DicomEcg> mapPatientEcgData(Integer id) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcg.class);
+		criteria.add(Restrictions.eq("patiendId", id));
+		return criteria.list();	
+	}
     
 }

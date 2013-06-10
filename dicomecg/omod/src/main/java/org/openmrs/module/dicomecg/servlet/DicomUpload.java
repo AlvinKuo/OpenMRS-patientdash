@@ -39,7 +39,7 @@ public class DicomUpload extends HttpServlet {
 	private String filename; 
 	private String measureTime;
 	private String uploadTime;
-	
+	boolean check;	
 	
 	/*
 	 * doGet and doPost used processRequest 
@@ -66,51 +66,82 @@ public class DicomUpload extends HttpServlet {
 		measureTime = request.getParameter("measure_time");
 		uploadTime = df.format(date);
 		
-		DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
-		List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
-		Iterator<PatientIdentifier> res= PId.iterator();
-		
-		if(res.hasNext()){
-			patiendId = PId.get(0).getPatient().getPatientId();
-			
-			try{				
-				DicomEcg UploadEcgData = new DicomEcg();
-				UploadEcgData.setPatiendId(patiendId);
-				UploadEcgData.setIdentifier(identifier);
-				UploadEcgData.setPatientName(patientName);
-				UploadEcgData.setNurseId(nurseId);
-				UploadEcgData.setNurseName(nurseName);
-				UploadEcgData.setFilename(filename);
-				UploadEcgData.setMeasureTime(measureTime);
-				UploadEcgData.setUploadTime(uploadTime);								
-				UploadEcgService.saveDicomEcg(UploadEcgData);				
-				flag = true;
-				out.print(patiendId);out.print(identifier);
-				out.print(patientName);out.print(nurseId);
-				out.print(nurseName);out.print(filename);
-				out.print(measureTime);out.print(uploadTime);
-				out.print(flag);out.print(UploadEcgData);
-				
-				}
-			catch(Exception e)
-				{
-					out.print(e.getMessage());
-				}
+		check = identifierCheckSum(identifier);
+		if(check==true)
+		{
+			DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
+			List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
+			Iterator<PatientIdentifier> res= PId.iterator();
+			if(res.hasNext()){
+				patiendId = PId.get(0).getPatient().getPatientId();
+				try{
+					DicomEcg UploadEcgData = new DicomEcg();
+					UploadEcgData.setPatiendId(patiendId);
+					UploadEcgData.setIdentifier(identifier);
+					UploadEcgData.setPatientName(patientName);
+					UploadEcgData.setNurseId(nurseId);
+					UploadEcgData.setNurseName(nurseName);
+					UploadEcgData.setFilename(filename);
+					UploadEcgData.setMeasureTime(measureTime);
+					UploadEcgData.setUploadTime(uploadTime);								
+					UploadEcgService.saveDicomEcg(UploadEcgData);				
+					flag = true;
+					}catch(Exception e){
+						out.print(e.getMessage());
+					}
 			}
-		if(flag == true)
-		{
-			out.print("Y");	
-			out.print(patiendId);			
-			flag=false;
+			
+			if(flag == true){
+				out.print("Y");							
+				flag=false;
+			}
+			else{
+				out.print("N");
+			}
+				
+			
 		}
-		else
-		{
-			out.print("N");
-			}	
-		
-	}	
-	
-   
+	}
+	/*
+	 *  Check identifier valid return true
+	 *  
+	 * */
+    
+    protected boolean identifierCheckSum(String id){
+    	int[] num=new int[10];
+    	int[] rdd={10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33};
+    	id=id.toUpperCase();
+    	
+    	if(id.charAt(0)<'A'||id.charAt(0)>'Z'){    		
+    		return false;
+    		}
+    	if(id.charAt(1)!='1' && id.charAt(1)!='2'){
+    		return false;
+    		}
+    	
+    	for(int i=1;i<10;i++){
+    		   if(id.charAt(i)<'0'||id.charAt(i)>'9'){
+    			   return false;
+    		   }
+    	 }
+    	 
+    	 for(int i=1;i<10;i++){
+    		   num[i]=(id.charAt(i)-'0');
+    		  }
+    	 num[0]=rdd[id.charAt(0)-'A'];
+    	 int sum=((int)num[0]/10+(num[0]%10)*9);
+    	 for(int i=0;i<8;i++){
+    		 sum+=num[i+1]*(8-i);
+    	 }
+    	 if(10-sum%10==num[9]){
+    		 return true;
+    	 }
+    	 else{
+    		 return false;
+    	 }
+    }
+    
+    
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -135,7 +166,7 @@ public class DicomUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }	 
+    }    
 
 
 }
