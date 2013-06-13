@@ -42,5 +42,4 @@ Java class name mapping to MysSQL table column name
 		</property>		
 	</class>
 
-
 </hibernate-mapping>

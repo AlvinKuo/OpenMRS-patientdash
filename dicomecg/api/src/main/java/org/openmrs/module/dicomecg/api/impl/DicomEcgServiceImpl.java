@@ -21,7 +21,7 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dicomecg.DicomEcg;
-import org.openmrs.module.dicomecg.DicomMail;
+import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,8 +91,6 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		
 		return dicomEcgDAO.getPatientID(Identifier);		
 	}
-	
-
 
 	@Override
 	public List<DicomEcg> mapPatientEcgData(Integer id) {
@@ -101,11 +99,18 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	}
 
 	@Override
-	public DicomMail sendMail(String from, String to, String subject, String body) {
-		return null;
+	public boolean checkAttribute(Integer patiendId) {
 		// TODO Auto-generated method stub
-
+		return dicomEcgDAO.checkAttribute(patiendId);
 	}
 
+	@Override
+	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.saveDicomEcgAttribute(attribute);
+	}
 
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId){
+		return dicomEcgDAO.getDicomEcgAttribute(patiendId);
+	}
 }

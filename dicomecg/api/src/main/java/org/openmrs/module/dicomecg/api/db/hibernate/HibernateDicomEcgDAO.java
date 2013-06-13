@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.dicomecg.api.db.hibernate;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -23,6 +24,7 @@ import org.hibernate.criterion.Restrictions;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
 /**
@@ -48,10 +50,6 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	    return sessionFactory;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#getAllDicomEcg()
-     */
 	@SuppressWarnings("unchecked")
 	public List<DicomEcg> getAllDicomEcg() {
 		// TODO Auto-generated method stub
@@ -59,23 +57,13 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		return criteria.list();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#saveDicomEcg(org.openmrs.module.dicomecg.DicomEcg)
-	 */
 	@Override
 	public DicomEcg saveDicomEcg(DicomEcg dicomEcg) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(dicomEcg);
-		
+		sessionFactory.getCurrentSession().saveOrUpdate(dicomEcg);		
 		return dicomEcg;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see org.openmrs.module.dicomecg.api.db.DicomEcgDAO#getDicomEcg(java.lang.Integer)
-	 */
-
 	@Override
 	public DicomEcg getDicomEcg(Integer id) {
 		// TODO Auto-generated method stub
@@ -109,5 +97,33 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		criteria.add(Restrictions.eq("patiendId", id));
 		return criteria.list();	
 	}
+	
+	public boolean checkAttribute(Integer patiendId){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
+		Iterator res = criteria.add(Restrictions.eq("patiendId",patiendId)).list().iterator();
+		
+		if(res.hasNext()){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
+
+	@Override
+	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(attribute);		
+		return attribute;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
+		criteria.add(Restrictions.eq("patiendId", patiendId));
+		return criteria.list();
+	}
+
 	
 }

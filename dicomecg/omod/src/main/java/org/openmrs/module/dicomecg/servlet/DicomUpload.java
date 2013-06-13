@@ -70,9 +70,9 @@ public class DicomUpload extends HttpServlet {
 		check = identifierCheckSum(identifier);
 		if(check==true)
 		{
-			DicomEcgService mial = Context.getService(DicomEcgService.class);
+			/*DicomEcgService mial = Context.getService(DicomEcgService.class);
 			mial.sendMail("cyculab501@gmail.com" ,"cyculab501@gmail.com", "testteste","123456");
-			
+			*/
 			DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
 			List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
 			Iterator<PatientIdentifier> res= PId.iterator();

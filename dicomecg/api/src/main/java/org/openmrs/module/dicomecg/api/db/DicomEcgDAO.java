@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.openmrs.PatientIdentifier;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 /**
@@ -25,22 +26,10 @@ import org.openmrs.module.dicomecg.api.DicomEcgService;
  */
 public interface DicomEcgDAO {
 
-	/*
-	 * Get all data form ecg table
-	 * @return  all DicomEcg
-	 */
 	public List<DicomEcg> getAllDicomEcg();
-	
-	/*
-	 * Save one DicomEcg object to database
-	 *  @return saved DicomEcg object
-	 */
+
 	public DicomEcg saveDicomEcg(DicomEcg dicomEcg);
 
-	
-	/*
-	 *  Get one DicomEcg record based on the id
-	 */
 	public DicomEcg getDicomEcg(Integer id);
 
 	public List<DicomEcg> getfilename(String filename);
@@ -49,5 +38,10 @@ public interface DicomEcgDAO {
 
 	public List<DicomEcg> mapPatientEcgData(Integer id);
 	
+	boolean checkAttribute(Integer patiendId);
+
+	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute);
+
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId);
 	
 }

@@ -10,7 +10,7 @@ Add DicomEcg.java link to the ecg table under patient-api file
 Java class name mapping to MysSQL table column name 
  -->
  	<class name="DicomEcgAttribute" 	table="ecg2_attribute">
- 		<id name="ecg_attribute_id" type="int" column="ecg_attribute_id">
+ 		<id name="id" type="int" column="ecg_attribute_id">
 			<generator class="native"></generator>
 		</id>
 		

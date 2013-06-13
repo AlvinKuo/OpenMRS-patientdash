@@ -12,33 +12,23 @@ public class DicomEcgAttribute extends BaseOpenmrsObject implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer ecg_attribute_id;
+	private Integer id;
 	private Integer patiendId;	
 	private String 	gender;
 	private String 	height;
 	private String 	weight;
 	private String 	birthdate;
 	
-	public DicomEcgAttribute(){
-		
-	}
-	public void setEcgAttributeId(Integer ecg_attribute_id) {
-		this.ecg_attribute_id = ecg_attribute_id;
-	}
-	
-	public Integer getEcgAttributeId() {
-		return ecg_attribute_id;
-	}
 	
 	@Override
 	public Integer getId() {
 		// TODO Auto-generated method stub
-		return getEcgAttributeId();
+		return id;
 	}
 	@Override
 	public void setId(Integer id) {
 		// TODO Auto-generated method stub
-		setEcgAttributeId(id);
+		this.id = id;
 	}
 
 	public void setPatiendId(Integer patiendId) {

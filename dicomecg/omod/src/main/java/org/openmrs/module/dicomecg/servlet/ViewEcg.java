@@ -52,9 +52,8 @@ public class ViewEcg extends HttpServlet{
 	
    public void init() throws ServletException {
         this.ecgPath = OpenmrsUtil.getApplicationDataDirectory() + "/patient_dicom";
-    }
+    }  
     
-    @RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
@@ -71,11 +70,11 @@ public class ViewEcg extends HttpServlet{
         		patiendId=Filename.get(0).getPatiendId();
         		patientName=Filename.get(0).getPatientName();
         		measureTime=Filename.get(0).getMeasureTime();
+        	}else{        		
+				patientName = "";
+				measureTime = "";
+				nurseName = "";
         	}
-        	else{
-        		
-        	}
-    		
     	}catch(Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +119,7 @@ public class ViewEcg extends HttpServlet{
 			
 			ecg_data = new short[12][ecg_data_length];
 			for (int j=0;j<ecg_data_length;j++) {
-				short[] t = new short[24]; 
+				short[] t = new short[24];
 				for (int k=0;k<24;k++) {
 					t[k] = (short) f.readUnsignedByte();
 				}
