@@ -19,6 +19,7 @@ import java.util.List;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomMail;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -62,6 +63,8 @@ public interface DicomEcgService extends OpenmrsService {
 	public List<PatientIdentifier> getPatientID(String identifier);	
 	
 	public List<DicomEcg> mapPatientEcgData(Integer id);
+	
+	public DicomMail sendMail(String from, String to, String subject,String body);
 
 	
 }

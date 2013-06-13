@@ -13,7 +13,6 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	private Integer ecg_confirm_id;
 	private Integer patiendId;
 	private String 	identifier;
-	private String 	confirm;
 	private String 	confirm_time;
 	private String 	confirm_name;
 	private String 	comment;
@@ -57,15 +56,6 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 
 	public String getIdentifier() {
 		return identifier;
-	}
-	
-	
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
-	}
-
-	public String getConfirm() {
-		return confirm;
 	}
 	
 	public void setConfirmName(String confirm_name) {

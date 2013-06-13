@@ -5,10 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.SessionFactory;
-import org.openmrs.Patient;
-import org.openmrs.PatientIdentifier;
-import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;

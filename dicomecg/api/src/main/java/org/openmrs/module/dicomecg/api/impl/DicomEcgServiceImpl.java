@@ -21,6 +21,7 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomMail;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -97,6 +98,13 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	public List<DicomEcg> mapPatientEcgData(Integer id) {
 		// TODO Auto-generated method stub
 		return dicomEcgDAO.mapPatientEcgData(id);
+	}
+
+	@Override
+	public DicomMail sendMail(String from, String to, String subject, String body) {
+		return null;
+		// TODO Auto-generated method stub
+
 	}
 
 

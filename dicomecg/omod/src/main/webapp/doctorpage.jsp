@@ -20,14 +20,36 @@
 		<h3><spring:message code="dicomecg.doctor.information"/></h3>
 			<div class="whiteBackground" id="whiteBackground">	
 				<h4>		
-					<div><spring:message code="dicomecg.doctor.patient"/></div>
-					<div><spring:message code="dicomecg.doctor.patientname"/></div>
-					<div><spring:message code="dicomecg.doctor.gender"/></div>
+					<div>
+						<spring:message code="dicomecg.doctor.patient"/>						
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+							<td><font color=#6600FF>${page.identifier}</font></td>																
+						</c:forEach>												
+					</div>
+					<div>
+						<spring:message code="dicomecg.doctor.patientname"/>
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+							<td><font color=#6600FF>${page.patientName}</font></td>																
+						</c:forEach>
+					</div>					
+					<div>
+						<spring:message code="dicomecg.doctor.gender"/>
+					</div>
 					<div><spring:message code="dicomecg.doctor.hight"/></div>
 					<div><spring:message code="dicomecg.doctor.weight"/></div>
 					<div><spring:message code="dicomecg.doctor.bloodpressure"/></div>
-					<div><spring:message code="dicomecg.doctor.filename"/></div>
-					<div><spring:message code="dicomecg.doctor.measuretime"/></div>
+					<div>
+						<spring:message code="dicomecg.doctor.filename"/>
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+							<td><font color=#6600FF>${page.filename}</font></td>																
+						</c:forEach>	
+					</div>
+					<div>
+						<spring:message code="dicomecg.doctor.measuretime"/>
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+							<td><font color=#6600FF>${page.measureTime}</font></td>																
+						</c:forEach>
+					</div>
 					
 					<!-- ecg attribute -->
 					<div><spring:message code="dicomecg.doctor.ecg.rr"/></div>
@@ -41,7 +63,7 @@
 		</div>
 		
 		<!-- show Comment area -->
-		<form id="" class="" method="post" action="" >
+		<form id="" class="" method="POST" action="" >
 			<h3><spring:message code="dicomecg.doctor.interpretation"/></h3>
 				
 				<div class="whiteBackground" id="whiteBackground">
@@ -81,21 +103,16 @@
 				FlashVars = "contextPath=${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=B12345678920130527211933.dcm"
 				pluginspage="http://www.adobe.com/go/getflashplayer">				
 			</embed>			
-		</object> --%>
-       
-       
+		</object> --%> 
        
        <!--  show in image -->
-       <img height=100% width=100% src="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=B12345678920130527211933.dcm" alt="Here is show 12 lead ecg picture" ismap />
+       	<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+			<img height=100% width=100% src="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${page.filename}" alt="Here is show 12 lead ecg picture" ismap />
+       	</c:forEach> 
 	</div>
 	
 	
 </div>
 
-
-
-
-
-
-<div style="clear: both;"></div>
+<div style="clear: both"></div>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

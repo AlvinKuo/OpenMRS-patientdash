@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomMail;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 
@@ -69,6 +70,9 @@ public class DicomUpload extends HttpServlet {
 		check = identifierCheckSum(identifier);
 		if(check==true)
 		{
+			DicomEcgService mial = Context.getService(DicomEcgService.class);
+			mial.sendMail("cyculab501@gmail.com" ,"cyculab501@gmail.com", "testteste","123456");
+			
 			DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
 			List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
 			Iterator<PatientIdentifier> res= PId.iterator();
@@ -83,7 +87,8 @@ public class DicomUpload extends HttpServlet {
 					UploadEcgData.setNurseName(nurseName);
 					UploadEcgData.setFilename(filename);
 					UploadEcgData.setMeasureTime(measureTime);
-					UploadEcgData.setUploadTime(uploadTime);								
+					UploadEcgData.setUploadTime(uploadTime);
+					UploadEcgData.setConfirm("NEW");
 					UploadEcgService.saveDicomEcg(UploadEcgData);				
 					flag = true;
 					}catch(Exception e){

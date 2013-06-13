@@ -17,8 +17,7 @@
  	<form id="uploadDicom" method="POST" 
 	action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload">	 
 	
-	<table>
-		
+	<table>		
 		<tr>
 			<td><spring:message code="dicomecg.ecg.identifier"/></td>
 			<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
@@ -30,7 +29,7 @@
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseId"/></td>
-			<td><input type="text" name="nurse_id" id="nurseId" /></td>			
+			<td><input type="text" name="nurse_id" id="nurseId" /></td>
 		</tr> 			
 		<tr>
 			<td><spring:message code="dicomecg.ecg.nurseName"/></td>
@@ -45,7 +44,6 @@
 			<td><input type="text" name="measure_time" id="measureTime" /></td>			
 		</tr> 			
 		<tr>
-			<td></td>
 			<td><input type="submit" value="Add New" /></td>
 		</tr>	
 	</table>
@@ -82,8 +80,7 @@
 					<td>${ecg.filename }</td>
 					<td>${ecg.measureTime }</td>
 					<td>${ecg.uploadTime }</td>
-					<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>					
-											
+					<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>
 				</tr>						
 			</form>		
 		</c:forEach>			

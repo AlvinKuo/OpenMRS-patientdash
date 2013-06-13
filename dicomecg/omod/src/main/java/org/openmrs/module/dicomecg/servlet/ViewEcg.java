@@ -35,23 +35,17 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 @SuppressWarnings("restriction")
 public class ViewEcg extends HttpServlet{
 	
-    // Properties ---------------------------------------------------------------------------------
-	//private static final String ecgPath = OpenmrsUtil.getApplicationDataDirectory() + "/patient_dicom";
-	private String ecgPath;
-	private static final int height = 2050;
-	private static final int width = 2410;
-	
-	
-	private Integer patiendId;
-	private String patientName;
-	private String nurseId;
-	private String nurseName;
-	private String filename;
-	private String measureTime;
-	
-	
 	private static final long serialVersionUID = 1L;
 	
+    private String ecgPath;
+	private static final int height = 2050;
+	private static final int width = 2410;	
+	private Integer patiendId;
+	private String patientName;
+	//private String nurseId;
+	private String nurseName;
+	private String filename;
+	private String measureTime;	
 	private short[][] ecg_data;
 	private int ecg_data_length;
 	private float grid;
@@ -64,12 +58,7 @@ public class ViewEcg extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-/*    	response.setContentType("text/html");
-    	PrintWriter out = response.getWriter();   
-    	out.print(NurseName);					*/ 	
-    	
     	filename = request.getParameter("filename");   	
-    	
     	
     	try{
     		

@@ -33,7 +33,7 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 	private String	filename;
 	private String	measureTime;
 	private String 	uploadTime;
-
+	private String 	confirm;
 	
 	@Override
 	public Integer getId() {
@@ -110,4 +110,12 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 	public String getUploadTime() {
 		return uploadTime;
 	}
+	
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
+
+	public String getConfirm() {
+		return confirm;
+	}	
 }

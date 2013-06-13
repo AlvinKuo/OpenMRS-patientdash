@@ -109,5 +109,5 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		criteria.add(Restrictions.eq("patiendId", id));
 		return criteria.list();	
 	}
-    
+	
 }

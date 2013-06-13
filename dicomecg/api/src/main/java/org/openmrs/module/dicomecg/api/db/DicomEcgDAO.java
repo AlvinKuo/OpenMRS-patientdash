@@ -48,4 +48,6 @@ public interface DicomEcgDAO {
 	public List<PatientIdentifier> getPatientID(String identifier);
 
 	public List<DicomEcg> mapPatientEcgData(Integer id);
+	
+	
 }

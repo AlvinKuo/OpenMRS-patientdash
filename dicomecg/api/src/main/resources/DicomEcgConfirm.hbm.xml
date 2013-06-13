@@ -9,7 +9,7 @@
 Add DicomEcg.java link to the ecg table under patient-api file
 Java class name mapping to MysSQL table column name 
  -->
-	<class name="DicomEcgConfirm" table="ecg_confirm">	
+	<class name="DicomEcgConfirm" table="ecg2_confirm">	
 		<id name="ecg_confirm_id" type="int" column="ecg_confirm_id">
 			<generator class="native"></generator>
 		</id>		
@@ -19,9 +19,6 @@ Java class name mapping to MysSQL table column name
 		<property name="identifier" type="java.lang.String" column="identifier"
 			not-null="true" length="255">
 		</property>	
-		<property name="confirm" type="java.lang.String" column="confirm"
-			not-null="true" length="255">
-		</property>
 		<property name="confirm_time" type="java.lang.String" column="confirm_time"
 			not-null="true" length="255">
 		</property>
