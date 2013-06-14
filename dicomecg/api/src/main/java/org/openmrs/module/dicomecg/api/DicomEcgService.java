@@ -20,6 +20,7 @@ import org.openmrs.PatientIdentifier;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -53,5 +54,7 @@ public interface DicomEcgService extends OpenmrsService {
 	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute);
 	
 	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId);
+	
+	public List<DicomEcgConfirm> getDicomEcgConfirm();
 	
 }

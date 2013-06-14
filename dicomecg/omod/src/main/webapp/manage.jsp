@@ -19,8 +19,8 @@
 			<table>		
 				<tr>
 					<td><spring:message code="dicomecg.ecg.identifier"/></td>
-					<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
-					<td><input type="text" name="patient_id" id="patiendId" /></td>
+					<%-- <td><input type="text" name="patientId" value="${patientId}" /></td> --%>
+					<td><input type="text" name="patient_id" id="patientId" /></td>
 				</tr> 	
 				<tr>
 					<td><spring:message code="dicomecg.ecg.patientName"/></td>
@@ -52,39 +52,19 @@
 	<div align="cneter" width="50%">
 		<form id="uploadAttribute" method="POST" 
 		action="${pageContext.request.contextPath}/moduleServlet/dicomecg/AttributeTest">
-			<table>
+			<table>		
 				<tr>
-					<td></td>
-					<td><input type="text" name="identi" id="identi" /></td>
-				</tr>			
-				<tr>
-					<td><spring:message code="dicomecg.ecg.patiendId"/></td>
-					<td><input type="text" name="patiendId" id="patiendId" /></td>
-				</tr>		
-				<tr>
-					<td><spring:message code="dicomecg.doctor.gender"/></td>
-					<td><input type="text" name="gender" id="gender" /></td>
+					<td><p>Filename</p></td>
+					<td><input type="text" name="filename" id="filename" /></td>
 				</tr>
 				<tr>
-					<td><spring:message code="dicomecg.doctor.hight"/></td>
-					<td><input type="text" name="height" id="height" /></td>
-				</tr>
-				<tr>
-					<td><spring:message code="dicomecg.doctor.weight"/></td>
-					<td><input type="text" name="weight" id="weight" /></td>
-				</tr>
-				<tr>
-					<td><spring:message code="dicomecg.doctor.birthdate"/></td>
-					<td><input type="text" name="birthdate" id="birthdate" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Add Attribute" /></td>
+					<td><input type="submit" value="Test Read Dicom Filename" /></td>
 				</tr>	
 			</table>
 		</form>	
 	</div>
 	
-	<div align="center" width="50%">
+	<div align="left" width="50%">
 		<table id="dicomEcg" border="1">
 			<tr bgcolor="#00FFFF" bordercolor="#000000">
 				<th align="center">ID</th>
@@ -116,6 +96,63 @@
 						
 		</table>
 	</div>
+	
+	<div align="letf" width="50%">
+		<table id="dicomAttribute" border="1">
+			<tr bgcolor="#00FFFF" bordercolor="#000000">
+				<th align="center">Ecg Attribute ID</th>
+				<th align="center">Patient ID</th>
+				<th align="center">Birth Date</th>		
+				<th align="center">Gender</th>
+				<th align="center">Height</th>
+				<th align="center">Weight</th>
+				<th align="center">Filename</th>			
+			</tr>
+						
+			<c:forEach var="attribute" items="${attribute}" varStatus="ind">
+				<form method="POST" name="${attribute.id}" >
+					<tr>						
+						<td>${attribute.id }</td>
+						<td>${attribute.patientId }</td>
+						<td>${attribute.gender }</td>
+						<td>${attribute.height }</td>
+						<td>${attribute.weight }</td>
+						<td>${attribute.birthdate }</td>
+						<td>${attribute.filename }</td>				
+					</tr>						
+				</form>		
+			</c:forEach>
+						
+		</table>
+	</div>
+
+	<div align="letf" width="50%">
+		<table id="dicomConfirm" border="1">
+			<tr bgcolor="#00FFFF" bordercolor="#000000">
+				<th align="center">Ecg Confirm ID</th>
+				<th align="center">Patient Time</th>
+				<th align="center">Confirm Name</th>		
+				<th align="center">Confirm</th>
+				<th align="center">Comment</th>
+				<th align="center">Filename</th>			
+			</tr>
+						
+			<c:forEach var="confirm" items="${confirm}" varStatus="ind">
+				<form method="POST" name="${confirm.id}" >
+					<tr>						
+						<td>${confirm.id }</td>
+						<td>${confirm.patientId }</td>
+						<td>${confirm.identifier }</td>
+						<td>${confirm.confirmTime }</td>
+						<td>${confirm.confirmName }</td>
+						<td>${confirm.comment }</td>
+						<td>${confirm.filename }</td>				
+					</tr>						
+				</form>		
+			</c:forEach>
+						
+		</table>
+	</div>	
 	
 </div>
 

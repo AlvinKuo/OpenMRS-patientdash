@@ -25,6 +25,7 @@ import org.openmrs.PatientIdentifier;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
 /**
@@ -122,6 +123,12 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId){
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
 		criteria.add(Restrictions.eq("patiendId", patiendId));
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DicomEcgConfirm> getDicomEcgConfirm(){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgConfirm.class);		
 		return criteria.list();
 	}
 

@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
+import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class  DicomEcgManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+	boolean attributeCheck;
 	
 /*	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
@@ -47,26 +49,39 @@ public class  DicomEcgManageController {
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);
 		
+		DicomEcgService checkService = Context.getService(DicomEcgService.class);
+		attributeCheck = checkService.checkAttribute(4);
+		if(attributeCheck == true){
+			List<DicomEcgAttribute> showAttribute = checkService.getDicomEcgAttribute(4);
+			map.addAttribute("attribute",showAttribute);
+		}
+		
+		
 	}
 		
 	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	public void processForm(ModelMap map,@RequestParam(required = false, value = "id") String ID1,
-			@RequestParam(required = false, value = "patiendId") Integer patiendId,
+			@RequestParam(required = false, value = "patientId") Integer patientId,
 			@RequestParam(required = false, value = "patientName") String patientName,
 			@RequestParam(required = false, value = "nurseId") String nurseId,
 			@RequestParam(required = false, value = "nurseName") String nurseName,
 			@RequestParam(required = false, value = "filename") String filename,
 			@RequestParam(required = false, value = "measureTime") String measureTime,
-			@RequestParam(required = false, value = "uploadTime") String uploadTime){
+			@RequestParam(required = false, value = "uploadTime") String uploadTime,
+			@RequestParam(required = false, value = "attributeId") String attributeId,
+			@RequestParam(required = false, value = "burthdate") String burthdate,
+			@RequestParam(required = false, value = "gender") String gender,
+			@RequestParam(required = false, value = "height") String height,
+			@RequestParam(required = false, value = "weight") String weight){
 		
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		
 		if(!StringUtils.hasText(ID1)){
-			log.info("Processing post request ..." + ID1 + ", " + patiendId + ", " + patientName + ", " + nurseId + ", " + nurseName + ", " + filename 
+			log.info("Processing post request ..." + ID1 + ", " + patientId + ", " + patientName + ", " + nurseId + ", " + nurseName + ", " + filename 
 					+ ", " +measureTime+ ", " + uploadTime);
 			DicomEcg dicomEcg = new DicomEcg();
-			dicomEcg.setPatiendId(patiendId);
+			dicomEcg.setPatientId(patientId);
 			dicomEcg.setPatientName(patientName);
 			dicomEcg.setNurseId(nurseId);
 			dicomEcg.setNurseName(nurseName);
@@ -83,7 +98,7 @@ public class  DicomEcgManageController {
 			dicomecgEdit = ecgservice.getDicomEcg(Integer.parseInt(ID1));
 			if(!StringUtils.hasText(ID1))
 			{
-				dicomecgEdit.setPatiendId(patiendId);
+				dicomecgEdit.setPatientId(patientId);
 				dicomecgEdit.setPatientName(patientName);
 				dicomecgEdit.setNurseId(nurseId);
 				dicomecgEdit.setNurseName(nurseName);

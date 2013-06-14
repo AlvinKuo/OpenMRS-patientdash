@@ -9,8 +9,8 @@
         for a list of supported elements and attributes
     -->
         
-    <changeSet id="201306090845" author="kuochewei" dbms="mysql">
-        <createTable tableName="ecg2">
+    <changeSet id="201306141700" author="kuochewei" dbms="mysql">
+        <createTable tableName="ecg3">
         	<column name="ecg_id" type="int" autoIncrement="true">
             	<constraints primaryKey="true" nullable="true" />
         	</column>
@@ -43,11 +43,11 @@
         	</column>        	
     	</createTable>
     	
-    	<createTable tableName="ecg2_attribute">
+    	<createTable tableName="ecg3_attribute">
     		<column name="ecg_attribute_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
-    		<column name="patient_id" type="varchar(255)">
+    		<column name="patient_id" type="int">
     			<constraints nullable="true" />
     		</column>
     		<column name="birthdate" type="varchar(255)">
@@ -62,9 +62,12 @@
     		<column name="weight" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
+        	<column name="filename" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>    		
     	</createTable>
     	
-    	<createTable tableName="ecg2_confirm">
+    	<createTable tableName="ecg3_confirm">
     		<column name="ecg_confirm_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>

@@ -9,11 +9,11 @@
 Add DicomEcg.java link to the ecg table under patient-api file
 Java class name mapping to MysSQL table column name 
  -->
-	<class name="DicomEcg" 	table="ecg">	
+	<class name="DicomEcg" 	table="ecg3">	
 		<id name="id" type="int" column="ecg_id">
 			<generator class="native"></generator>
 		</id>	
-		<property name="patiendId" type="int" column="patient_id"
+		<property name="patientId" type="int" column="patient_id"
 			not-null="true" length="255">
 		</property>						
 		<property name="identifier" type="java.lang.String" column="identifier"
@@ -37,7 +37,9 @@ Java class name mapping to MysSQL table column name
 		<property name="uploadTime" type="java.lang.String" column="upload_time"
 			not-null="true" length="255">
 		</property>
+		<property name="confirm" type="java.lang.String" column="confirm"
+			not-null="true" length="255">
+		</property>		
 	</class>
-
 
 </hibernate-mapping>

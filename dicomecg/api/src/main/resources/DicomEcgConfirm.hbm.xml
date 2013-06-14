@@ -5,32 +5,29 @@
 
 <hibernate-mapping package="org.openmrs.module.dicomecg">
 
-<!-- 
-Add DicomEcg.java link to the ecg table under patient-api file
-Java class name mapping to MysSQL table column name 
- -->
-	<class name="DicomEcgConfirm" table="ecg2_confirm">	
+	<class name="DicomEcgConfirm" table="ecg3_confirm">
+		
 		<id name="id" type="int" column="ecg_confirm_id">
 			<generator class="native"></generator>
-		</id>		
-		<property name="patiendId" type="int" column="patient_id"
-			not-null="true" length="255">
+		</id>
+		<property name="patientId" type="int" column="patient_id"
+			not-null="true">
 		</property>
-		<property name="identifier" type="java.lang.String" column="identifier"
-			not-null="true" length="255">
-		</property>	
-		<property name="confirm_time" type="java.lang.String" column="confirm_time"
-			not-null="true" length="255">
+		<property name="identify" type="java.lang.String" column="identifier"
+			not-null="true">
 		</property>
-		<property name="confirm_name" type="java.lang.String" column="confirm_name"
-			not-null="true" length="255">
+		<property name="confirmTime" type="java.lang.String" column="confirm_time"
+			not-null="true">
+		</property>
+		<property name="confirmName" type="java.lang.String" column="confirm_name"
+			not-null="true">
 		</property>
 		<property name="comment" type="java.lang.String" column="comment"
-			not-null="true" length="255">
+			not-null="true">
 		</property>
 		<property name="filename" type="java.lang.String" column="filename"
-			not-null="true" length="255">
+			not-null="true">
 		</property>
 	</class>
-	
- </hibernate-mapping>
+
+</hibernate-mapping>

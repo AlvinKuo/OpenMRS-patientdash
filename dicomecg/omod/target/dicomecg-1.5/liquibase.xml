@@ -9,8 +9,8 @@
         for a list of supported elements and attributes
     -->
         
-    <changeSet id="201306040845" author="kuochewei" dbms="mysql">
-        <createTable tableName="ecg">
+    <changeSet id="201306141700" author="kuochewei" dbms="mysql">
+        <createTable tableName="ecg3">
         	<column name="ecg_id" type="int" autoIncrement="true">
             	<constraints primaryKey="true" nullable="true" />
         	</column>
@@ -38,13 +38,16 @@
         	<column name="upload_time" type="varchar(255)">
         		<constraints nullable="true" />
         	</column>
+        	<column name="confirm" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>        	
     	</createTable>
     	
-    	<createTable tableName="ecg_attribute">
+    	<createTable tableName="ecg3_attribute">
     		<column name="ecg_attribute_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
-    		<column name="patient_id" type="varchar(255)">
+    		<column name="patient_id" type="int">
     			<constraints nullable="true" />
     		</column>
     		<column name="birthdate" type="varchar(255)">
@@ -59,9 +62,12 @@
     		<column name="weight" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
+        	<column name="filename" type="varchar(255)">
+        		<constraints nullable="true" />
+        	</column>    		
     	</createTable>
     	
-    	<createTable tableName="ecg_confirm">
+    	<createTable tableName="ecg3_confirm">
     		<column name="ecg_confirm_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
@@ -69,9 +75,6 @@
     			<constraints nullable="true" />
     		</column>
 			<column name="identifier" type="varchar(255)">
-    			<constraints nullable="true" />
-    		</column>
-    		<column name="confirm" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
     		<column name="confirm_time" type="varchar(255)">

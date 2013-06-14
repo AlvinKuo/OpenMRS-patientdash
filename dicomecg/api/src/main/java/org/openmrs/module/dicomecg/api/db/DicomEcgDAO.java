@@ -19,6 +19,7 @@ import java.util.List;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 /**
@@ -44,4 +45,5 @@ public interface DicomEcgDAO {
 
 	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId);
 	
+	public List<DicomEcgConfirm> getDicomEcgConfirm();
 }

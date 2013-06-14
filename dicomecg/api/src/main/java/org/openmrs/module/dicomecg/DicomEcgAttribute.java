@@ -13,12 +13,12 @@ public class DicomEcgAttribute extends BaseOpenmrsObject implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private Integer patiendId;	
+	private Integer patientId;	
 	private String 	gender;
 	private String 	height;
 	private String 	weight;
 	private String 	birthdate;
-	
+	private String	filename;
 	
 	@Override
 	public Integer getId() {
@@ -31,12 +31,12 @@ public class DicomEcgAttribute extends BaseOpenmrsObject implements Serializable
 		this.id = id;
 	}
 
-	public void setPatiendId(Integer patiendId) {
-		this.patiendId = patiendId;
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
 	}
 
-	public Integer getPatiendId() {
-		return patiendId;
+	public Integer getPatientId() {
+		return patientId;
 	}
 	
 	public void setGender(String gender) {
@@ -68,5 +68,13 @@ public class DicomEcgAttribute extends BaseOpenmrsObject implements Serializable
 
 	public String getBirthdate() {
 		return birthdate;
-	}	
+	}
+	
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
 }

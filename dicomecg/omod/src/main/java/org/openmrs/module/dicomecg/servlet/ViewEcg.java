@@ -40,7 +40,7 @@ public class ViewEcg extends HttpServlet{
     private String ecgPath;
 	private static final int height = 2050;
 	private static final int width = 2410;	
-	private Integer patiendId;
+	private Integer patientId;
 	private String patientName;
 	//private String nurseId;
 	private String nurseName;
@@ -67,7 +67,7 @@ public class ViewEcg extends HttpServlet{
         	if(res.hasNext())
         	{
         		nurseName=Filename.get(0).getNurseName(); 
-        		patiendId=Filename.get(0).getPatiendId();
+        		patientId=Filename.get(0).getPatiendId();
         		patientName=Filename.get(0).getPatientName();
         		measureTime=Filename.get(0).getMeasureTime();
         	}else{        		
@@ -223,7 +223,7 @@ public class ViewEcg extends HttpServlet{
 		g.drawString("V6", 160, 1960);
 		
 		g.setFont(new Font("Tahoma", Font.BOLD, 36));
-		g.drawString("Patient Id       :  " + patiendId, 160, 40);
+		g.drawString("Patient Id       :  " + patientId, 160, 40);
 		g.drawString("Patient Name :  " + patientName, 160, 80);
 		g.drawString("Nurse              :  " + nurseName, 800, 40);
 		g.drawString("Measure Time :  " + measureTime, 800, 80);

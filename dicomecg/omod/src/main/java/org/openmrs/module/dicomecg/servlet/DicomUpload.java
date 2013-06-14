@@ -19,7 +19,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
-import org.openmrs.module.dicomecg.DicomMail;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 
@@ -32,7 +31,7 @@ public class DicomUpload extends HttpServlet {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	boolean flag  = false;
-	private Integer patiendId;
+	private Integer patientId;
 	private String identifier;
 	private String patientName;
 	private String nurseId;
@@ -46,7 +45,7 @@ public class DicomUpload extends HttpServlet {
 	 * doGet and doPost used processRequest 
 	 * 
 	 * when android device transmit the dicom file by wi-fi 
-	 * this page will add the information such as patiendId、patientName、nurseId、nurseName、filename and measureTime
+	 * this page will add the information such as patientId、patientName、nurseId、nurseName、filename and measureTime
 	 * into MySQL database
 	 */
 	
@@ -70,17 +69,14 @@ public class DicomUpload extends HttpServlet {
 		check = identifierCheckSum(identifier);
 		if(check==true)
 		{
-			/*DicomEcgService mial = Context.getService(DicomEcgService.class);
-			mial.sendMail("cyculab501@gmail.com" ,"cyculab501@gmail.com", "testteste","123456");
-			*/
 			DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
 			List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
 			Iterator<PatientIdentifier> res= PId.iterator();
 			if(res.hasNext()){
-				patiendId = PId.get(0).getPatient().getPatientId();
+				patientId = PId.get(0).getPatient().getPatientId();
 				try{
 					DicomEcg UploadEcgData = new DicomEcg();
-					UploadEcgData.setPatiendId(patiendId);
+					UploadEcgData.setPatientId(patientId);
 					UploadEcgData.setIdentifier(identifier);
 					UploadEcgData.setPatientName(patientName);
 					UploadEcgData.setNurseId(nurseId);

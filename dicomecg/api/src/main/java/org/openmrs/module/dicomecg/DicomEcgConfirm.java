@@ -4,62 +4,65 @@ import java.io.Serializable;
 
 import org.openmrs.BaseOpenmrsObject;
 
-public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
-
+public class DicomEcgConfirm  extends BaseOpenmrsObject implements Serializable{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer patiendId;
-	private String 	identifier;
-	private String 	confirm_time;
-	private String 	confirm_name;
-	private String 	comment;
-	private String 	filename;
-
 	
-	@Override
-	public void setId(Integer id) {
-		// TODO Auto-generated method stub
-		this.id = id;
-	}
+	private Integer id;
+	private Integer patientId;
+	private String identify;
+	private String confirmTime;
+	private String confirmName;
+	private String comment;
+	private String filename;
+	
 	@Override
 	public Integer getId() {
 		// TODO Auto-generated method stub
 		return id;
 	}
-	
-	public void setPatiendId(Integer patiendId) {
-		this.patiendId = patiendId;
+
+	@Override
+	public void setId(Integer id) {
+		// TODO Auto-generated method stub
+		this.id = id;
 	}
 
-	public Integer getPatiendId() {
-		return patiendId;
+	public Integer getPatientId() {
+		// TODO Auto-generated method stub
+		return patientId;
 	}
 
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
-
-	public String getIdentifier() {
-		return identifier;
-	}
-	
-	public void setConfirmName(String confirm_name) {
-		this.confirm_name = confirm_name;
-	}
-
-	public String getConfirmName() {
-		return confirm_name;
+	public void setPatientId(Integer patientId) {
+		// TODO Auto-generated method stub
+		this.patientId = patientId;
 	}
 	
-	public void setConfirmTime(String confirm_time) {
-		this.confirm_time = confirm_time;
+	public void setIdentify(String identify) {
+		this.identify = identify;
+	}
+
+	public String getIdentify() {
+		return identify;
+	}
+	
+	public void setConfirmTime(String confirmTime) {
+		this.confirmTime = confirmTime;
 	}
 
 	public String getConfirmTime() {
-		return confirm_time;
+		return confirmTime;
+	}
+	
+	public void setConfirmName(String confirmName) {
+		this.confirmName = confirmName;
+	}
+
+	public String getConfirmName() {
+		return confirmName;
 	}
 	
 	public void setComment(String comment) {
@@ -77,7 +80,4 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	public String getFilename() {
 		return filename;
 	}
-	
-	
-
 }
