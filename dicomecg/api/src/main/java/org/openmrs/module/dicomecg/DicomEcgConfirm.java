@@ -10,7 +10,7 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer ecg_confirm_id;
+	private Integer id;
 	private Integer patiendId;
 	private String 	identifier;
 	private String 	confirm_time;
@@ -19,27 +19,15 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	private String 	filename;
 
 	
-	
-	public DicomEcgConfirm(){
-		
-	}
-	public void setEcgConfirmId(Integer ecg_confirm_id) {
-		this.ecg_confirm_id = ecg_confirm_id;
-	}
-	
-	public Integer getEcgConfirmId() {
-		return ecg_confirm_id;
-	}
-	
 	@Override
 	public void setId(Integer id) {
 		// TODO Auto-generated method stub
-		setEcgConfirmId(id);
+		this.id = id;
 	}
 	@Override
 	public Integer getId() {
 		// TODO Auto-generated method stub
-		return getEcgConfirmId();
+		return id;
 	}
 	
 	public void setPatiendId(Integer patiendId) {

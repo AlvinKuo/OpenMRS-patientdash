@@ -48,11 +48,7 @@
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		DicomEcg.hbm.xml
-	</mappingFiles>		
- 	<mappingFiles>
 		DicomEcgAttribute.hbm.xml
-	</mappingFiles>		
-	<mappingFiles>
 		DicomEcgConfirm.hbm.xml
 	</mappingFiles>
 	
