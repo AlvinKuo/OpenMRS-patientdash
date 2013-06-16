@@ -20,6 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,24 +46,27 @@ public class  DicomEcgManageController {
 	@RequestMapping(value = "/module/dicomecg/manage", method=RequestMethod.GET)	
 	public void preparePage(ModelMap map){
 		
+		map.addAttribute("user", Context.getAuthenticatedUser());
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);
 		
 		DicomEcgService checkService = Context.getService(DicomEcgService.class);
-		attributeCheck = checkService.checkAttribute(4);
+		attributeCheck = checkService.checkAttribute("C12039396520130614113441.dcm");
 		if(attributeCheck == true){
-			List<DicomEcgAttribute> showAttribute = checkService.getDicomEcgAttribute(4);
+			List<DicomEcgAttribute> showAttribute = checkService.getDicomEcgAttribute("C12039396520130614113441.dcm");
 			map.addAttribute("attribute",showAttribute);
 		}
 		
-		
+		DicomEcgService confirmService = Context.getService(DicomEcgService.class);
+		List<DicomEcgConfirm> showConfirm = confirmService.getDicomEcgConfirm();
+		map.addAttribute("confirm",showConfirm);
 	}
 		
 	
 	@RequestMapping(value = "/module/dicomecg/manage", method = RequestMethod.POST)
 	public void processForm(ModelMap map,@RequestParam(required = false, value = "id") String ID1,
-			@RequestParam(required = false, value = "patientId") Integer patientId,
+			@RequestParam(required = false, value = "patiendId") Integer patiendId,
 			@RequestParam(required = false, value = "patientName") String patientName,
 			@RequestParam(required = false, value = "nurseId") String nurseId,
 			@RequestParam(required = false, value = "nurseName") String nurseName,
@@ -78,10 +82,10 @@ public class  DicomEcgManageController {
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		
 		if(!StringUtils.hasText(ID1)){
-			log.info("Processing post request ..." + ID1 + ", " + patientId + ", " + patientName + ", " + nurseId + ", " + nurseName + ", " + filename 
+			log.info("Processing post request ..." + ID1 + ", " + patiendId + ", " + patientName + ", " + nurseId + ", " + nurseName + ", " + filename 
 					+ ", " +measureTime+ ", " + uploadTime);
 			DicomEcg dicomEcg = new DicomEcg();
-			dicomEcg.setPatientId(patientId);
+			dicomEcg.setPatiendId(patiendId);
 			dicomEcg.setPatientName(patientName);
 			dicomEcg.setNurseId(nurseId);
 			dicomEcg.setNurseName(nurseName);
@@ -98,7 +102,7 @@ public class  DicomEcgManageController {
 			dicomecgEdit = ecgservice.getDicomEcg(Integer.parseInt(ID1));
 			if(!StringUtils.hasText(ID1))
 			{
-				dicomecgEdit.setPatientId(patientId);
+				dicomecgEdit.setPatiendId(patiendId);
 				dicomecgEdit.setPatientName(patientName);
 				dicomecgEdit.setNurseId(nurseId);
 				dicomecgEdit.setNurseName(nurseName);

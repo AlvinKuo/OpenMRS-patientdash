@@ -13,7 +13,7 @@ Java class name mapping to MysSQL table column name
 		<id name="id" type="int" column="ecg_id">
 			<generator class="native"></generator>
 		</id>	
-		<property name="patientId" type="int" column="patient_id"
+		<property name="patiendId" type="int" column="patient_id"
 			not-null="true" length="255">
 		</property>						
 		<property name="identifier" type="java.lang.String" column="identifier"

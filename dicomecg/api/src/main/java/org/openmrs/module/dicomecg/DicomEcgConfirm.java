@@ -4,49 +4,46 @@ import java.io.Serializable;
 
 import org.openmrs.BaseOpenmrsObject;
 
-public class DicomEcgConfirm  extends BaseOpenmrsObject implements Serializable{
-	
+public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private Integer id;
 	private Integer patientId;
-	private String identify;
-	private String confirmTime;
-	private String confirmName;
-	private String comment;
-	private String fileName;
-	
-	@Override
-	public Integer getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
+	private String 	identifier;
+	private String 	confirmTime;
+	private String 	confirmName;
+	private String 	comment;
+	private String 	filename;
 
+	
 	@Override
 	public void setId(Integer id) {
 		// TODO Auto-generated method stub
 		this.id = id;
 	}
+	@Override
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
 
 	public Integer getPatientId() {
-		// TODO Auto-generated method stub
 		return patientId;
 	}
 
-	public void setPatientId(Integer patientId) {
-		// TODO Auto-generated method stub
-		this.patientId = patientId;
-	}
-	
-	public void setIdentify(String identify) {
-		this.identify = identify;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
-	public String getIdentify() {
-		return identify;
+	public String getIdentifier() {
+		return identifier;
 	}
 	
 	public void setConfirmTime(String confirmTime) {
@@ -73,11 +70,12 @@ public class DicomEcgConfirm  extends BaseOpenmrsObject implements Serializable{
 		return comment;
 	}
 	
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getFilename() {
+		return filename;
 	}
+
 }

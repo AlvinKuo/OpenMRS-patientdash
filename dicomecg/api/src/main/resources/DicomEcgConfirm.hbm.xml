@@ -2,32 +2,31 @@
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-
+    
 <hibernate-mapping package="org.openmrs.module.dicomecg">
-
-	<class name="DicomEcgConfirm" table="ecg3_confirm">
-		
+	<class name="DicomEcgConfirm"	table="ecg3_confirm">
 		<id name="id" type="int" column="ecg_confirm_id">
-			<generator class="native"></generator>
+			<generator class="native"></generator>		
 		</id>
 		<property name="patientId" type="int" column="patient_id"
-			not-null="true">
+			not-null="true" length="255" >
 		</property>
-		<property name="identify" type="java.lang.String" column="identifier"
-			not-null="true">
+		<property name="identifier" type="java.lang.String" column="identifier"
+			not-null="true" length="255" >
 		</property>
 		<property name="confirmTime" type="java.lang.String" column="confirm_time"
-			not-null="true">
+			not-null="true" length="255" >
 		</property>
 		<property name="confirmName" type="java.lang.String" column="confirm_name"
-			not-null="true">
+			not-null="true" length="255" >
 		</property>
 		<property name="comment" type="java.lang.String" column="comment"
-			not-null="true">
+			not-null="true" length="255" >
 		</property>
-		<property name="fileName" type="java.lang.String" column="filename"
-			not-null="true">
-		</property>
+		<property name="filename" type="java.lang.String" column="filename"
+			not-null="true" length="255" >
+		</property>	
+	
 	</class>
 
 </hibernate-mapping>

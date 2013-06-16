@@ -25,7 +25,7 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private Integer patientId;
+	private Integer patiendId;
 	private String 	identifier;
 	private String 	patientName;
 	private String 	nurseId;
@@ -47,12 +47,12 @@ public class DicomEcg extends BaseOpenmrsObject implements Serializable {
 		this.id = id;
 	}
 	
-	public void setPatientId(Integer patientId) {
-		this.patientId = patientId;
+	public void setPatiendId(Integer patiendId) {
+		this.patiendId = patiendId;
 	}
 
 	public Integer getPatiendId() {
-		return patientId;
+		return patiendId;
 	}
 	
 	public void setIdentifier(String identifier) {
