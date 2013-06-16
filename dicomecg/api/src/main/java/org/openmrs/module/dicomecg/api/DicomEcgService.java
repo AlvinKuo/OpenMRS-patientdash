@@ -48,13 +48,13 @@ public interface DicomEcgService extends OpenmrsService {
 	public List<PatientIdentifier> getPatientID(String identifier);	
 	
 	public List<DicomEcg> mapPatientEcgData(Integer id);
+	
+	boolean checkAttribute(Integer patiendId);
 
 	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute);
 	
-	public List<DicomEcgAttribute> getDicomEcgAttribute(String filename);
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId);
 	
 	public List<DicomEcgConfirm> getDicomEcgConfirm();
-	
-	public boolean checkAttribute(String filename);
 	
 }

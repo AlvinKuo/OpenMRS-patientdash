@@ -62,9 +62,9 @@
     		<column name="weight" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>
-        	<column name="filename" type="varchar(255)">
-        		<constraints nullable="true" />
-        	</column>    		
+    		<column name="filename" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
     	</createTable>
     	
     	<createTable tableName="ecg3_confirm">

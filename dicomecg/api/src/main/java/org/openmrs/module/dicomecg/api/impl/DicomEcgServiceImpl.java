@@ -100,21 +100,23 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	}
 
 	@Override
+	public boolean checkAttribute(Integer patiendId) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.checkAttribute(patiendId);
+	}
+
+	@Override
 	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute) {
 		// TODO Auto-generated method stub
 		return dicomEcgDAO.saveDicomEcgAttribute(attribute);
 	}
 
-	public List<DicomEcgAttribute> getDicomEcgAttribute(String filename){
-		return dicomEcgDAO.getDicomEcgAttribute(filename);
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId){
+		return dicomEcgDAO.getDicomEcgAttribute(patiendId);
 	}
 	
 	public List<DicomEcgConfirm> getDicomEcgConfirm(){
 		return dicomEcgDAO.getDicomEcgConfirm();
-	}
-	
-	public boolean checkAttribute(String filename){
-		return dicomEcgDAO.checkAttribute(filename);
 	}
 	
 }

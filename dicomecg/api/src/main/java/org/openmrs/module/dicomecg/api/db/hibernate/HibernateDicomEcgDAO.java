@@ -98,6 +98,18 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		criteria.add(Restrictions.eq("patiendId", id));
 		return criteria.list();	
 	}
+	
+	public boolean checkAttribute(Integer patiendId){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
+		Iterator res = criteria.add(Restrictions.eq("patiendId",patiendId)).list().iterator();
+		
+		if(res.hasNext()){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
 
 	@Override
 	public DicomEcgAttribute saveDicomEcgAttribute(DicomEcgAttribute attribute) {
@@ -108,9 +120,9 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DicomEcgAttribute> getDicomEcgAttribute(String filename){
+	public List<DicomEcgAttribute> getDicomEcgAttribute(Integer patiendId){
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
-		criteria.add(Restrictions.eq("filename", filename));
+		criteria.add(Restrictions.eq("patiendId", patiendId));
 		return criteria.list();
 	}
 	
@@ -118,19 +130,6 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	public List<DicomEcgConfirm> getDicomEcgConfirm(){
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgConfirm.class);		
 		return criteria.list();
-	}
-
-	@Override
-	public boolean checkAttribute(String filename) {
-		// TODO Auto-generated method stub
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgAttribute.class);
-		Iterator res = criteria.add(Restrictions.eq("filename",filename)).list().iterator();
-		if(res.hasNext()){
-			return true;
-		}
-		else{
-			return false;
-		}	
 	}
 
 	

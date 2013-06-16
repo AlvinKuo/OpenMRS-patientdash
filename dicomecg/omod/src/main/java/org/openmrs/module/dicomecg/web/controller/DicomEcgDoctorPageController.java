@@ -8,7 +8,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
-import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,16 +43,25 @@ public class DicomEcgDoctorPageController {
 		
 		if(res.hasNext())
 		{
-			patiendId = doctorEcg.get(0).getPatiendId();			
-			DicomEcgService serviceAttribute = Context.getService(DicomEcgService.class);
-			List<DicomEcgAttribute> patientAttribute = serviceAttribute.getDicomEcgAttribute(filename);
-			Iterator<DicomEcg> resAttribute= doctorEcg.iterator();
-			if(resAttribute.hasNext()){
-				model.addAttribute("attribute", patientAttribute);
-			}
-			//send doctor ecg information and attribute information
-			model.addAttribute("doctorpage", doctorEcg);
+			patiendId = doctorEcg.get(0).getPatiendId();
+			checkExitAttribute = doctorpage.checkAttribute(patiendId);
 			
+			//check has information at ecg_attribute table
+/*			if(checkExitAttribute==true){		
+				DicomEcgService serviceAttribute = Context.getService(DicomEcgService.class);
+				List<DicomEcgAttribute> patientAttribute = serviceAttribute.getDicomEcgAttribute(patiendId);
+				Iterator<DicomEcg> resAttribute= doctorEcg.iterator();
+				if(resAttribute.hasNext()){
+					model.addAttribute("attribute", patientAttribute);
+				}
+			}
+			else{
+				//read dicom file and save attribute				
+				DicomEcgAttribute doctorAttribute = new DicomEcgAttribute();				
+			}*/
+				
+			//send doctor ecg information
+			model.addAttribute("doctorpage", doctorEcg);
 			
 		}
 		

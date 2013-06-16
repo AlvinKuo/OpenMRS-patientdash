@@ -20,7 +20,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
-import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,21 +45,17 @@ public class  DicomEcgManageController {
 	@RequestMapping(value = "/module/dicomecg/manage", method=RequestMethod.GET)	
 	public void preparePage(ModelMap map){
 		
-		map.addAttribute("user", Context.getAuthenticatedUser());
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);
 		
 		DicomEcgService checkService = Context.getService(DicomEcgService.class);
-		attributeCheck = checkService.checkAttribute("C12039396520130614113441.dcm");
+		attributeCheck = checkService.checkAttribute(4);
 		if(attributeCheck == true){
-			List<DicomEcgAttribute> showAttribute = checkService.getDicomEcgAttribute("C12039396520130614113441.dcm");
+			List<DicomEcgAttribute> showAttribute = checkService.getDicomEcgAttribute(4);
 			map.addAttribute("attribute",showAttribute);
 		}
 		
-		DicomEcgService confirmService = Context.getService(DicomEcgService.class);
-		List<DicomEcgConfirm> showConfirm = confirmService.getDicomEcgConfirm();
-		map.addAttribute("confirm",showConfirm);
 	}
 		
 	

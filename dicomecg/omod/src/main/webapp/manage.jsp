@@ -79,15 +79,10 @@
 				</tr>
 				<tr>
 					<td><input type="submit" value="Add Attribute" /></td>
-				</tr>
+				</tr>	
 			</table> -->
-			<tr>
-				<td><p>Filename</p></td>
-				<td><input type="text" name="filename" id="filename" /></td>
-			</tr>			
-			<tr>
-				<td><input type="submit" value="Test Read Dicom Filename" /></td>
-			</tr>			
+			<td><p>Filename</p></td>
+			<td><input type="text" name="filename" id="filename" /></td>
 		</form>	
 	</div>
 	
@@ -140,7 +135,7 @@
 				<form method="POST" name="${attribute.id}" >
 					<tr>						
 						<td>${attribute.id }</td>
-						<td>${attribute.patiendId }</td>
+						<td>${attribute.patientId }</td>
 						<td>${attribute.gender }</td>
 						<td>${attribute.height }</td>
 						<td>${attribute.weight }</td>
