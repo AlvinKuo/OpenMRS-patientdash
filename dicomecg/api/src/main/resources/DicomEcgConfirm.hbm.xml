@@ -25,7 +25,7 @@
 		<property name="comment" type="java.lang.String" column="comment"
 			not-null="true">
 		</property>
-		<property name="filename" type="java.lang.String" column="filename"
+		<property name="fileName" type="java.lang.String" column="filename"
 			not-null="true">
 		</property>
 	</class>

@@ -49,7 +49,7 @@
 	<mappingFiles>
 		DicomEcg.hbm.xml
  		DicomEcgAttribute.hbm.xml
- 		DicomEcgConfirm.hbm.xml
+ 		<!-- DicomEcgConfirm.hbm.xml -->
 	</mappingFiles>
 	
 	<!-- Servlets -->

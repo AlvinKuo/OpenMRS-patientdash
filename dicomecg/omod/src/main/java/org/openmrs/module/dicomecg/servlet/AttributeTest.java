@@ -31,6 +31,7 @@ public class AttributeTest extends HttpServlet{
 	private String 	birthdate;
 	boolean attributeCheck;
 	private String 	fileName;
+	private int data_length;
 	
 	private String ecgPath;
 	
@@ -58,18 +59,21 @@ public class AttributeTest extends HttpServlet{
         		tmp = f.readShort();
 				if(tmp == 0x1000) {
 					tmp = f.readShort();
-					if(tmp == 0x3010)
+					if(tmp == 0x3000)
 						break;
 				}
         	}
         	
-        	f.seek(f.getFilePointer() + 4);
-        	int[] birth = new int[1];
+        	f.seek(f.getFilePointer() + 2);
+        	int[] birth = new int[2];
         	birth[0] = f.readUnsignedByte();
-        	out.print(birth[0]);
-        	birthdate =  Integer.toString((birth[0]<<8)); 
-        	out.print(birthdate);
-        	
+        	birth[1] = f.readUnsignedByte();
+        	data_length = (birth[0] + birth[1]<<8);
+        	out.print(data_length);
+        	for(int i=0;i<data_length;i++){
+        		birthdate = Integer.toString(f.readUnsignedByte());
+        		out.print(birthdate);
+        	}
 			f.close();		
     	} catch(Exception e){
     		e.getMessage();

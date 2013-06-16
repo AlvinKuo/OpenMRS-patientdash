@@ -17,7 +17,7 @@ public class DicomEcgConfirm  extends BaseOpenmrsObject implements Serializable{
 	private String confirmTime;
 	private String confirmName;
 	private String comment;
-	private String filename;
+	private String fileName;
 	
 	@Override
 	public Integer getId() {
@@ -73,11 +73,11 @@ public class DicomEcgConfirm  extends BaseOpenmrsObject implements Serializable{
 		return comment;
 	}
 	
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public String getFilename() {
-		return filename;
+	public String getFileName() {
+		return fileName;
 	}
 }
