@@ -66,15 +66,17 @@
 		<form id="" class="" method="POST" action="" >
 			<h3><spring:message code="dicomecg.doctor.interpretation"/></h3>
 				
-				<div class="whiteBackground" id="whiteBackground">
+				
+				
+				
+<!-- 				<div class="whiteBackground" id="whiteBackground">
 				<br>
 					<textarea class="comment" name="comments" cols="30" rows="20" 
              			  style=" font-size:12px; background-color:#FEFF91;  border:double" ></textarea>		
 				<br>
 				<input	type="submit" value="Confirm" class="btn" />
 						
-				</div>
-			
+				</div> -->
 		</form>
 		
 	</div>
