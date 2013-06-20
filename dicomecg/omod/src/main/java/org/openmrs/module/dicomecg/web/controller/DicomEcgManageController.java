@@ -47,6 +47,7 @@ public class  DicomEcgManageController {
 	public void preparePage(ModelMap map){
 		
 		map.addAttribute("user", Context.getAuthenticatedUser());
+		
 		DicomEcgService ecgservice = Context.getService(DicomEcgService.class);
 		List<DicomEcg> dicomecg = ecgservice.getAllDicomEcg();
 		map.addAttribute("dicomecg",dicomecg);

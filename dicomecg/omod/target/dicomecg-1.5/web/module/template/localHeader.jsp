@@ -22,5 +22,9 @@
 		<spring:message	code="dicomecg.idgen" /></a>
 	</li>
 	
+	<li 
+		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
+		<a href="${pageContext.request.contextPath}/module/dicomecg/listproblem.form"> Problem List	</a>
+	</li>
 	<!-- Add further links here -->
 </ul>

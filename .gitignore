@@ -97,12 +97,15 @@ nb-configuration.xml
 /api/.settings
 /api/.project
 /api/.classpath
+/api/.class
 /api/target
 
 /omod/.settings
 /omod/.project
 /omod/.classpath
+/omod/.class
 /omod/target
+
 
 
 ################

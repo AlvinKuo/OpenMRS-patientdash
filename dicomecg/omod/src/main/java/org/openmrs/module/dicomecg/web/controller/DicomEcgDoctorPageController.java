@@ -1,11 +1,16 @@
 package org.openmrs.module.dicomecg.web.controller;
 
 
+
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
+import org.openmrs.ConceptName;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
@@ -21,18 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DicomEcgDoctorPageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-	private Integer patiendId;
-	boolean checkExitAttribute;
 	
-	@RequestMapping(value = "/module/dicomecg/doctorpage", method = RequestMethod.GET)
-	public void manage(ModelMap model) {
-		model.addAttribute("user", Context.getAuthenticatedUser());
-	}
+	boolean checkExitAttribute;
 	
 	@ModelAttribute
 	@RequestMapping(value = "/module/dicomecg/doctorpage", method = RequestMethod.POST)
 	public void setpage(ModelMap model,
-			@RequestParam(required = false, value = "filename") String filename){
+			@RequestParam(required = false, value = "filename") String filename,
+			@RequestParam(required = false, value = "conceptId") Concept conceptId){
 		
 		//get admin
 		model.addAttribute("user", Context.getAuthenticatedUser());model.addAttribute("user", Context.getAuthenticatedUser());
@@ -44,7 +45,6 @@ public class DicomEcgDoctorPageController {
 		
 		if(res.hasNext())
 		{
-			patiendId = doctorEcg.get(0).getPatiendId();			
 			DicomEcgService serviceAttribute = Context.getService(DicomEcgService.class);
 			List<DicomEcgAttribute> patientAttribute = serviceAttribute.getDicomEcgAttribute(filename);
 			Iterator<DicomEcg> resAttribute= doctorEcg.iterator();
@@ -52,12 +52,25 @@ public class DicomEcgDoctorPageController {
 				model.addAttribute("attribute", patientAttribute);
 			}
 			//send doctor ecg information and attribute information
-			model.addAttribute("doctorpage", doctorEcg);
-			
-			
+			model.addAttribute("doctorpage", doctorEcg);			
 		}
 		
+
+		
 	}
+	
+	//---get concept Id
+	@ModelAttribute
+	public Concept getConcept(@RequestParam(required = false, value = "conceptId") Concept concept){
+		
+		/*ConceptService contextService = Context.getService(ConceptService.class);
+		Collection<ConceptName> Sybo = conceptId.getNames();
+		model.addAttribute("sybo", Sybo);*/
+		
+		return concept;
+	}
+	
+	
 	
 	
 }

@@ -69,6 +69,27 @@
         <servlet-class>org.openmrs.module.dicomecg.servlet.AttributeTest</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>ConceptSearchServlet</servlet-name>
+        <servlet-class>org.openmrs.module.dicomecg.servlet.ConceptSearchServlet</servlet-class>
+    </servlet>
+    
+    <!-- DWR Service   -->
+    <dwr>
+	    <allow>
+	    	<create creator="new" javascript="DWRDicomEcgService">
+	    		<param name="class" value="${project.parent.groupId}.${project.parent.artifactId}.web.dwr.DWRDicomEcgService"/>
+	    		<include method="getConcept"/>
+	    	</create>	    
+	    </allow>
+	    
+	    <signatures>
+	    	<![CDATA[
+	    	import ${project.parent.groupId}.${project.parent.artifactId}.${project.parent.artifactId}.web.dwr.DWRDicomEcgService;
+	    	DWRDicomEcgService.getConcept(String newConceptId);	    	
+	    	]]>
+	    </signatures>	    
+	</dwr>
 
 	<!-- Internationalization -->
 	<!-- All message codes should start with ${project.parent.artifactId}. -->

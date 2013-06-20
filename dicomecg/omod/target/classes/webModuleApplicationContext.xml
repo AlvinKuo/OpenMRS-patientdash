@@ -33,7 +33,18 @@
 	
 	<bean id="dicomEcgPortletController" class="org.openmrs.module.dicomecg.web.controller.DicomEcgPortletController"></bean>
 
-	 
+	<!-- Problem portlet  -->
+	<bean id="problemUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order"><value>3</value></property>
+			<property name="mappings">
+				<props>
+					<prop key="**/problemPortlet.portlet">dicomProblemPortletController</prop>
+				</props>
+			</property>
+	</bean>
+	
+	<bean id="dicomProblemPortletController" class="org.openmrs.module.dicomecg.web.controller.DicomProblemPortletController"></bean>
+ 	 
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	
