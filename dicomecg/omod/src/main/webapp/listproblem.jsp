@@ -3,7 +3,7 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-
+<openmrs:htmlInclude file="/dwr/interface/DWRDicomEcgService.js" />
 
 
 <script type="text/javascript">
@@ -28,6 +28,7 @@ function getConcept(newConceptId){
 <form method="POST" name="form1">
 
 Concept Dictionary: <openmrs_tag:conceptField formFieldName="newConceptId" ></openmrs_tag:conceptField>
+
 <input type="button" value="View" onclick="getConcept(newConceptId);" />
 
  <div>
