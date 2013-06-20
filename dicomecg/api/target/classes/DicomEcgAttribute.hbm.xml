@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.dicomecg">
+
+<!-- 
+Add DicomEcg.java link to the ecg table under patient-api file
+Java class name mapping to MysSQL table column name 
+ -->
+ 	<class name="DicomEcgAttribute" 	table="ecg3_attribute">
+ 		<id name="id" type="int" column="ecg_attribute_id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="patiendId" type="int" column="patient_id"
+			not-null="true" length="255">
+		</property>
+		
+		<property name="gender" type="java.lang.String" column="gender"
+			not-null="true" length="255">
+		</property>			
+
+		<property name="height" type="java.lang.String" column="height"
+			not-null="true" length="255">
+		</property>
+		
+		<property name="weight" type="java.lang.String" column="weight"
+			not-null="true" length="255">
+		</property>
+		
+		<property name="birthdate" type="java.lang.String" column="birthdate"
+			not-null="true" length="255">
+		</property>
+		
+		<property name="filename" type="java.lang.String" column="filename"
+			not-null="true" length="255">
+		</property>
+		
+	</class>
+ 
+ </hibernate-mapping>
