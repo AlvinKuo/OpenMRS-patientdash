@@ -126,3 +126,4 @@ nb-configuration.xml
 *.iml
 *.sass-cache
 *.DS_Store
+*.class
