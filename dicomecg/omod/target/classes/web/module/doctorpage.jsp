@@ -46,9 +46,22 @@ function AddInterpretation(){
 					</div>					
 					<div>
 						<spring:message code="dicomecg.doctor.gender"/>
+						<c:forEach var="attri" items="${attribute}" varStatus="ind">
+							<td><font color=#6600FF>${attri.gender}</font></td>																
+						</c:forEach>
 					</div>
-					<div><spring:message code="dicomecg.doctor.hight"/></div>
-					<div><spring:message code="dicomecg.doctor.weight"/></div>
+					<div>
+						<spring:message code="dicomecg.doctor.hight"/>
+						<c:forEach var="attri" items="${attribute}" varStatus="ind">
+							<td><font color=#6600FF>${attri.height}</font></td>																
+						</c:forEach>
+					</div>
+					<div>
+						<spring:message code="dicomecg.doctor.weight"/>
+						<c:forEach var="attri" items="${attribute}" varStatus="ind">
+							<td><font color=#6600FF>${attri.weight}</font></td>												
+						</c:forEach>
+					</div>
 					<div><spring:message code="dicomecg.doctor.bloodpressure"/></div>
 					<div>
 						<spring:message code="dicomecg.doctor.filename"/>

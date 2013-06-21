@@ -31,13 +31,13 @@ public class DicomProblemList {
 			model.addAttribute("user", Context.getAuthenticatedUser());		
 	}
 	
-/*	@ModelAttribute("newConcept")
+	@ModelAttribute("newConcept")
 	public Concept getConcept(@RequestParam(required = false, value = "newConceptId") String newConceptId){
 		
 		Concept newConcept = Context.getConceptService().getConcept(newConceptId);
 		
 		return newConcept;
-	}*/
+	}
 	
 	
 }

@@ -8,8 +8,6 @@
 
 <script type="text/javascript" >
 
-
-
 function Addother(){
 	
 	document.form1.comments.value += document.form1.oname.value + ","; 
@@ -21,8 +19,12 @@ function getConcept(newConceptId){
 	/* DWRDicomEcgService.getConcept(newConceptId); */
 	DWRDicomEcgService.getConcept(newConceptId, function(){
 		//Add here the scripts that update the page
+		
+		var newConcept;				
 		showLayer('edit');
-		hideLayer('comment');
+		hideLayer('comments');
+		return newConcept;
+		
 	});
 	
 }
@@ -36,7 +38,7 @@ function getConcept(newConceptId){
 <form method="POST" name="form1">
 
 Concept Dictionary: <openmrs_tag:conceptField formFieldName="newConceptId" ></openmrs_tag:conceptField>
-<input type="button" value="View" onclick="getConcept(newConceptId);" />
+<input type="submit" value="View" onclick="getConcept(newConceptId);" />
 
 
 
@@ -64,8 +66,8 @@ Concept Dictionary: <openmrs_tag:conceptField formFieldName="newConceptId" ></op
 
 <div name="comment">
 
-	<textarea class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; background-color:#FEFF91;  border:double" >
-	
+	<textarea class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; 
+		background-color:#FEFF91;  border:double" >	
 	</textarea>	
 
 </div>

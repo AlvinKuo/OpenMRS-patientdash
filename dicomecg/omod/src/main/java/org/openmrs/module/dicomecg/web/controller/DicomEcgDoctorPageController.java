@@ -62,11 +62,6 @@ public class DicomEcgDoctorPageController {
 	//---get concept Id
 	@ModelAttribute
 	public Concept getConcept(@RequestParam(required = false, value = "conceptId") Concept concept){
-		
-		/*ConceptService contextService = Context.getService(ConceptService.class);
-		Collection<ConceptName> Sybo = conceptId.getNames();
-		model.addAttribute("sybo", Sybo);*/
-		
 		return concept;
 	}
 	
