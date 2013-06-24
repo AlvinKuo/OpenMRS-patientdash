@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
+import org.openmrs.module.dicomecg.extension.html.SoAndChen;
 import org.openmrs.util.OpenmrsUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +50,10 @@ public class ViewEcg extends HttpServlet{
 	private short[][] ecg_data;
 	private int ecg_data_length;
 	private float grid;
+	
+	private int[] tmp = new int[1];
+	private Integer HR; 
+	private SoAndChen sac = new SoAndChen();
 	
    public void init() throws ServletException {
         this.ecgPath = OpenmrsUtil.getApplicationDataDirectory() + "/patient_dicom";
@@ -81,7 +86,15 @@ public class ViewEcg extends HttpServlet{
 		}
     	
     	response.setContentType("image/jpeg");
-    	setFileName(filename);    	
+    	setFileName(filename);
+    	
+		for (int i=0;i<ecg_data_length-1;i++) {
+			tmp[0]=ecg_data[1][i];
+			sac.setData(tmp[0]);
+			//out.print(tmp[0]);
+		}
+		HR = sac.getHeartrate();
+		
 		createImage(response.getOutputStream());
 	
     }
@@ -227,6 +240,7 @@ public class ViewEcg extends HttpServlet{
 		g.drawString("Patient Name :  " + patientName, 160, 80);
 		g.drawString("Nurse              :  " + nurseName, 800, 40);
 		g.drawString("Measure Time :  " + measureTime, 800, 80);
+		g.drawString("Heart Rate :  " + HR, 160, 120 );
 	}   
 	
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

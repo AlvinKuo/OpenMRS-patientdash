@@ -14,7 +14,7 @@
 
  	<!-- <form method="POST" name="DicomEcgTable"> -->
 	<div align="left" width="50%">
- 		<form id="uploadDicom" method="POST" 
+ 		<form id="uploadDicom" method="POST" target="_new"
 			action="${pageContext.request.contextPath}/moduleServlet/dicomecg/DicomUpload">
 			<table>		
 				<tr>
@@ -48,11 +48,11 @@
 			</table>
 		</form>	
 	</div>
-	
+<!--	
 	<div align="cneter" width="50%">
-		<form id="uploadAttribute" method="POST" 
+		<form id="uploadAttribute" method="POST" target="_new"
 		action="${pageContext.request.contextPath}/moduleServlet/dicomecg/AttributeTest">
-<!-- 			<table>
+ 			<table>
 				<tr>
 					<td></td>
 					<td><input type="text" name="identi" id="identi" /></td>
@@ -81,6 +81,9 @@
 					<td><input type="submit" value="Add Attribute" /></td>
 				</tr>
 			</table> -->
+	<div align="cneter" width="50%">
+			<form id="uploadAttribute" method="POST" target="_new"
+			action="${pageContext.request.contextPath}/moduleServlet/dicomecg/HeartRateCount">
 			<tr>
 				<td><p>Filename</p></td>
 				<td><input type="text" name="filename" id="filename" /></td>
@@ -106,7 +109,7 @@
 			</tr>
 						
 			<c:forEach var="ecg" items="${dicomecg}" varStatus="ind">
-				<form method="POST" name="${ecg.id}" >
+				<form method="POST" name="${ecg.id}" target="_new" >
 					<tr>
 						<td>${ind.index + 1 }</td>
 						<td>${ecg.identifier }</td>
@@ -129,10 +132,10 @@
 			<tr bgcolor="#00FFFF" bordercolor="#000000">
 				<th align="center">Ecg Attribute ID</th>
 				<th align="center">Patient ID</th>
-				<th align="center">Birth Date</th>		
 				<th align="center">Gender</th>
 				<th align="center">Height</th>
 				<th align="center">Weight</th>
+				<th align="center">Birth Date</th>				
 				<th align="center">Filename</th>			
 			</tr>
 
@@ -161,7 +164,8 @@
 				<th align="center">Confirm Name</th>		
 				<th align="center">Confirm</th>
 				<th align="center">Comment</th>
-				<th align="center">Filename</th>			
+				<th align="center">Filename</th>
+				<th align="center">Mail Address</th>			
 			</tr>
 
 			<c:forEach var="confirm" items="${confirm}" varStatus="ind">
@@ -173,7 +177,8 @@
 						<td>${confirm.confirmTime }</td>
 						<td>${confirm.confirmName }</td>
 						<td>${confirm.comment }</td>
-						<td>${confirm.filename }</td>				
+						<td>${confirm.filename }</td>
+						<td>${confirm.mial }</td>				
 					</tr>						
 				</form>		
 			</c:forEach>

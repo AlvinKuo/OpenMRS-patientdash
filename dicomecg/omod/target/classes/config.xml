@@ -50,6 +50,7 @@
 		DicomEcg.hbm.xml
 		DicomEcgAttribute.hbm.xml
 		DicomEcgConfirm.hbm.xml
+		DicomEcgWave.hbm.xml
 	</mappingFiles>
 	
 	<!-- Servlets -->
@@ -70,8 +71,8 @@
     </servlet>
     
     <servlet>
-        <servlet-name>ConceptSearchServlet</servlet-name>
-        <servlet-class>org.openmrs.module.dicomecg.servlet.ConceptSearchServlet</servlet-class>
+        <servlet-name>HeartRateCount</servlet-name>
+        <servlet-class>org.openmrs.module.dicomecg.servlet.HeartRateCount</servlet-class>
     </servlet>
     
     <!-- DWR Service   -->

@@ -21,6 +21,7 @@ import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.DicomEcgConfirm;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -56,5 +57,10 @@ public interface DicomEcgService extends OpenmrsService {
 	public List<DicomEcgConfirm> getDicomEcgConfirm();
 	
 	public boolean checkAttribute(String filename);
+	
+	public DicomEcgWave saveDicomWave(DicomEcgWave wave);
+	
+	public List<DicomEcgWave> getDicomEcgWave(String filename);
+	
 	
 }

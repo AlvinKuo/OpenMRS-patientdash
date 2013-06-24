@@ -14,6 +14,7 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +31,12 @@ public class DicomEcgDoctorPageController {
 	boolean checkExitAttribute;
 	
 	@ModelAttribute
+	
+	@RequestMapping(value = "/module/dicomecg/doctorpage", method = RequestMethod.GET)
+	public void manage(ModelMap model) {
+		model.addAttribute("user", Context.getAuthenticatedUser());
+	}
+	
 	@RequestMapping(value = "/module/dicomecg/doctorpage", method = RequestMethod.POST)
 	public void setpage(ModelMap model,
 			@RequestParam(required = false, value = "filename") String filename,
@@ -47,12 +54,14 @@ public class DicomEcgDoctorPageController {
 		{
 			DicomEcgService serviceAttribute = Context.getService(DicomEcgService.class);
 			List<DicomEcgAttribute> patientAttribute = serviceAttribute.getDicomEcgAttribute(filename);
+			List<DicomEcgWave> patientWave = serviceAttribute.getDicomEcgWave(filename);
 			Iterator<DicomEcg> resAttribute= doctorEcg.iterator();
 			if(resAttribute.hasNext()){
 				model.addAttribute("attribute", patientAttribute);
 			}
 			//send doctor ecg information and attribute information
-			model.addAttribute("doctorpage", doctorEcg);			
+			model.addAttribute("doctorpage", doctorEcg);		
+			model.addAttribute("wave", patientWave);
 		}
 		
 
@@ -60,10 +69,10 @@ public class DicomEcgDoctorPageController {
 	}
 	
 	//---get concept Id
-	@ModelAttribute
+/*	@ModelAttribute
 	public Concept getConcept(@RequestParam(required = false, value = "conceptId") Concept concept){
 		return concept;
-	}
+	}*/
 	
 	
 	

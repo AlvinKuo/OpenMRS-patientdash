@@ -9,8 +9,8 @@
         for a list of supported elements and attributes
     -->
         
-    <changeSet id="201306141700" author="kuochewei" dbms="mysql">
-        <createTable tableName="ecg3">
+    <changeSet id="201306242012" author="kuochewei" dbms="mysql">
+        <createTable tableName="ecg5">
         	<column name="ecg_id" type="int" autoIncrement="true">
             	<constraints primaryKey="true" nullable="true" />
         	</column>
@@ -43,7 +43,7 @@
         	</column>        	
     	</createTable>
     	
-    	<createTable tableName="ecg3_attribute">
+    	<createTable tableName="ecg5_attribute">
     		<column name="ecg_attribute_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
@@ -67,7 +67,7 @@
     		</column>
     	</createTable>
     	
-    	<createTable tableName="ecg3_confirm">
+    	<createTable tableName="ecg5_confirm">
     		<column name="ecg_confirm_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
@@ -89,7 +89,28 @@
     		<column name="filename" type="varchar(255)">
     			<constraints nullable="true" />
     		</column>	
-    	</createTable>    	
+    		<column name="mail" type="varchar(255)">
+    			<constraints nullable="true"/>
+    		</column>
+    	</createTable>   
+    	
+    	<createTable tableName="ecg5_wave">
+    		<column name="ecg_wave_id" type="int" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="true"/>
+    		</column>
+    		<column name="patient_id" type="int">
+    			<constraints nullable="true" />
+    		</column>    		
+    		<column name="filename" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>    	
+    		<column name="comment" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>
+    		<column name="heartrate" type="varchar(255)">
+    			<constraints nullable="true" />
+    		</column>    		
+    	</createTable> 	
     </changeSet>
     
 </databaseChangeLog>

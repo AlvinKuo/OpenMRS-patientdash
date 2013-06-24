@@ -2,6 +2,7 @@ package org.openmrs.module.dicomecg.servlet;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
@@ -23,7 +24,9 @@ import org.openmrs.PatientIdentifier;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
+import org.openmrs.module.dicomecg.extension.html.SoAndChen;
 import org.openmrs.util.OpenmrsUtil;
 
 
@@ -55,6 +58,15 @@ public class DicomUpload extends HttpServlet {
 	private int data_length;	
 	private int Ascii;
 	String AsciiToString;
+	
+	
+	private short[][] ecg_data;
+	private int ecg_data_length;
+	private int[] tmp = new int[1];
+	private Integer HR;
+	private String heartRate;
+	private SoAndChen sac = new SoAndChen();
+	
 	
 	//initial path
 	public void init() throws ServletException {
@@ -135,6 +147,24 @@ public class DicomUpload extends HttpServlet {
 				uploadAttribute.setFilename(filename);
 				uploadAttributeService.saveDicomEcgAttribute(uploadAttribute);
 				
+				
+				//----save ecg heart rate
+				setFileName(filename);
+				for (int i=0;i<ecg_data_length-1;i++) {
+					tmp[0]=ecg_data[1][i];
+					sac.setData(tmp[0]);
+				}
+				HR = sac.getHeartrate();
+				heartRate = Integer.toString(HR);
+				
+				DicomEcgService uploadWaveService = Context.getService(DicomEcgService.class);
+				DicomEcgWave uploadwave = new DicomEcgWave();
+				uploadwave.setPatientId(patiendId);
+				uploadwave.setFilename(filename);
+				uploadwave.setComment("NULL");
+				uploadwave.setHeartrate(heartRate);
+				uploadWaveService.saveDicomWave(uploadwave);
+				
 				flag=false;
 			}
 			else{
@@ -144,6 +174,7 @@ public class DicomUpload extends HttpServlet {
 			
 		}
 	}
+	
 	/*
 	 *  Check identifier valid return true
 	 *  
@@ -336,6 +367,65 @@ public class DicomUpload extends HttpServlet {
     	}
     	return Weight;
     }
+    
+    
+public void setFileName(String fileName) {
+		
+		File file = new File(ecgPath, fileName);
+        
+        try {
+			RandomAccessFile f = new RandomAccessFile(file, "r");
+			f.seek(0);
+			short tmp = 0;
+			
+			while (f.getFilePointer() < f.length() - 1) {
+				tmp = f.readShort();
+				if(tmp == 0x0054) {
+					tmp = f.readShort();
+					if(tmp == 0x1010)
+						break;
+				}
+			}
+			
+			f.seek(f.getFilePointer() + 4);
+			int[] b = new int[4];
+			b[0] = f.readUnsignedByte();
+			b[1] = f.readUnsignedByte();
+			b[2] = f.readUnsignedByte();
+			b[3] = f.readUnsignedByte();
+			ecg_data_length = (b[0] + (b[1] << 8) + (b[2] << 16) + (b[3] << 24)) / 24;
+			
+			ecg_data = new short[12][ecg_data_length];
+			for (int j=0;j<ecg_data_length;j++) {
+				short[] t = new short[24];
+				for (int k=0;k<24;k++) {
+					t[k] = (short) f.readUnsignedByte();
+				}
+				for (int k=0;k<12;k++) {
+					short lb = t[k*2];
+					short hb = t[k*2 + 1];
+					if (t[k*2+1] < 128) {
+						ecg_data[k][j] = (short) ((lb + (hb << 8)) / 20.49);
+					} else {
+						lb = (short) (256 - lb);
+						hb = (short) (255 - hb);
+						ecg_data[k][j] = (short) ((0 - (lb + (hb << 8))) / 20.49) ;
+					}
+				}
+			}
+			
+			f.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+    
     
     
     /** 

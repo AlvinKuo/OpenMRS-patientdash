@@ -23,6 +23,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.DicomEcgConfirm;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -115,6 +116,15 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	
 	public boolean checkAttribute(String filename){
 		return dicomEcgDAO.checkAttribute(filename);
+	}
+	
+	public DicomEcgWave saveDicomWave(DicomEcgWave wave) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.saveDicomWave(wave);
+	}
+	
+	public List<DicomEcgWave> getDicomEcgWave(String filename){
+		return dicomEcgDAO.getDicomEcgWave(filename);
 	}
 	
 }

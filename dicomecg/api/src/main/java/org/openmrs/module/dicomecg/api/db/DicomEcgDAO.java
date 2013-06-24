@@ -20,6 +20,7 @@ import org.openmrs.PatientIdentifier;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.DicomEcgConfirm;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 
 /**
@@ -46,5 +47,9 @@ public interface DicomEcgDAO {
 	public List<DicomEcgConfirm> getDicomEcgConfirm();
 
 	public boolean checkAttribute(String filename);
+
+	public DicomEcgWave saveDicomWave(DicomEcgWave wave);
+
+	public List<DicomEcgWave> getDicomEcgWave(String filename);
 	
 }

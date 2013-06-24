@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
     
 <hibernate-mapping package="org.openmrs.module.dicomecg">
-	<class name="DicomEcgConfirm"	table="ecg3_confirm">
+	<class name="DicomEcgConfirm"	table="ecg2_confirm">
 		<id name="id" type="int" column="ecg_confirm_id">
 			<generator class="native"></generator>		
 		</id>
@@ -26,6 +26,9 @@
 		<property name="filename" type="java.lang.String" column="filename"
 			not-null="true" length="255" >
 		</property>	
+		<property name="mail" type="java.lang.String" column="mail"
+			not-null="true" length="255">
+		</property>
 	
 	</class>
 

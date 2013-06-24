@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping package="org.openmrs.module.dicomecg">
+	<class name="DicomEcgWave" table="ecg5_wave">
+		<id name="id" type="int" column="ecg_wave_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="patientId" type="int" column="patient_id"
+			not-null="true">
+		</property>
+		<property name="filename" type="java.lang.String" column="filename"
+			not-null="true" length="255">
+		</property>
+		<property name="comment" type="java.lang.String" column="comment"
+			not-null="true" length="255">
+		</property>
+		<property name="heartrate" type="java.lang.String" column="heartrate"
+			not-null="true" length="255">
+		</property>
+		
+	</class>
+
+</hibernate-mapping>    
+    

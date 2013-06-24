@@ -26,6 +26,7 @@ import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.DicomEcgConfirm;
+import org.openmrs.module.dicomecg.DicomEcgWave;
 import org.openmrs.module.dicomecg.api.db.DicomEcgDAO;
 
 /**
@@ -133,5 +134,19 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		}	
 	}
 
-	
+	@Override
+	public DicomEcgWave saveDicomWave(DicomEcgWave wave) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(wave);
+		return wave;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<DicomEcgWave> getDicomEcgWave(String filename){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgWave.class);
+		criteria.add(Restrictions.eq("filename", filename));
+		return criteria.list();
+	}
+
 }

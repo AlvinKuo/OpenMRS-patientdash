@@ -17,6 +17,7 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	private String 	confirmName;
 	private String 	comment;
 	private String 	filename;
+	private String 	mail;
 
 	
 	@Override
@@ -76,6 +77,13 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 
 	public String getFilename() {
 		return filename;
+	}
+	
+	public void setMail(String mail){
+		this.mail=mail;
+	}
+	public String getMail(){
+		return mail;
 	}
 
 }
