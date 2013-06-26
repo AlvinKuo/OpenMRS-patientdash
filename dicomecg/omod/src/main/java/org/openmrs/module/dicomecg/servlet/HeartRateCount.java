@@ -1,17 +1,13 @@
 package org.openmrs.module.dicomecg.servlet;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
+
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.text.NumberFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.openmrs.module.dicomecg.extension.html.SoAndChen;
 import org.openmrs.util.OpenmrsUtil;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class HeartRateCount extends HttpServlet{
 	
@@ -39,6 +32,14 @@ public class HeartRateCount extends HttpServlet{
 	private int[] tmp = new int[1];
 	private Integer HR; 
 	
+	private float r1;
+	private float r2;
+	private float r3;
+	private float r4;
+	private float r5;
+	private Integer rr;
+	private String RRintervel;
+	private Integer address;
 	
 	private SoAndChen sac = new SoAndChen();
 	
@@ -58,10 +59,20 @@ public class HeartRateCount extends HttpServlet{
 		for (int i=0;i<ecg_data_length-1;i++) {
 			tmp[0]=ecg_data[1][i];
 			sac.setData(tmp[0]);
-			//out.print(tmp[0]);
+			address = sac.getAddress();
+			out.println(address);			
 		}
-		HR = sac.getHeartrate();
-		out.print(HR);
+		HR = sac.getHeartrate();		
+		out.println(HR);		
+		r5 = sac.getR5();
+		out.println(r5);
+		
+		NumberFormat nf = NumberFormat.getInstance();		
+		nf.setMaximumFractionDigits(1);		
+		RRintervel = nf.format(r5);
+		out.println(RRintervel);
+		
+			
     }
     
   

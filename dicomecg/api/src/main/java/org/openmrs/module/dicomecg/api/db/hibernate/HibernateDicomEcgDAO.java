@@ -137,7 +137,7 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	@Override
 	public DicomEcgWave saveDicomWave(DicomEcgWave wave) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(wave);
+		sessionFactory.getCurrentSession().saveOrUpdate(wave);		
 		return wave;
 	}
 
@@ -147,6 +147,25 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgWave.class);
 		criteria.add(Restrictions.eq("filename", filename));
 		return criteria.list();
+	}
+
+	@Override
+	public boolean checkWave(String filename) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgWave.class);
+		Iterator res = criteria.add(Restrictions.eq("filename",filename)).list().iterator();
+		if(res.hasNext()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	@Override
+	public DicomEcg getDicomWaveId(Integer id) {
+		// TODO Auto-generated method stub
+		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class,id);
 	}
 
 }

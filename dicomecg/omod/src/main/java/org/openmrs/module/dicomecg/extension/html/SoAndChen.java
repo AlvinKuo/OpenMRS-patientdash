@@ -9,6 +9,7 @@ public class SoAndChen {
 	private static final int PEAK_DETECT_LENGTH = 100;
 	private static final int SAMPLING_RATE = 480;
 	private static final int DENOMINATOR = SAMPLING_RATE * 60 * 4;
+	private static final int RR_VALUE = SAMPLING_RATE * 4 ;
 	
 	private int HR_time_count;
 	private int MAF_count;
@@ -33,6 +34,12 @@ public class SoAndChen {
 	private int peak_address_ptr;
 	private float heartrate;
 	
+	private float r1;
+	private float r2;
+	private float r3;
+	private float r4;
+	private float r5;
+	
 	
 	public SoAndChen() {
 		int i;
@@ -53,6 +60,7 @@ public class SoAndChen {
 		peak_address_ptr = 0;
 		
 		heartrate = 0;
+		r1=0;r2=0;
 	}
 	
 	public void setData(int data) {
@@ -60,8 +68,36 @@ public class SoAndChen {
 		HR_slope_process();
 	}
 	
+	public int getSlpoetmp() {
+		return (int)HR_slope_tmp;
+	}
+	
 	public int getHeartrate() {
 		return (int)heartrate;
+	}
+	
+	public int getAddress() {
+		return (int)peak_address[4];
+	}
+	
+	public float getR1() {
+		return (float) r1;
+	}
+	
+	public float getR2() {
+		return (float) r2;
+	}
+	
+	public float getR3() {
+		return (float) r3;
+	}
+	
+	public float getR4() {
+		return (float) r4;
+	}
+	
+	public float getR5() {
+		return (float) r5;
 	}
 	
 	private void new_Maxi() {
@@ -133,12 +169,16 @@ public class SoAndChen {
 						peak_address[1] = peak_address[2];
 						peak_address[2] = peak_address[3];
 						peak_address[3] = peak_address[4];
-						peak_address[4] = HR_peak_addr_tmp;
+						peak_address[4] = HR_peak_addr_tmp;			
 						
 						if (peak_address[4] > peak_address[0]) {
 							heartrate = DENOMINATOR / (peak_address[4] - peak_address[0]);
+							r4 = (peak_address[4] - peak_address[0])*1000 ;
+							r5 = r4 / RR_VALUE ; 							
 						} else {
-							heartrate = DENOMINATOR / (65536 - peak_address[0] + peak_address[4]);
+							heartrate = DENOMINATOR / (65536 - peak_address[0] + peak_address[4]);							
+							r4 = (65536- peak_address[0] + peak_address[4])*100;
+							r5 = r4 / RR_VALUE ; 					
 						}
 					}
 					

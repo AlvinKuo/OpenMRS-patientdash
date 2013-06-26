@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,8 +65,15 @@ public class DicomUpload extends HttpServlet {
 	private int ecg_data_length;
 	private int[] tmp = new int[1];
 	private Integer HR;
+	private Integer rr;
+	private float r5;
 	private String heartRate;
+	private String RRintervel;
 	private SoAndChen sac = new SoAndChen();
+	
+	private boolean waveexist;
+	
+	
 	
 	
 	//initial path
@@ -109,6 +117,8 @@ public class DicomUpload extends HttpServlet {
 			if(res.hasNext()){
 				patiendId = PId.get(0).getPatient().getPatientId();
 				try{
+					
+					//--save ecg table
 					DicomEcg UploadEcgData = new DicomEcg();
 					UploadEcgData.setPatiendId(patiendId);
 					UploadEcgData.setIdentifier(identifier);
@@ -120,6 +130,49 @@ public class DicomUpload extends HttpServlet {
 					UploadEcgData.setUploadTime(uploadTime);
 					UploadEcgData.setConfirm("NEW");
 					UploadEcgService.saveDicomEcg(UploadEcgData);				
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					
+					//--save ecg attribute
+					DicomEcgService uploadAttributeService = Context.getService(DicomEcgService.class);
+					DicomEcgAttribute uploadAttribute = new DicomEcgAttribute();
+					
+					birthdate = readPatientBirthdate(filename);
+					gender = readPatientSex(filename);
+					height = readPatientHeight(filename);
+					weight = readPatientWeight(filename);
+					
+					uploadAttribute.setPatiendId(patiendId);
+					uploadAttribute.setGender(gender);
+					uploadAttribute.setHeight(height + "m");
+					uploadAttribute.setWeight(weight + "kg");
+					uploadAttribute.setBirthdate(birthdate);
+					uploadAttribute.setFilename(filename);
+					uploadAttributeService.saveDicomEcgAttribute(uploadAttribute);
+					
+					//----save ecg heart rate
+					setFileName(filename);
+					for (int i=0;i<ecg_data_length-1;i++) {
+						tmp[0]=ecg_data[1][i];
+						sac.setData(tmp[0]);
+					}
+					
+					HR = sac.getHeartrate();
+					heartRate = Integer.toString(HR);
+					
+					r5 = sac.getR5();
+					NumberFormat nf = NumberFormat.getInstance();		
+					nf.setMaximumFractionDigits(1);		
+					RRintervel = nf.format(r5);
+			
+					DicomEcgService uploadWaveService = Context.getService(DicomEcgService.class);
+					DicomEcgWave uploadwave = new DicomEcgWave();
+					uploadwave.setPatientId(patiendId);
+					uploadwave.setFilename(filename);
+					uploadwave.setComment(RRintervel + "ms");
+					uploadwave.setHeartrate(heartRate);
+					uploadWaveService.saveDicomWave(uploadwave);
+					
 					flag = true;
 					}catch(Exception e){
 						out.print(e.getMessage());
@@ -129,41 +182,6 @@ public class DicomUpload extends HttpServlet {
 			if(flag == true){
 				out.print("Y");
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				
-				DicomEcgService uploadAttributeService = Context.getService(DicomEcgService.class);
-				DicomEcgAttribute uploadAttribute = new DicomEcgAttribute();
-				
-				birthdate = readPatientBirthdate(filename);
-				gender = readPatientSex(filename);
-				height = readPatientHeight(filename);
-				weight = readPatientWeight(filename);
-				
-				uploadAttribute.setPatiendId(patiendId);
-				uploadAttribute.setGender(gender);
-				uploadAttribute.setHeight(height + "m");
-				uploadAttribute.setWeight(weight + "kg");
-				uploadAttribute.setBirthdate(birthdate);
-				uploadAttribute.setFilename(filename);
-				uploadAttributeService.saveDicomEcgAttribute(uploadAttribute);
-				
-				
-				//----save ecg heart rate
-				setFileName(filename);
-				for (int i=0;i<ecg_data_length-1;i++) {
-					tmp[0]=ecg_data[1][i];
-					sac.setData(tmp[0]);
-				}
-				HR = sac.getHeartrate();
-				heartRate = Integer.toString(HR);
-				
-				DicomEcgService uploadWaveService = Context.getService(DicomEcgService.class);
-				DicomEcgWave uploadwave = new DicomEcgWave();
-				uploadwave.setPatientId(patiendId);
-				uploadwave.setFilename(filename);
-				uploadwave.setComment("NULL");
-				uploadwave.setHeartrate(heartRate);
-				uploadWaveService.saveDicomWave(uploadwave);
 				
 				flag=false;
 			}

@@ -52,15 +52,9 @@ function AddInterpretation(){
 						</c:forEach>
 					</div>
 					<div>
-						<spring:message code="dicomecg.doctor.heartrate"/>
-						<c:forEach var="wave" items="${wave}" varStatus="ind">
-							<td><font color=#6600FF>${wave.heartrate}</font></td>												
-						</c:forEach>
-					</div>
-					<div>
 						<spring:message code="dicomecg.doctor.filename"/>
-						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
-							<td><font color=#6600FF>${page.filename}</font></td>																
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">							
+							<td><a color=#6600FF target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${page.filename}">${page.filename}</a></td>
 						</c:forEach>	
 					</div>
 					<div>
@@ -69,6 +63,18 @@ function AddInterpretation(){
 							<td><font color=#6600FF>${page.measureTime}</font></td>																
 						</c:forEach>
 					</div>
+					<div>
+						<spring:message code="dicomecg.doctor.heartrate"/>
+						<c:forEach var="wave" items="${wave}" varStatus="ind">
+							<td><font color=#6600FF>${wave.heartrate}</font></td>												
+						</c:forEach>
+					</div>
+					<div>
+						<spring:message code="dicomecg.doctor.ecg.rr"/>
+						<c:forEach var="wave" items="${wave}" varStatus="ind">
+							<td><font color=#6600FF>${wave.comment}</font></td>												
+						</c:forEach>
+					</div>				
 				</h4>
 			</div>
 			

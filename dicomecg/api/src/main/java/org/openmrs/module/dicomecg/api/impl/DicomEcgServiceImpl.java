@@ -126,5 +126,15 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	public List<DicomEcgWave> getDicomEcgWave(String filename){
 		return dicomEcgDAO.getDicomEcgWave(filename);
 	}
+
+	@Override
+	public boolean checkWave(String filename) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.checkWave(filename);
+	}
+	
+	public DicomEcg getDicomWaveId(Integer id){
+		return dicomEcgDAO.getDicomWaveId(id);
+	}
 	
 }

@@ -51,5 +51,9 @@ public interface DicomEcgDAO {
 	public DicomEcgWave saveDicomWave(DicomEcgWave wave);
 
 	public List<DicomEcgWave> getDicomEcgWave(String filename);
+
+	public boolean checkWave(String filename);
+
+	public DicomEcg getDicomWaveId(Integer id);
 	
 }
