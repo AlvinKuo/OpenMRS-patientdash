@@ -75,18 +75,25 @@
         <servlet-class>org.openmrs.module.dicomecg.servlet.HeartRateCount</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>SaveComment</servlet-name>
+        <servlet-class>org.openmrs.module.dicomecg.servlet.SaveComment</servlet-class>
+    </servlet>
+        
+    
+    
     <!-- DWR Service   -->
     <dwr>
 	    <allow>
 	    	<create creator="new" javascript="DWRDicomEcgService">
 	    		<param name="class" value="${project.parent.groupId}.${project.parent.artifactId}.web.dwr.DWRDicomEcgService"/>
 	    		<include method="getConcept"/>
-	    	</create>	    
+	    	</create>
 	    </allow>
 	    
 	    <signatures>
 	    	<![CDATA[
-	    	import ${project.parent.groupId}.${project.parent.artifactId}.${project.parent.artifactId}.web.dwr.DWRDicomEcgService;
+	    	import org.openmrs.module.dicomecg.web.dwr.DWRDicomEcgService;	    	
 	    	DWRDicomEcgService.getConcept(String newConceptId);	    	
 	    	]]>
 	    </signatures>	    

@@ -4,7 +4,10 @@
 <%@ include file="template/localHeader.jsp"%>
 
 <openmrs:htmlInclude file="/dwr/interface/DWRDicomEcgService.js" />
-<%-- <openmrs:htmlInclude file="${pageContext.request.contextPath}/moduleResources/dicomecg/jquery.js" /> --%>
+<openmrs:htmlInclude file="/dwr/interface/DWRConceptService.js" />
+<openmrs:htmlInclude file="/dwr/engine.js" ></openmrs:htmlInclude>
+<openmrs:htmlInclude file="/dwr/util.js" ></openmrs:htmlInclude>
+
 
 <script type="text/javascript" >
 
@@ -15,20 +18,23 @@ function Addother(){
 
 function getConcept(newConceptId){
 	
-	var newConceptId = newConceptId.value;	
-	/* DWRDicomEcgService.getConcept(newConceptId); */
+/* 	var newConceptId = newConceptId.value;	
+	DWRDicomEcgService.getConcept(newConceptId); 
 	DWRDicomEcgService.getConcept(newConceptId, function(){
 		//Add here the scripts that update the page
-		
-		var newConcept;				
-		showLayer('edit');
-		hideLayer('comments');
-		return newConcept;
-		
+
 	});
-	
+*/
+	var newConceptId = newConceptId.value;
+	DWRConceptService.getConcept(newConceptId , setToTextArea);
 }
 
+function setToTextArea(concept)
+{
+	var text = concept.value;
+	document.getElementById("comment").value=text;
+	
+}
 
 
 </script>
@@ -38,11 +44,11 @@ function getConcept(newConceptId){
 <form method="POST" name="form1">
 
 Concept Dictionary: <openmrs_tag:conceptField formFieldName="newConceptId" ></openmrs_tag:conceptField>
-<input type="submit" value="View" onclick="getConcept(newConceptId);" />
+<input type="button" value="View" onclick="getConcept(newConceptId);" />
 
 
 
- <div name="edit">
+ <div id="edit" name="edit">
 	<table>	 
 	 	<tr>
 	 		<th>Concept ID</th>
@@ -64,7 +70,7 @@ Concept Dictionary: <openmrs_tag:conceptField formFieldName="newConceptId" ></op
 </div>
 
 
-<div name="comment">
+<div id="comment" name="comment">
 
 	<textarea class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; 
 		background-color:#FEFF91;  border:double" >	

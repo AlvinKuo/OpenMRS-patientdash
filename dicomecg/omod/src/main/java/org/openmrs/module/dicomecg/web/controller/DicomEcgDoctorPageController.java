@@ -39,8 +39,8 @@ public class DicomEcgDoctorPageController {
 	
 	@RequestMapping(value = "/module/dicomecg/doctorpage", method = RequestMethod.POST)
 	public void setpage(ModelMap model,
-			@RequestParam(required = false, value = "filename") String filename,
-			@RequestParam(required = false, value = "conceptId") Concept conceptId){
+			@RequestParam(required = false, value = "filename") String filename
+			){
 		
 		//get admin
 		model.addAttribute("user", Context.getAuthenticatedUser());model.addAttribute("user", Context.getAuthenticatedUser());
