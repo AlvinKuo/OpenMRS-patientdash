@@ -4,11 +4,13 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
     
 <hibernate-mapping package="org.openmrs.module.dicomecg">
-	<class name="DicomEcgConfirm"	table="ecg2_confirm">
-		<id name="id" type="int" column="ecg_confirm_id">
+	<class name="DicomEcgConfirm"	table="ecg3_confirm">
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" unsaved-value="0" column="ecg_confirm_id">
 			<generator class="native"></generator>		
 		</id>
-		<property name="patientId" type="int" column="patient_id"
+		<discriminator column="ecg_confirm_id" insert="false"></discriminator>
+		<property name="patientId" type="java.lang.Integer" column="patient_id"
 			not-null="true" length="255" >
 		</property>
 		<property name="identifier" type="java.lang.String" column="identifier"
@@ -26,7 +28,7 @@
 		<property name="filename" type="java.lang.String" column="filename"
 			not-null="true" length="255" >
 		</property>	
-		<property name="mail" type="java.lang.String" column="mail"
+		<property name="mail" type="java.lang.String" column="address"
 			not-null="true" length="255">
 		</property>
 	

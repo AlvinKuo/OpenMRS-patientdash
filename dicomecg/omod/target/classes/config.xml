@@ -76,8 +76,8 @@
     </servlet>
     
     <servlet>
-        <servlet-name>SaveComment</servlet-name>
-        <servlet-class>org.openmrs.module.dicomecg.servlet.SaveComment</servlet-class>
+        <servlet-name>SaveInterpretation</servlet-name>
+        <servlet-class>org.openmrs.module.dicomecg.servlet.SaveInterpretation</servlet-class>
     </servlet>
         
     

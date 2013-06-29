@@ -17,6 +17,7 @@ import java.util.List;
 
 
 import org.openmrs.PatientIdentifier;
+import org.openmrs.PersonAddress;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
 import org.openmrs.module.dicomecg.DicomEcgConfirm;
@@ -55,5 +56,11 @@ public interface DicomEcgDAO {
 	public boolean checkWave(String filename);
 
 	public DicomEcg getDicomWaveId(Integer id);
+
+	public List<PersonAddress> getPersonMail(Integer patiendId);
+
+	public DicomEcgConfirm saveDicomEcgConfirm(DicomEcgConfirm uploadConfirm);
+
+	public DicomEcgConfirm getDicomConfirmId(Integer confirmId);
 	
 }

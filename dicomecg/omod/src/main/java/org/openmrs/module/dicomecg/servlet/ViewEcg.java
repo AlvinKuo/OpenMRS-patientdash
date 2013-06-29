@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -54,6 +55,8 @@ public class ViewEcg extends HttpServlet{
 	private int[] tmp = new int[1];
 	private Integer HR; 
 	private SoAndChen sac = new SoAndChen();
+	private float r5;
+	private String RRintervel;
 	
    public void init() throws ServletException {
         this.ecgPath = OpenmrsUtil.getApplicationDataDirectory() + "/patient_dicom";
@@ -91,9 +94,12 @@ public class ViewEcg extends HttpServlet{
 		for (int i=0;i<ecg_data_length-1;i++) {
 			tmp[0]=ecg_data[1][i];
 			sac.setData(tmp[0]);
-			//out.print(tmp[0]);
 		}
 		HR = sac.getHeartrate();
+		r5 = sac.getR5();
+		NumberFormat nf = NumberFormat.getInstance();		
+		nf.setMaximumFractionDigits(1);		
+		RRintervel = nf.format(r5);
 		
 		createImage(response.getOutputStream());
 	
@@ -238,9 +244,11 @@ public class ViewEcg extends HttpServlet{
 		g.setFont(new Font("Tahoma", Font.BOLD, 36));
 		g.drawString("Patient Id       :  " + patiendId, 160, 40);
 		g.drawString("Patient Name :  " + patientName, 160, 80);
+		g.drawString("Heart Rate     :  " + HR, 160, 120 );
 		g.drawString("Nurse              :  " + nurseName, 800, 40);
-		g.drawString("Measure Time :  " + measureTime, 800, 80);
-		g.drawString("Heart Rate :  " + HR, 160, 120 );
+		g.drawString("Measure Time :  " + measureTime, 800, 80);		
+		g.drawString("RR                   :  " + RRintervel + "ms", 800, 120 );
+		
 	}   
 	
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

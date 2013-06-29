@@ -23,17 +23,10 @@
 					<td class="tdClass"><c:out value="${ecglist.measureTime}"/></td>
 					<td class="tdClass"><c:out value="${ecglist.uploadTime}"/></td>
 					<td class="tdClass"><c:out value="${ecglist.confirm}"/></td>
-					<td><input type="submit" value="Edit" /></td>
-					<%-- <td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/doctorpage.form?filename=${ecglist.filename}">Patient ECG</a></td> --%>
-					<%-- <a href="${pageContext.request.contextPath}/module/sana/queue/v1/encounterViewer.form?encounterId=${item.encounter.encounterId}"></a> --%>
-					<%-- <td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecglist.filename}">Patient ECG</a></td> --%>					
+					<td><input type="submit" value="View ECG" /></td>										
 				<tr>
 				</form>
 			</c:forEach>
 		</table>
 	</div>
 </div>
-
-
-
-

@@ -27,7 +27,7 @@ public class AttributeTest extends HttpServlet{
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	private Integer id;
-	private Integer patiendId;	
+	private Integer patiendId;
 	private String 	gender;
 	private String 	height;
 	private String 	weight;

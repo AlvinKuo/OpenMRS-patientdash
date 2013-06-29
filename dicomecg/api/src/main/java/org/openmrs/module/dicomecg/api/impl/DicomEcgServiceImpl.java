@@ -16,6 +16,7 @@ package org.openmrs.module.dicomecg.api.impl;
 import java.util.List;
 
 import org.openmrs.PatientIdentifier;
+import org.openmrs.PersonAddress;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
@@ -135,6 +136,24 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 	
 	public DicomEcg getDicomWaveId(Integer id){
 		return dicomEcgDAO.getDicomWaveId(id);
+	}
+
+	@Override
+	public List<PersonAddress> getPersonMail(Integer patiendId) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.getPersonMail(patiendId);
+	}
+
+	@Override
+	public DicomEcgConfirm saveDicomEcgConfirm(DicomEcgConfirm uploadConfirm) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.saveDicomEcgConfirm(uploadConfirm);
+	}
+
+	@Override
+	public DicomEcgConfirm getDicomConfirmId(Integer confirmId) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.getDicomConfirmId(confirmId);
 	}
 	
 }

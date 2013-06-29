@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -45,7 +44,7 @@ public class DicomUpload extends HttpServlet {
 	private String patientName;
 	private String nurseId;
 	private String nurseName;
-	private String filename; 
+	private String filename;
 	private String measureTime;
 	private String uploadTime;
 	boolean checkIdentifier;
@@ -58,20 +57,18 @@ public class DicomUpload extends HttpServlet {
 	private String ecgPath;
 	private int data_length;	
 	private int Ascii;
-	String AsciiToString;
-	
+	String AsciiToString;	
 	
 	private short[][] ecg_data;
 	private int ecg_data_length;
 	private int[] tmp = new int[1];
 	private Integer HR;
-	private Integer rr;
 	private float r5;
 	private String heartRate;
-	private String RRintervel;
+	private String RRinterval;
 	private SoAndChen sac = new SoAndChen();
 	
-	private boolean waveexist;
+	
 	
 	
 	
@@ -107,18 +104,20 @@ public class DicomUpload extends HttpServlet {
 		measureTime = request.getParameter("measure_time");
 		uploadTime = df.format(date);
 		
+		//---check identifier is correct
 		checkIdentifier = identifierCheckSum(identifier);
+		
 		if(checkIdentifier==true)
 		{
-
+			//---check the patient  exists 
 			DicomEcgService UploadEcgService = Context.getService(DicomEcgService.class);
 			List<PatientIdentifier> PId = UploadEcgService.getPatientID(identifier);
 			Iterator<PatientIdentifier> res= PId.iterator();
 			if(res.hasNext()){
 				patiendId = PId.get(0).getPatient().getPatientId();
-				try{
-					
-					//--save ecg table
+				
+				try{					
+					//--save patient information to ecg table
 					DicomEcg UploadEcgData = new DicomEcg();
 					UploadEcgData.setPatiendId(patiendId);
 					UploadEcgData.setIdentifier(identifier);
@@ -129,12 +128,9 @@ public class DicomUpload extends HttpServlet {
 					UploadEcgData.setMeasureTime(measureTime);
 					UploadEcgData.setUploadTime(uploadTime);
 					UploadEcgData.setConfirm("NEW");
-					UploadEcgService.saveDicomEcg(UploadEcgData);				
+					UploadEcgService.saveDicomEcg(UploadEcgData);
 					
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					
-					//--save ecg attribute
-					DicomEcgService uploadAttributeService = Context.getService(DicomEcgService.class);
+					//--read the information from DICOM file and svae it to ecg attribute table					
 					DicomEcgAttribute uploadAttribute = new DicomEcgAttribute();
 					
 					birthdate = readPatientBirthdate(filename);
@@ -148,9 +144,9 @@ public class DicomUpload extends HttpServlet {
 					uploadAttribute.setWeight(weight + "kg");
 					uploadAttribute.setBirthdate(birthdate);
 					uploadAttribute.setFilename(filename);
-					uploadAttributeService.saveDicomEcgAttribute(uploadAttribute);
+					UploadEcgService.saveDicomEcgAttribute(uploadAttribute);
 					
-					//----save ecg heart rate
+					//----read lead II ecg wave form and calculate heart rate and rr interval
 					setFileName(filename);
 					for (int i=0;i<ecg_data_length-1;i++) {
 						tmp[0]=ecg_data[1][i];
@@ -163,17 +159,17 @@ public class DicomUpload extends HttpServlet {
 					r5 = sac.getR5();
 					NumberFormat nf = NumberFormat.getInstance();		
 					nf.setMaximumFractionDigits(1);		
-					RRintervel = nf.format(r5);
-			
-					DicomEcgService uploadWaveService = Context.getService(DicomEcgService.class);
+					RRinterval = nf.format(r5);
+								
 					DicomEcgWave uploadwave = new DicomEcgWave();
 					uploadwave.setPatientId(patiendId);
 					uploadwave.setFilename(filename);
-					uploadwave.setComment(RRintervel + "ms");
+					uploadwave.setComment(RRinterval + "ms");
 					uploadwave.setHeartrate(heartRate);
-					uploadWaveService.saveDicomWave(uploadwave);
+					UploadEcgService.saveDicomWave(uploadwave);
 					
 					flag = true;
+					
 					}catch(Exception e){
 						out.print(e.getMessage());
 					}
@@ -181,15 +177,15 @@ public class DicomUpload extends HttpServlet {
 			
 			if(flag == true){
 				out.print("Y");
-				
-				
 				flag=false;
 			}
 			else{
 				out.print("N");
-			}
-				
+			}	
 			
+		}		
+		else{
+			out.print("N");
 		}
 	}
 	

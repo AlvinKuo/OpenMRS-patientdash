@@ -26,5 +26,10 @@
 		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
 		<a href="${pageContext.request.contextPath}/module/dicomecg/listproblem.form"> Problem List	</a>
 	</li>
+	<li 
+		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if> >
+		<a href="${pageContext.request.contextPath}/module/dicomecg/updatecolumn.form"> Update Column Test	</a>
+	</li>	
+	
 	<!-- Add further links here -->
 </ul>

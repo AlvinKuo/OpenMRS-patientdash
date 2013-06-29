@@ -19,7 +19,6 @@
 			<table>		
 				<tr>
 					<td><spring:message code="dicomecg.ecg.identifier"/></td>
-					<%-- <td><input type="text" name="patiendId" value="${patiendId}" /></td> --%>
 					<td><input type="text" name="patient_id" id="patiendId" /></td>
 				</tr> 	
 				<tr>
@@ -97,7 +96,8 @@
 	<div align="left" width="50%">
 		<table id="dicomEcg" border="1">
 			<tr bgcolor="#00FFFF" bordercolor="#000000">
-				<th align="center">ID</th>
+				<th align="center">Ecg ID</th>
+				<th align="center">OpenMRS ID</th>
 				<th align="center">Patient Identifier</th>
 				<th align="center">Patient Name</th>		
 				<th align="center">Nurse ID</th>
@@ -111,7 +111,8 @@
 			<c:forEach var="ecg" items="${dicomecg}" varStatus="ind">
 				<form method="POST" name="${ecg.id}" target="_new" >
 					<tr>
-						<td>${ind.index + 1 }</td>
+						<td>${ecg.id}</td>
+						<td>${ecg.patiendId}</td>
 						<td>${ecg.identifier }</td>
 						<td>${ecg.patientName }</td>
 						<td>${ecg.nurseId }</td>

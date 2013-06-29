@@ -4,11 +4,12 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
     
 <hibernate-mapping package="org.openmrs.module.dicomecg">
-	<class name="DicomEcgWave" table="ecg5_wave">
-		<id name="id" type="int" column="ecg_wave_id">
+	<class name="DicomEcgWave" table="ecg3_wave">
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" unsaved-value="0" column="ecg_wave_id">
 			<generator class="native"></generator>
 		</id>
-		<property name="patientId" type="int" column="patient_id"
+		<property name="patientId" type="java.lang.Integer" column="patient_id"
 			not-null="true">
 		</property>
 		<property name="filename" type="java.lang.String" column="filename"

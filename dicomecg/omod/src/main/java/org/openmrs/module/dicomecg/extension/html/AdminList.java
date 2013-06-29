@@ -48,6 +48,7 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("/module/dicomecg/doctorpage.form", "dicomecg.doctor");
 		map.put("/module/dicomecg/idgenerator.form", "dicomecg.idgen");
 		map.put("/module/dicomecg/listproblem.form", "Problem List");
+		map.put("/module/dicomecg/updatecolumn.form", "Update Column Test");
 		return map;
 	}
 	

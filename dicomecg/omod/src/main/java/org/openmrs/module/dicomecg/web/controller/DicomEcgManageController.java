@@ -59,9 +59,9 @@ public class  DicomEcgManageController {
 			map.addAttribute("attribute",showAttribute);
 		}
 		
-		DicomEcgService confirmService = Context.getService(DicomEcgService.class);
+/*		DicomEcgService confirmService = Context.getService(DicomEcgService.class);
 		List<DicomEcgConfirm> showConfirm = confirmService.getDicomEcgConfirm();
-		map.addAttribute("confirm",showConfirm);
+		map.addAttribute("confirm",showConfirm);*/
 	}
 		
 	
@@ -94,7 +94,7 @@ public class  DicomEcgManageController {
 			dicomEcg.setMeasureTime(measureTime);
 			dicomEcg.setUploadTime(uploadTime);
 			DicomEcg decg = ecgservice.saveDicomEcg(dicomEcg);
-			log.info(decg.getId());			
+			log.info(decg.getId());	
 		}
 		else
 		{

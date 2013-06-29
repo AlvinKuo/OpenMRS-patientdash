@@ -10,6 +10,14 @@ function AddInterpretation(){
 	document.commentform.comments.value += document.commentform.cardiology.value + ",";
 	
 }
+
+function confirm(){
+	
+	var formValue = document.getElementById("comments");
+    frm.submit();
+	
+}
+
 </script>
 
 
@@ -65,25 +73,21 @@ function AddInterpretation(){
 						<div>
 							<spring:message code="dicomecg.doctor.ecg.rr"/>
 							<td><font color=#6600FF>${wave.comment}</font></td>
-						</div>									
-					</c:forEach>
-					
-					<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+						</div>
 						<div>
 							<spring:message code="dicomecg.doctor.filename"/>
-							<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${page.filename}">${page.filename}</a></td>
+							<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${wave.filename}">${wave.filename}</a></td>
 						</div>					
-					</c:forEach>
-					
+					</c:forEach>					
 				</h4>
 			</div>
 			
 			<!-- show Comment area -->
 			
-				<form method="POST" name="commentform" action="${pageContext.request.contextPath}/moduleServlet/dicomecg/SaveComment">
+				<form method="POST" name="commentform" action="${pageContext.request.contextPath}/moduleServlet/dicomecg/SaveSaveInterpretation">
+					<h3><spring:message code="dicomecg.doctor.interpretation"/></h3>
 					<div class="whiteBackground" id="whiteBackground">	
-						<h3><spring:message code="dicomecg.doctor.interpretation"/></h3>
-						
+					
 						<select name="cardiology">
 						  <option value="Atherosclerosis">Atherosclerosis</option>
 						  <option value="Arteriosclerosis">Arteriosclerosis</option>
@@ -94,8 +98,13 @@ function AddInterpretation(){
 						<input type="button" value="Add" onclick="AddInterpretation();"/>
 							
 						<br>
-						
-						<textarea class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; 
+						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
+							<input type="hidden" name="patientId" value="${page.patiendId}"/>
+							<input type="hidden" name="identifier" value="${page.identifier}"/>
+							<input type="hidden" name="filename" value="${page.filename}"/>
+							<input type="hidden" name="confirmName" value="${user.systemId}"/>
+						</c:forEach>
+						<textarea id="comments" class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; 
 							background-color:#FEFF91;  border:double" ></textarea>		
 						<br>
 						<input	type="submit" value="Confirm" class="btn" />

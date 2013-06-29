@@ -22,6 +22,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.PatientIdentifier;
+import org.openmrs.PersonAddress;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
@@ -115,11 +116,7 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		return criteria.list();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<DicomEcgConfirm> getDicomEcgConfirm(){
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgConfirm.class);		
-		return criteria.list();
-	}
+
 
 	@Override
 	public boolean checkAttribute(String filename) {
@@ -166,6 +163,33 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 	public DicomEcg getDicomWaveId(Integer id) {
 		// TODO Auto-generated method stub
 		return (DicomEcg) sessionFactory.getCurrentSession().get(DicomEcg.class,id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DicomEcgConfirm> getDicomEcgConfirm(){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgConfirm.class);		
+		return criteria.list();
+	}
+
+	@Override
+	public List<PersonAddress> getPersonMail(Integer patiendId) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PersonAddress.class);
+		criteria.add(Restrictions.eq("personId", patiendId));				
+		return criteria.list();	
+	}
+
+	@Override
+	public DicomEcgConfirm saveDicomEcgConfirm(DicomEcgConfirm uploadConfirm) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(uploadConfirm);
+		return uploadConfirm;
+	}
+
+	@Override
+	public DicomEcgConfirm getDicomConfirmId(Integer confirmId) {
+		// TODO Auto-generated method stub
+		return (DicomEcgConfirm) sessionFactory.getCurrentSession().get(DicomEcgConfirm.class,confirmId);
 	}
 
 }
