@@ -192,4 +192,12 @@ public class HibernateDicomEcgDAO implements DicomEcgDAO {
 		return (DicomEcgConfirm) sessionFactory.getCurrentSession().get(DicomEcgConfirm.class,confirmId);
 	}
 
+	@Override
+	public List<DicomEcgConfirm> getConfirm(String filename) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DicomEcgConfirm.class);		
+		criteria.add(Restrictions.eq("filename",filename));						
+		return criteria.list();
+	}
+
 }

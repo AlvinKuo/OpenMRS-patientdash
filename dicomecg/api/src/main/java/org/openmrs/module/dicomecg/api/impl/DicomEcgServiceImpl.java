@@ -155,5 +155,11 @@ public class DicomEcgServiceImpl extends BaseOpenmrsService implements DicomEcgS
 		// TODO Auto-generated method stub
 		return dicomEcgDAO.getDicomConfirmId(confirmId);
 	}
+
+	@Override
+	public List<DicomEcgConfirm> getConfirm(String filename) {
+		// TODO Auto-generated method stub
+		return dicomEcgDAO.getConfirm(filename);
+	}
 	
 }

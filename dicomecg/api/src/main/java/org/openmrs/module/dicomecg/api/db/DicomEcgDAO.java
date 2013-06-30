@@ -62,5 +62,7 @@ public interface DicomEcgDAO {
 	public DicomEcgConfirm saveDicomEcgConfirm(DicomEcgConfirm uploadConfirm);
 
 	public DicomEcgConfirm getDicomConfirmId(Integer confirmId);
+
+	public List<DicomEcgConfirm> getConfirm(String filename);
 	
 }

@@ -73,6 +73,8 @@ public interface DicomEcgService extends OpenmrsService {
 
 	public DicomEcgConfirm getDicomConfirmId(Integer confirmId);
 
+	public List<DicomEcgConfirm> getConfirm(String filename);
+
 	
 
 	

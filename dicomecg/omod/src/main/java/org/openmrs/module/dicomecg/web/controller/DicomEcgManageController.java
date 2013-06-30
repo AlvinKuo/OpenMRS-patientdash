@@ -20,7 +20,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.DicomEcgAttribute;
-import org.openmrs.module.dicomecg.DicomEcgConfirm;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

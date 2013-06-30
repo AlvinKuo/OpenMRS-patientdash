@@ -4,25 +4,28 @@
 <link href="${pageContext.request.contextPath}/moduleResources/dicomecg/tablestyle.css" type="text/css" rel="stylesheet" />
 
 <script type="text/javascript">
+
+function init(){
+	
+	document.commentform.comments.value += document.commentform.confirmComment.value;
+	
+}
+
 function AddInterpretation(){
 	
-	/* document.doctorpage.comment.value += doucment.doctorpage.comment.value + ","; */
 	document.commentform.comments.value += document.commentform.cardiology.value + ",";
 	
 }
 
-function confirm(){
-	
-	var formValue = document.getElementById("comments");
-    frm.submit();
-	
-}
-
+window.onload = init;
+ 
 </script>
-
 
 <h2><spring:message code="dicomecg.doctor" /></h2>
 <p>Hello ${user.systemId}!</p>
+
+
+<!--  confirm has data -->
 
 <div class="bigContainer" id="bigContainer">
 	
@@ -43,7 +46,7 @@ function confirm(){
 							<td><font color=#6600FF>${page.patientName}</font></td>
 						</div>
 						<div>
-							<spring:message code="dicomecg.doctor.measureTime"/>
+							<spring:message code="dicomecg.doctor.measuretime"/>
 							<td><font color=#6600FF>${page.measureTime}</font></td>
 						</div>
 					</c:forEach>
@@ -84,9 +87,15 @@ function confirm(){
 			
 			<!-- show Comment area -->
 			
-				<form method="POST" name="commentform" action="${pageContext.request.contextPath}/moduleServlet/dicomecg/SaveSaveInterpretation">
+				<form method="POST" target="_new" name="commentform" action="${pageContext.request.contextPath}/moduleServlet/dicomecg/SaveInterpretation">
 					<h3><spring:message code="dicomecg.doctor.interpretation"/></h3>
 					<div class="whiteBackground" id="whiteBackground">	
+					
+						<c:forEach var="confirm" items="${confirm}">
+							<input type="hidden" name="confirmId" value="${confirm.id}">							
+							<input type="hidden" name="confirmComment" value="${confirm.comment}">
+							<!-- <input type="button" name="confirmComment" value="Add old confirm" onclick="init();"/> -->
+						</c:forEach>
 					
 						<select name="cardiology">
 						  <option value="Atherosclerosis">Atherosclerosis</option>
@@ -99,8 +108,14 @@ function confirm(){
 							
 						<br>
 						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
-							<input type="hidden" name="patientId" value="${page.patiendId}"/>
+							<input type="hidden" name="ecgId" value="${page.id}"/>
+							<input type="hidden" name="patientId" value="${page.patiendId}"/>							
 							<input type="hidden" name="identifier" value="${page.identifier}"/>
+							<input type="hidden" name="patientName" value="${page.patientName}"/>
+							<input type="hidden" name="nurseId" value="${page.nurseId}"/>
+							<input type="hidden" name="nurseName" value="${page.nurseName}"/>
+							<input type="hidden" name="measureTime" value="${page.measureTime}"/>
+							<input type="hidden" name="uploadTime" value="${page.uploadTime}"/>
 							<input type="hidden" name="filename" value="${page.filename}"/>
 							<input type="hidden" name="confirmName" value="${user.systemId}"/>
 						</c:forEach>
