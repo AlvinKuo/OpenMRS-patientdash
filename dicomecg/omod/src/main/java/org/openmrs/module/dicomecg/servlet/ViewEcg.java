@@ -26,8 +26,6 @@ import org.openmrs.module.dicomecg.DicomEcg;
 import org.openmrs.module.dicomecg.api.DicomEcgService;
 import org.openmrs.module.dicomecg.extension.html.SoAndChen;
 import org.openmrs.util.OpenmrsUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
@@ -44,7 +42,6 @@ public class ViewEcg extends HttpServlet{
 	private static final int width = 2410;	
 	private Integer patiendId;
 	private String patientName;
-	//private String nurseId;
 	private String nurseName;
 	private String filename;
 	private String measureTime;	

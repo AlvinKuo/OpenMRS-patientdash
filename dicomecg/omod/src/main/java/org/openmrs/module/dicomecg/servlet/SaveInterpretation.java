@@ -1,7 +1,6 @@
 package org.openmrs.module.dicomecg.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,90 +48,86 @@ public class SaveInterpretation extends HttpServlet{
 		
 		DicomEcgService saveConfirm = Context.getService(DicomEcgService.class);
 		
-		//try{
+		confirmId = request.getParameter("confirmId") ;
 			
-			
-			confirmId = request.getParameter("confirmId") ;
-			
-			if(!StringUtils.hasText(confirmId)){
-				
-				patiendId =  Integer.parseInt(request.getParameter("patientId"));
-				identifier = request.getParameter("identifier");		
-				filename = request.getParameter("filename");
-				confirmName = request.getParameter("confirmName");
-				confirmTime = df.format(date);
-				comment =  request.getParameter("comments");
+		
+		if(!StringUtils.hasText(confirmId)){
+			//---no confirm id	
+			patiendId =  Integer.parseInt(request.getParameter("patientId"));
+			identifier = request.getParameter("identifier");		
+			filename = request.getParameter("filename");
+			confirmName = request.getParameter("confirmName");
+			confirmTime = df.format(date);
+			comment =  request.getParameter("comments");
 
-				ecgId =  request.getParameter("ecgId");
-				patientName =  request.getParameter("patientName");
-				nurseId =  request.getParameter("nurseId");
-				nurseName =  request.getParameter("nurseName");
-				measureTime =  request.getParameter("measureTime");
-				uploadTime =  request.getParameter("uploadTime");
+			ecgId =  request.getParameter("ecgId");
+			patientName =  request.getParameter("patientName");
+			nurseId =  request.getParameter("nurseId");
+			nurseName =  request.getParameter("nurseName");
+			measureTime =  request.getParameter("measureTime");
+			uploadTime =  request.getParameter("uploadTime");
 				
-				//---get address form patient address
-				Person a = Context.getPersonService().getPerson(patiendId);
-				PersonAddress personMail = a.getPersonAddress();		
-				mail = personMail.getAddress1();
+			//---get address form patient address
+			Person a = Context.getPersonService().getPerson(patiendId);
+			PersonAddress personMail = a.getPersonAddress();		
+			mail = personMail.getAddress1();
 				
-				//---save new confirm				
-				DicomEcgConfirm saveNewConfirm = new DicomEcgConfirm();
-				saveNewConfirm.setPatientId(patiendId);
-				saveNewConfirm.setIdentifier(identifier);
-				saveNewConfirm.setFilename(filename);
-				saveNewConfirm.setConfirmTime(confirmTime);
-				saveNewConfirm.setConfirmName(confirmName);
-				saveNewConfirm.setComment(comment);
-				saveNewConfirm.setMail(mail);				
-				saveConfirm.saveDicomEcgConfirm(saveNewConfirm);
+			//---save new confirm				
+			DicomEcgConfirm saveNewConfirm = new DicomEcgConfirm();
+			saveNewConfirm.setPatientId(patiendId);
+			saveNewConfirm.setIdentifier(identifier);
+			saveNewConfirm.setFilename(filename);
+			saveNewConfirm.setConfirmTime(confirmTime);
+			saveNewConfirm.setConfirmName(confirmName);
+			saveNewConfirm.setComment(comment);
+			saveNewConfirm.setMail(mail);				
+			saveConfirm.saveDicomEcgConfirm(saveNewConfirm);
 				
-				//---update ecg confirm column
-				DicomEcg updateEcgConfirmColumn = new DicomEcg();
-				updateEcgConfirmColumn = saveConfirm.getDicomEcg(Integer.valueOf(ecgId));
-				updateEcgConfirmColumn.setPatiendId(patiendId);
-				updateEcgConfirmColumn.setIdentifier(identifier);
-				updateEcgConfirmColumn.setPatientName(patientName);
-				updateEcgConfirmColumn.setNurseId(nurseId);
-				updateEcgConfirmColumn.setNurseName(nurseName);
-				updateEcgConfirmColumn.setFilename(filename);
-				updateEcgConfirmColumn.setMeasureTime(measureTime);
-				updateEcgConfirmColumn.setUploadTime(uploadTime);
-				updateEcgConfirmColumn.setConfirm("Confirm by " + confirmName);
-				saveConfirm.saveDicomEcg(updateEcgConfirmColumn);				
+			//---update ecg confirm column
+			DicomEcg updateEcgConfirmColumn = new DicomEcg();
+			updateEcgConfirmColumn = saveConfirm.getDicomEcg(Integer.valueOf(ecgId));
+			updateEcgConfirmColumn.setPatiendId(patiendId);
+			updateEcgConfirmColumn.setIdentifier(identifier);
+			updateEcgConfirmColumn.setPatientName(patientName);
+			updateEcgConfirmColumn.setNurseId(nurseId);
+			updateEcgConfirmColumn.setNurseName(nurseName);
+			updateEcgConfirmColumn.setFilename(filename);
+			updateEcgConfirmColumn.setMeasureTime(measureTime);
+			updateEcgConfirmColumn.setUploadTime(uploadTime);
+			updateEcgConfirmColumn.setConfirm("Confirm by " + confirmName);
+			saveConfirm.saveDicomEcg(updateEcgConfirmColumn);				
 				
-				response.sendRedirect(request.getContextPath()+ "/patientDashboard.form?patientId=" + patiendId + "&phrase=" +  identifier );
+			response.sendRedirect(request.getContextPath()+ "/patientDashboard.form?patientId=" + patiendId + "&phrase=" +  identifier );
 				
-			}
-			else{
+		}
+		else{
+			//--- has confirm id
+			patiendId =  Integer.parseInt(request.getParameter("patientId"));
+			identifier = request.getParameter("identifier");		
+			filename = request.getParameter("filename");
+			confirmName = request.getParameter("confirmName");
+			confirmTime = df.format(date);
+			comment =  request.getParameter("comments");
 				
-				patiendId =  Integer.parseInt(request.getParameter("patientId"));
-				identifier = request.getParameter("identifier");		
-				filename = request.getParameter("filename");
-				confirmName = request.getParameter("confirmName");
-				confirmTime = df.format(date);
-				comment =  request.getParameter("comments");
+			//---get address form patient address
+			Person a = Context.getPersonService().getPerson(patiendId);
+			PersonAddress personMail = a.getPersonAddress();		
+			mail = personMail.getAddress1();
 				
-				//---get address form patient address
-				Person a = Context.getPersonService().getPerson(patiendId);
-				PersonAddress personMail = a.getPersonAddress();		
-				mail = personMail.getAddress1();
-				
-				//---update new confirm instead of old confirm 
-				DicomEcgConfirm updateOldConfirm = new DicomEcgConfirm();				
-				//---echo the old information and then update all column from request
-				updateOldConfirm = saveConfirm.getDicomConfirmId(Integer.valueOf(confirmId));				
-				updateOldConfirm.setPatientId(patiendId);
-				updateOldConfirm.setIdentifier(identifier);
-				updateOldConfirm.setFilename(filename);
-				updateOldConfirm.setConfirmTime(confirmTime);
-				updateOldConfirm.setConfirmName(confirmName);
-				updateOldConfirm.setComment(comment);
-				updateOldConfirm.setMail(mail);				
-				saveConfirm.saveDicomEcgConfirm(updateOldConfirm);
-				response.sendRedirect(request.getContextPath()+ "/patientDashboard.form?patientId=" + patiendId + "&phrase=" +  identifier );
-			}
-		
-		
+			//---update new confirm instead of old confirm 
+			DicomEcgConfirm updateOldConfirm = new DicomEcgConfirm();				
+			//---echo the old information and then update all column from request
+			updateOldConfirm = saveConfirm.getDicomConfirmId(Integer.valueOf(confirmId));				
+			updateOldConfirm.setPatientId(patiendId);
+			updateOldConfirm.setIdentifier(identifier);
+			updateOldConfirm.setFilename(filename);
+			updateOldConfirm.setConfirmTime(confirmTime);
+			updateOldConfirm.setConfirmName(confirmName);
+			updateOldConfirm.setComment(comment);
+			updateOldConfirm.setMail(mail);				
+			saveConfirm.saveDicomEcgConfirm(updateOldConfirm);
+			response.sendRedirect(request.getContextPath()+ "/patientDashboard.form?patientId=" + patiendId + "&phrase=" +  identifier );
+		}		
 	}
 	
 	

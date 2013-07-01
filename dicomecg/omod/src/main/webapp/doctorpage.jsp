@@ -119,13 +119,17 @@ window.onload = init;
 							<input type="hidden" name="filename" value="${page.filename}"/>
 							<input type="hidden" name="confirmName" value="${user.systemId}"/>
 						</c:forEach>
-						<textarea id="comments" class="comments" name="comments" cols="30" rows="20" style=" font-size:12px; 
+						<textarea id="comments" class="comments" name="comments" cols="30" rows="20" style=" font-size:14px; 
 							background-color:#FEFF91;  border:double" ></textarea>		
 						<br>
-						<input	type="submit" value="Confirm" class="btn" />
+
+						<openmrs:hasPrivilege privilege="Edit Physician Page">
+							<input	type="submit" value="Confirm" class="btn" />
+						</openmrs:hasPrivilege>
+								
+
 					</div>
-				</form>
-			
+				</form>			
 	</div>
 	
 	<div class="ecgview" id="ecgview">	   

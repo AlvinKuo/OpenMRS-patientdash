@@ -28,6 +28,11 @@
 	<privilege>
 		<name>Patient Dashboard - Manage Patient ECG</name>
 		<description>Allows user to show in patient ecg list on patient dashboard </description>
+	</privilege>
+	
+	<privilege>
+		<name>Edit Physician Page</name>
+		<description> no edit physician no confirm button</description>
 	</privilege>	
 	
 	<globalProperty>

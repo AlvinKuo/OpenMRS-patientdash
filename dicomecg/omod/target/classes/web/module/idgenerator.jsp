@@ -137,7 +137,7 @@
 		var ret2 = 0;
 		out001.a.value = "分析中 analyzing...";
 		if (thestr.length != 10) {
-			out001.a.value = "invalid(length) 長度不正確";
+			out001.a.value = "invalid(length)";
 			return 0;
 		}
 		/* 分析縣市 */
@@ -149,7 +149,7 @@
 			}
 		}
 		if (i >= city11.a.length) {
-			out001.a.value = "invalid(city) 縣市不正確";
+			out001.a.value = "invalid(city)";
 			return 0;
 		}
 		/* 分析性別 */
@@ -158,13 +158,13 @@
 		} else if (thestr.substring(1, 2) == "2") {
 			sex11.a[1].checked = true;
 		} else {
-			out001.a.value = "invalid(gender) 性別不正確";
+			out001.a.value = "invalid(gender)";
 			return 0;
 		}
 		/* 分析中間值 */
 		mid11.a.value = thestr.substring(2, 9);
 		if (!checkdigitString(mid11.a.value)) {
-			out001.a.value = "invalid(serial) 流水號不正確";
+			out001.a.value = "invalid(serial)";
 			return 0;
 		}
 
@@ -172,10 +172,10 @@
 		ret2 = output1(city11, sex11, mid11);
 
 		if (ret2.toString() != thestr.substring(9, 10)) {
-			out001.a.value = "invalid(check) 檢查碼不正確";
+			out001.a.value = "invalid(check)";
 			return 0;
 		}
-		out001.a.value = "valid 正確";
+		out001.a.value = "valid";
 		return 0;
 	}
 // -->
@@ -190,44 +190,44 @@
 			<td>
 				<form name="city" action="#">
 					<select name="a">
-						<option value="10A">臺北市(A)</option>
-						<option value="11B">臺中市(B)</option>
-						<option value="12C">基隆市(C)</option>
-						<option value="13D">臺南市(D)</option>
-						<option value="14E">高雄市(E)</option>
-						<option value="15F">臺北縣(F)</option>
-						<option value="16G">宜蘭縣(G)</option>
-						<option value="17H">桃園縣(H)</option>
-						<option value="18J">新竹縣(J)</option>
-						<option value="19K">苗栗縣(K)</option>
-						<option value="20L">臺中縣(L)</option>
-						<option value="21M">南投縣(M)</option>
-						<option value="22N">彰化縣(N)</option>
-						<option value="23P">雲林縣(P)</option>
-						<option value="24Q">嘉義縣(Q)</option>
+						<option value="10A">Taipei(A)</option>
+						<option value="11B">Taichung(B)</option>
+						<option value="12C">Keelung(C)</option>
+						<option value="13D">Tainan(D)</option>
+						<option value="14E">Kaohsiung (E)</option>
+						<option value="15F">New Taipei(F)</option>
+						<option value="16G">Yilan(G)</option>
+						<option value="17H">Taoyuan(H)</option>
+						<option value="18J">Hsinchu(J)</option>
+						<option value="19K">Miaoli(K)</option>
+						<option value="20L">Taichung shain(L)</option>
+						<option value="21M">Nantou (M)</option>
+						<option value="22N">Changhua(N)</option>
+						<option value="23P">Yunlin(P)</option>
+						<option value="24Q">Chiayi(Q)</option>
 						<option value="25R">臺南縣(R)</option>
 						<option value="26S">高雄縣(S)</option>
-						<option value="27T">屏東縣(T)</option>
-						<option value="28U">花蓮縣(U)</option>
-						<option value="29V">臺東縣(V)</option>
-						<option value="30X">澎湖縣(X)</option>
-						<option value="31Y">陽明山(Y)</option>
-						<option value="32W">金門縣(W)</option>
-						<option value="33Z">連江縣(Z)</option>
+						<option value="27T">Pingtung(T)</option>
+						<option value="28U">Hualien(U)</option>
+						<option value="29V">Taitung(V)</option>
+						<option value="30X">Penghu(X)</option>
+						<option value="31Y">Yangmingshan(Y)</option>
+						<option value="32W">Kinmen(W)</option>
+						<option value="33Z">Liánjiāng(Z)</option>
 						<option value="35O">新竹市(O)</option>
 						<option value="34I">嘉義市(I)</option>
 					</select>
 				</form>
 			</td>
-			<th>Gender <br> 性別:
+			<th>Gender <br>:
 			</th>
 			<td>
 				<form name="sex" action="#">
-					<input type="radio" name="a" value="1" checked>Male 男 (1) <input
-						type="radio" name="a" value="2">Female 女 (2)
+					<input type="radio" name="a" value="1" checked>Male(1) <input
+						type="radio" name="a" value="2">Female(2)
 				</form>
 			</td>
-			<th>Serial <br> 流水號 <br> (不用填):
+			<th>Serial :
 			</th>
 			<td>
 				<form name="mid" action="#">
@@ -239,7 +239,6 @@
 				<form name="gogogogoo12123" action="#">
 					<input type="button" value="Generate"
 						onClick="javascript:output2(city,sex,mid,idoutput1,idoutput2);">
-					(產生結果在底下)
 				</form>
 			</td>
 		</tr>
@@ -247,10 +246,10 @@
 	<br>
 	<hr noshade>
 	<br>
-	<h2>Verification 驗證</h2>
+	<h2>Verification</h2>
 	<table border="1">
 		<tr>
-			<th>ID Num.<br>身份證號碼:
+			<th>ID Number<br>:
 			</th>
 			<td>
 				<form name="idoutput1" action="#"
@@ -262,13 +261,13 @@
 				<form name="gogogogoo12124" action="#">
 					<input type=button value="Check"
 						onClick="javascript:output3(idoutput1,idoutput2,city,sex,mid);">
-					(如無錯誤, 分析結果會寫在上面)
+					
 				</form>
 			</td>
 		</tr>
 	</table>
 	<form name="idoutput2" action="#">
-		正確性: <input type="text" name="a" size="30">
+		Correct? <input type="text" name="a" size="30">
 	</form>
 	<br>
 	<hr noshade>

@@ -80,22 +80,6 @@ public class SoAndChen {
 		return (int)peak_address[4];
 	}
 	
-	public float getR1() {
-		return (float) r1;
-	}
-	
-	public float getR2() {
-		return (float) r2;
-	}
-	
-	public float getR3() {
-		return (float) r3;
-	}
-	
-	public float getR4() {
-		return (float) r4;
-	}
-	
 	public float getR5() {
 		return (float) r5;
 	}

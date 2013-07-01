@@ -15,7 +15,7 @@
 				<th align="center">Action</th>
 			</tr>
 			<c:forEach var="ecglist" items="${model.portecg}" varStatus="ind">
-				<form method="POST" name="${ecglist.id}" target="_new" action="${pageContext.request.contextPath}/module/dicomecg/doctorpage.form?filename=${ecglist.filename}">
+				<form method="POST" name="${ecglist.id}" action="${pageContext.request.contextPath}/module/dicomecg/doctorpage.form?filename=${ecglist.filename}">
 				<tr>
 					<td class="tdClass"><c:out value="${ind.index}"/></td>
 					<td class="tdClass"><c:out value="${ecglist.patientName}"/></td>
