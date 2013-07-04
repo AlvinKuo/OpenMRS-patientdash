@@ -9,8 +9,8 @@
         for a list of supported elements and attributes
     -->
         
-    <changeSet id="201306272223" author="kuochewei" dbms="mysql">
-        <createTable tableName="ecg3">
+    <changeSet id="201307021630" author="kuochewei" dbms="mysql">
+        <createTable tableName="ecg">
         	<column name="ecg_id" type="int" autoIncrement="true">
             	<constraints primaryKey="true" nullable="true" />
         	</column>
@@ -43,7 +43,7 @@
         	</column>        	
     	</createTable>
     	
-    	<createTable tableName="ecg3_attribute">
+    	<createTable tableName="ecg_attribute">
     		<column name="ecg_attribute_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
@@ -67,7 +67,7 @@
     		</column>
     	</createTable>
     	
-    	<createTable tableName="ecg3_confirm">
+    	<createTable tableName="ecg_confirm">
     		<column name="ecg_confirm_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true" />
     		</column>
@@ -92,9 +92,12 @@
     		<column name="address" type="varchar(255)">
     			<constraints nullable="true"/>
     		</column>
+    		<column name="feedback" type="varchar(255)">
+    			<constraints nullable="true"/>
+    		</column>
     	</createTable>   
     	
-    	<createTable tableName="ecg3_wave">
+    	<createTable tableName="ecg_wave">
     		<column name="ecg_wave_id" type="int" autoIncrement="true">
     			<constraints primaryKey="true" nullable="true"/>
     		</column>

@@ -18,7 +18,7 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 	private String 	comment;
 	private String 	filename;
 	private String 	mail;
-
+	private String 	feedback;
 	
 	@Override
 	public void setId(Integer id) {
@@ -86,4 +86,10 @@ public class DicomEcgConfirm extends BaseOpenmrsObject implements Serializable{
 		return mail;
 	}
 
+	public void setFeedback(String feedback){
+		this.feedback=feedback;
+	}
+	public String getFeedback(){
+		return feedback;
+	}
 }

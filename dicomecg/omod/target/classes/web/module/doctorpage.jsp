@@ -22,7 +22,7 @@ window.onload = init;
 </script>
 
 <h2><spring:message code="dicomecg.doctor" /></h2>
-<p>Hello ${user.systemId}!</p>
+<p>Hello ${user.username}!</p>
 
 
 <!--  confirm has data -->
@@ -96,15 +96,66 @@ window.onload = init;
 							<input type="hidden" name="confirmComment" value="${confirm.comment}">
 							<!-- <input type="button" name="confirmComment" value="Add old confirm" onclick="init();"/> -->
 						</c:forEach>
-					
-						<select name="cardiology">
-						  <option value="Atherosclerosis">Atherosclerosis</option>
-						  <option value="Arteriosclerosis">Arteriosclerosis</option>
-						  <option value="Angina Pectoris">Angina Pectoris</option>
-						  <option value="Aneurysm">Aneurysm</option>
+						<openmrs:hasPrivilege privilege="Edit Physician Page">
+						<select name="cardiology" size="5" autofocus onclick="AddInterpretation();">
+							<option value="Anemia">Anemia</option>
+						  	<option value="Aneurysm">Aneurysm</option>
+						  	<option value="Angina">Angina</option>
+						  	<option value="Angioplasty">Angioplasty</option>
+						  	<option value="Arrhythmia">Arrhythmia</option>
+						  	<option value="Arteriosclerosis">Arteriosclerosis</option>
+						  	<option value="Artery">Artery</option>
+						  	<option value="Atrium">Atrium</option>
+						  	<option value="Beating extremely fast">Beating extremely fast</option>
+						  	<option value="Black out">Black out</option>
+						  	<option value="Blood vessel">Blood vessel</option>
+						  	<option value="Bronchitis">Bronchitis</option>
+						  	<option value="Burning feeling in chest">Burning feeling in chest</option>
+						  	<option value="Cardiac arrest">Cardiac arrest</option>
+						  	<option value="Cardiac asthma">Cardiac asthma</option>
+						  	<option value="Chest pain">Chest pain</option>
+						  	<option value="Chest tight">Chest tight</option>
+						  	<option value="Congenital heart disease">Congenital heart disease</option>
+						  	<option value="Cor pulmonale">Cor pulmonale</option>
+						  	<option value="Coronary artery by-pass operation">Coronary artery by-pass operation</option>
+						  	<option value="Coronary occlusion">Coronary occlusion</option>
+						  	<option value="Cyanosis">Cyanosis</option>
+						  	<option value="Dizzy">Dizzy</option>
+						  	<option value="Edema">Edema</option>
+						  	<option value="Endocarditis">Endocarditis</option>
+						  	<option value="Fainted">Fainted</option>
+						  	<option value="Heart">Heart</option>
+						  	<option value="Heart attack">Heart attack</option>
+						  	<option value="Heart block">Heart block</option>
+						  	<option value="Heart complication">Heart complication</option>
+						  	<option value="Heart failure">Heart failure</option>
+						  	<option value="Heart murmur">Heart murmur</option>
+						  	<option value="Hypotension">Hypotension</option>
+						  	<option value="Irregular heartbeat">Irregular heartbeat</option>
+						  	<option value="Lymph node">Lymph node</option>
+						  	<option value="Mitral stenosis">Mitral stenosis</option>
+						  	<option value="Myocardial infarction">Myocardial infarction</option>
+						  	<option value="Myocarditis">Myocarditis</option>
+						  	<option value="Pale face">Pale face</option>
+						  	<option value="Palpitation">Palpitation</option>
+						  	<option value="Paroxysmal tachycardia">Paroxysmal tachycardia</option>
+						  	<option value="Pericarditis ">Pericarditis </option>
+						  	<option value="Rheumatic heart disease">Rheumatic heart disease</option>
+						  	<option value="Scurvy">Scurvy</option>						  	
+						  	<option value="Short of breath">Short of breath</option>
+						  	<option value="Sudden stop in my heartbeat">Sudden stop in my heartbeat</option>
+						  	<option value="Thrombosis">Thrombosis</option>
+						  	<option value="Tracheitis">Tracheitis</option>
+						  	<option value="Valve replacement">Valve replacement</option>
+						  	<option value="Valvular cyanosis">Valvular cyanosis</option>
+						  	<option value="Valvular incompetence">Valvular incompetence</option>
+						  	<option value="Valvular stenosis">Valvular stenosis</option>
+						  	<option value="Vein">Vein</option>
+						  	<option value="Ventricle">Ventricle</option>
 						</select>
-							
-						<input type="button" value="Add" onclick="AddInterpretation();"/>
+						</openmrs:hasPrivilege>
+						
+						<!-- <input type="button" value="Add" onclick="AddInterpretation();"/> -->
 							
 						<br>
 						<c:forEach var="page" items="${doctorpage}" varStatus="ind">
@@ -117,14 +168,16 @@ window.onload = init;
 							<input type="hidden" name="measureTime" value="${page.measureTime}"/>
 							<input type="hidden" name="uploadTime" value="${page.uploadTime}"/>
 							<input type="hidden" name="filename" value="${page.filename}"/>
-							<input type="hidden" name="confirmName" value="${user.systemId}"/>
+							<input type="hidden" name="confirmName" value="${user.username}"/>
 						</c:forEach>
 						<textarea id="comments" class="comments" name="comments" cols="30" rows="20" style=" font-size:14px; 
 							background-color:#FEFF91;  border:double" ></textarea>		
 						<br>
 
 						<openmrs:hasPrivilege privilege="Edit Physician Page">
-							<input	type="submit" value="Confirm" class="btn" />
+							<input type="radio" name="feedback" value="Steady" checked /> <spring:message code="dicomecg.patient.steady"/> 
+							<input type="radio" name="feedback" value="Unstable"/> <spring:message code="dicomecg.patient.unstable"/> <br>
+							<input	type="submit" value="Confirm" class="btn" /><br>					
 						</openmrs:hasPrivilege>
 								
 

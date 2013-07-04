@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
     
 <hibernate-mapping package="org.openmrs.module.dicomecg">
-	<class name="DicomEcgWave" table="ecg3_wave">
+	<class name="DicomEcgWave" table="ecg_wave">
 		<cache usage="read-write"/>
 		<id name="id" type="java.lang.Integer" unsaved-value="0" column="ecg_wave_id">
 			<generator class="native"></generator>

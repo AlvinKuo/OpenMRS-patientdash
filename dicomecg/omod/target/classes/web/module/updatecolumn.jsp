@@ -40,6 +40,10 @@
 								<td><input type="text" name="mail" value="${confirmEdit.mail}"></td>
 							</tr>
 							<tr>
+								<td>Feedback</td>
+								<td><input type="text" name="feedback" value="${confirmEdit.feedback}"></td>
+							</tr>							
+							<tr>
 								<td></td><td><input type="submit" value="Save Changes" /></td>
 							</tr>														
 						</c:when>
@@ -73,6 +77,10 @@
 								<td><input type="text" name="mail" value="${mail}"></td>
 							</tr>
 							<tr>
+								<td>Feedback</td>
+								<td><input type="text" name="feedback" value="${feedback}"></td>
+							</tr>							
+							<tr>
 								<td></td><td><input type="submit" value="Add New" /></td>
 							</tr>						
 						</c:otherwise>					
@@ -93,6 +101,7 @@
 						<th class="tbClass">Comment</th>
 						<th class="tbClass">Filename</th>
 						<th class="tbClass">Mail</th>
+						<th class="tbClass">Feedback</th>
 						<th class="tbClass">Action</th>
 					</tr>
 					<c:forEach var="confirmall" items="${confirmall}">
@@ -106,6 +115,7 @@
 							<td class="tdClass">${confirmall.comment}</td>
 							<td class="tdClass">${confirmall.filename}</td>
 							<td class="tdClass">${confirmall.mail}</td>
+							<td class="tdClass">${confirmall.feedback}</td>
 							<td class="tdClass">
 								<input type="hidden" name="id" id="${confirmall.id}" value="${confirmall.id}" />
 								<input type="submit" value="Edit" />

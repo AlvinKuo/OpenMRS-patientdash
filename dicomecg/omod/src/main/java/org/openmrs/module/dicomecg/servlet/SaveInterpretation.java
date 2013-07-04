@@ -30,6 +30,7 @@ public class SaveInterpretation extends HttpServlet{
 	private String confirmTime;
 	private String comment;
 	private String mail;
+	private String feedback;
 	
 	private String patientName;
 	private String nurseId;
@@ -59,6 +60,7 @@ public class SaveInterpretation extends HttpServlet{
 			confirmName = request.getParameter("confirmName");
 			confirmTime = df.format(date);
 			comment =  request.getParameter("comments");
+			feedback = request.getParameter("feedback");
 
 			ecgId =  request.getParameter("ecgId");
 			patientName =  request.getParameter("patientName");
@@ -80,7 +82,15 @@ public class SaveInterpretation extends HttpServlet{
 			saveNewConfirm.setConfirmTime(confirmTime);
 			saveNewConfirm.setConfirmName(confirmName);
 			saveNewConfirm.setComment(comment);
-			saveNewConfirm.setMail(mail);				
+			saveNewConfirm.setMail(mail);
+			//---patient state come back to hospital or steady
+			if(feedback.equals("Steady"))
+			{
+				saveNewConfirm.setFeedback("The responses to this kind of treatment are excellent");
+			}
+			else{
+				saveNewConfirm.setFeedback("Seek prompt medical attention");
+			}
 			saveConfirm.saveDicomEcgConfirm(saveNewConfirm);
 				
 			//---update ecg confirm column
@@ -108,7 +118,7 @@ public class SaveInterpretation extends HttpServlet{
 			confirmName = request.getParameter("confirmName");
 			confirmTime = df.format(date);
 			comment =  request.getParameter("comments");
-				
+			feedback = request.getParameter("feedback");
 			//---get address form patient address
 			Person a = Context.getPersonService().getPerson(patiendId);
 			PersonAddress personMail = a.getPersonAddress();		
@@ -124,7 +134,15 @@ public class SaveInterpretation extends HttpServlet{
 			updateOldConfirm.setConfirmTime(confirmTime);
 			updateOldConfirm.setConfirmName(confirmName);
 			updateOldConfirm.setComment(comment);
-			updateOldConfirm.setMail(mail);				
+			updateOldConfirm.setMail(mail);
+			//---patient state come back to hospital or steady
+			if(feedback.equals("Steady"))
+			{
+				updateOldConfirm.setFeedback("The responses to this kind of treatment are excellent");
+			}
+			else{
+				updateOldConfirm.setFeedback("Seek prompt medical attention");
+			}
 			saveConfirm.saveDicomEcgConfirm(updateOldConfirm);
 			response.sendRedirect(request.getContextPath()+ "/patientDashboard.form?patientId=" + patiendId + "&phrase=" +  identifier );
 		}		

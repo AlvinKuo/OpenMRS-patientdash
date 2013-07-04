@@ -35,7 +35,8 @@ public class UpdateColumnTest {
 			@RequestParam(required=false, value="confirmName") String confirmName,
 			@RequestParam(required=false, value="comment") String comment,
 			@RequestParam(required=false, value="filename") String filename,
-			@RequestParam(required=false, value="mail") String mail
+			@RequestParam(required=false, value="mail") String mail,
+			@RequestParam(required=false, value="feedback") String feedback
 			){
 		
 		DicomEcgService confirm = Context.getService(DicomEcgService.class);
@@ -51,6 +52,7 @@ public class UpdateColumnTest {
 			uploadConfirm.setConfirmName(confirmName);
 			uploadConfirm.setComment(comment);
 			uploadConfirm.setMail(mail);
+			uploadConfirm.setMail(feedback);
 			saveConfirm.saveDicomEcgConfirm(uploadConfirm);
 			
 		}
@@ -68,6 +70,7 @@ public class UpdateColumnTest {
 				dicomEdit.setConfirmName(confirmName);
 				dicomEdit.setComment(comment);
 				dicomEdit.setMail(mail);
+				dicomEdit.setMail(feedback);
 				confirm.saveDicomEcgConfirm(dicomEdit);
 			}
 			else{
