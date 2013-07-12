@@ -4,7 +4,7 @@
 <b class="boxHeader"><spring:message code="dicomecg.ecgdatalist" /></b>
 <div class="box" align="center" >
 	<div align="left" width="70%">
-		<table id="dicomEcg" border="1" cellpadding="5" width="80%">
+		<table id="dicomEcg" border="1" cellpadding="5" width="100%">
 			<tr bgcolor="#00FFFF" bordercolor="#000000">
 				<th align="center">Number</th>
 				<th align="center">Patient Name</th> 

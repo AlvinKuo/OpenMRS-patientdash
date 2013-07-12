@@ -40,7 +40,7 @@
 				<tr>
 					<td><spring:message code="dicomecg.ecg.measureTime"/></td>
 					<td><input type="text" name="measure_time" id="measureTime" /></td>			
-				</tr> 			
+				</tr>	
 				<tr>
 					<td><input type="submit" value="Add New" /></td>
 				</tr>	
@@ -82,7 +82,7 @@
 			</table> -->
 	<div align="cneter" width="50%">
 			<form id="uploadAttribute" method="POST" target="_new"
-			action="${pageContext.request.contextPath}/moduleServlet/dicomecg/HeartRateCount">
+			action="${pageContext.request.contextPath}/moduleServlet/dicomecg/AttributeTest">
 			<tr>
 				<td><p>Filename</p></td>
 				<td><input type="text" name="filename" id="filename" /></td>
@@ -105,6 +105,7 @@
 				<th align="center">File</th>
 				<th align="center">Measure Time</th>
 				<th align="center">Upload Time</th>
+				<th align="center">Confirm</th>
 				<th align="center">Action</th>
 			</tr>
 						
@@ -120,6 +121,7 @@
 						<td>${ecg.filename }</td>
 						<td>${ecg.measureTime }</td>
 						<td>${ecg.uploadTime }</td>
+						<td>${ecg.confirm }</td>
 						<td><a target="_new" href="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${ecg.filename }">Patient ECG</a></td>
 					</tr>						
 				</form>		

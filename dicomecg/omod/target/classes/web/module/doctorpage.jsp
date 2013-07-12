@@ -186,7 +186,6 @@ window.onload = init;
 	</div>
 	
 	<div class="ecgview" id="ecgview">	   
-	   <p>Here is show 12 lead ecg picture</p>
        <!--  show in image -->
        	<c:forEach var="page" items="${doctorpage}" varStatus="ind">
 			<img height=100% width=100% src="${pageContext.request.contextPath}/moduleServlet/dicomecg/ViewEcg?filename=${page.filename}" alt="Here is show 12 lead ecg picture" ismap />
